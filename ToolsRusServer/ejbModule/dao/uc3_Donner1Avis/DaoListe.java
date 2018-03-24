@@ -15,7 +15,7 @@ import entity.uc3_Donner1Avis.titre.Titres;
 @Singleton
 public class DaoListe {
 
-	@PersistenceContext(unitName="Nacerhibernate")
+	@PersistenceContext(unitName="DMhibernate")
 	EntityManager em; 
 	
 	/********************************************************************************
@@ -25,7 +25,7 @@ public class DaoListe {
 	public Commentaires getAllCommParId() {
 		Commentaires liste = new Commentaires();
 
-		for (Object commentaire : em.createQuery("select c from Commentaire c order by c.cote asc").getResultList()) {   
+		for (Object commentaire : em.createQuery("select c from Commentaire c order by c.idComm asc").getResultList()) {   
 			if (commentaire instanceof Commentaire) {
 				liste.add((Commentaire) commentaire);
 			}
@@ -47,7 +47,7 @@ public class DaoListe {
 	public Titres getAllTitreParId() {
 		Titres liste = new Titres();
 
-		for (Object titre : em.createQuery("select t from Titre t order by t.idLocalisation asc").getResultList()) {   
+		for (Object titre : em.createQuery("select t from Titre t order by t.idTitre asc").getResultList()) {   
 			if (titre instanceof Titre) {
 				liste.add((Titre) titre);
 			}

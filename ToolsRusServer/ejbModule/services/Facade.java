@@ -5,6 +5,7 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import clientServer.IFacade;
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
 import entity.uc3_Donner1Avis.commentaire.CommentaireVideException;
 import entity.uc3_Donner1Avis.commentaire.Commentaires;
@@ -20,8 +21,8 @@ import services.uc3_Donner1Avis.Uc3Facade;
  */
 
 @Stateless
-@Remote(clientServer.IFacade.class)
-public class Facade implements clientServer.IFacade{
+@Remote(IFacade.class)
+public class Facade implements IFacade {
 
 	@EJB Uc3Facade uc3Facade;
 	

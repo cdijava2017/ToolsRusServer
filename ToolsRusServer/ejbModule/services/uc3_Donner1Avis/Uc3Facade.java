@@ -1,5 +1,9 @@
 package services.uc3_Donner1Avis;
 
+import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Singleton;
+
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
 import entity.uc3_Donner1Avis.commentaire.CommentaireVideException;
 import entity.uc3_Donner1Avis.commentaire.Commentaires;
@@ -9,10 +13,13 @@ import entity.uc3_Donner1Avis.titre.Titres;
 import services.uc3_Donner1Avis.gestion.Gestion;
 import services.uc3_Donner1Avis.liste.Liste;
 
+
+@LocalBean
+@Singleton
 public class Uc3Facade {
 
-	private Gestion gestion;
-	private Liste liste;
+	@EJB private Gestion gestion;
+	@EJB private Liste liste;
 
 	// Ajouter en BdD
 	public Commentaire addCommentaire(Commentaire comm) throws CommentaireVideException {
