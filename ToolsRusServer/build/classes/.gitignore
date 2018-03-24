@@ -1,9 +1,0 @@
-/META-INF/
-/clientServer/
-/dao/
-/entity/
-/exception/
-/services/
-/test/
-/utils/
-/hibernate.cfg.xml
