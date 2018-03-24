@@ -1,55 +1,54 @@
 package services.uc3_Donner1Avis;
 
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
+import entity.uc3_Donner1Avis.commentaire.CommentaireVideException;
 import entity.uc3_Donner1Avis.commentaire.Commentaires;
 import entity.uc3_Donner1Avis.titre.Titre;
+import entity.uc3_Donner1Avis.titre.TitreVideException;
 import entity.uc3_Donner1Avis.titre.Titres;
+import services.uc3_Donner1Avis.gestion.Gestion;
+import services.uc3_Donner1Avis.liste.Liste;
 
 public class Uc3Facade {
 
+	private Gestion gestion;
+	private Liste liste;
 
-	public Commentaire addCommentaire(Commentaire comm) {
-		// TODO Auto-generated method stub
-		return null;
+	// Ajouter en BdD
+	public Commentaire addCommentaire(Commentaire comm) throws CommentaireVideException {
+		return gestion.creerComm(comm);
 	}
 
-	public Titre addTitre(Titre titre) {
-		// TODO Auto-generated method stub
-		return null;
+	public Titre addTitre(Titre titre) throws TitreVideException {
+		return gestion.creerTitre(titre);
 	}
 
-
+	// Supprimer tout
 	public void supAllCommentaires() {
-		// TODO Auto-generated method stub
-		
+		gestion.supAllCommentaires();
 	}
 
 	public void supAllTitres() {
-		// TODO Auto-generated method stub
-		
+		gestion.supAllTitres();
 	}
 
-
+	// Get all
 	public Commentaires getAllCommParId() {
-		// TODO Auto-generated method stub
-		return null;
+		return liste.getAllCommParId();
 	}
 
 	public Titres getAllTitreParId() {
-		// TODO Auto-generated method stub
-		return null;
+		return liste.getAllTitreParId();
 	}
 
-
+	// Get par référence
 	public Commentaire getCommParRef(int ref) {
-		// TODO Auto-generated method stub
-		return null;
+		return liste.getCommParRef(ref);
 	}
 
 	public Titre getTitreParRef(int ref) {
-		// TODO Auto-generated method stub
-		return null;
+		return liste.getTitreParRef(ref);
 	}
 
-	
+
 }

@@ -6,14 +6,16 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
+import entity.uc3_Donner1Avis.commentaire.CommentaireVideException;
 import entity.uc3_Donner1Avis.commentaire.Commentaires;
 import entity.uc3_Donner1Avis.titre.Titre;
+import entity.uc3_Donner1Avis.titre.TitreVideException;
 import entity.uc3_Donner1Avis.titre.Titres;
 import services.uc3_Donner1Avis.Uc3Facade;
 
 /**
  * facade principale du projet serveur
- * @author Stag
+ * @author Groupe
  *
  */
 
@@ -23,16 +25,15 @@ public class Facade implements clientServer.IFacade{
 
 	@EJB Uc3Facade uc3Facade;
 	
-	public Facade() {
-		// TODO Auto-generated constructor stub
-	}
+	public Facade() {}
 
+	
 	@Override
-	public Commentaire addCommentaire(Commentaire comm) {
+	public Commentaire addCommentaire(Commentaire comm) throws CommentaireVideException {
 		return uc3Facade.addCommentaire(comm);
 	}
 	@Override
-	public Titre addTitre(Titre titre) {
+	public Titre addTitre(Titre titre) throws TitreVideException {
 		return uc3Facade.addTitre(titre);
 	}
 
