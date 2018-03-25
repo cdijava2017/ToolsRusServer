@@ -15,6 +15,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import entity.uc3_Donner1Avis.titre.Titre;
+import utils.ICommentable;
 
 /**
  * TODO Commenter cette classe au maximum
@@ -25,7 +26,7 @@ import entity.uc3_Donner1Avis.titre.Titre;
 
 @Entity
 @Table(name="Commentaire") 
-public class Commentaire implements Serializable {
+public class Commentaire implements Serializable, ICommentable {
 
 	private static final long serialVersionUID = 1L;
 

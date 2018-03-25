@@ -7,9 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import utils.ICommentable;
+
 @Entity
 @Table(name="Titre")
-public class Titre  implements Serializable {
+public class Titre  implements Serializable, ICommentable {
 
 	private static final long serialVersionUID = 1L;
 
