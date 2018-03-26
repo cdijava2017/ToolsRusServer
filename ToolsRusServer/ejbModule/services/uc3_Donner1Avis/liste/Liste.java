@@ -8,6 +8,8 @@ import dao.uc3_Donner1Avis.DaoException;
 import dao.uc3_Donner1Avis.DaoListe;
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
 import entity.uc3_Donner1Avis.commentaire.Commentaires;
+import entity.uc3_Donner1Avis.compteur.Compteur;
+import entity.uc3_Donner1Avis.compteur.Compteurs;
 import entity.uc3_Donner1Avis.titre.Titre;
 import entity.uc3_Donner1Avis.titre.Titres;
 
@@ -60,6 +62,28 @@ public class Liste {
 		}
 		return titre;
 	}
+
+	
+	/*****************************************************************************
+	 * Cette partie concerne les Compteurs et aura toutes les méthodes relatives *
+	 *****************************************************************************/
+	
+	public Compteurs getAllCompteurParId() {
+
+		Compteurs compteurs = daoListe.getAllCompteurParId();
+		return compteurs;
+	}
+
+	public Compteur getCompteurParRef(int ref) {
+		Compteur compteur = null;
+		try {
+			compteur = daoListe.getCompteurParRef(ref);
+		} catch (DaoException e) {
+			System.out.println("!!!!! DM Erreur : " + e.getCode() + ":" + e.getMessage());
+		}
+		return compteur;
+	}
+
 
 
 //	/***************************************************************************

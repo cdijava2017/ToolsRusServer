@@ -8,6 +8,8 @@ import javax.persistence.PersistenceException;
 
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
 import entity.uc3_Donner1Avis.commentaire.CommentaireVideException;
+import entity.uc3_Donner1Avis.compteur.Compteur;
+import entity.uc3_Donner1Avis.compteur.CompteurVideException;
 import entity.uc3_Donner1Avis.titre.Titre;
 import entity.uc3_Donner1Avis.titre.TitreVideException;
 
@@ -77,6 +79,42 @@ public class DaoGestion {
 		}
 	}
 
+	
+
+	/*****************************************************************************
+	 * Cette partie concerne les Compteurs et aura toutes les méthodes relatives *
+	 * @throws CompteurVideException 											 *
+	 *****************************************************************************/
+	
+	public Compteur ajouter(Compteur compteur) throws CompteurVideException {
+		try {
+			System.out.println("addCompteur DaoGestion");
+			if (compteur != null) {
+				em.persist(compteur);
+				em.flush();
+			}
+			else { 
+				throw new CompteurVideException();
+			}
+		}
+		catch (PersistenceException e) {	
+			System.out.println(e);
+		}
+		return compteur;
+	}
+	
+
+	public void supAllCompteurs() {
+		try {
+			em.createQuery("delete from Compteur").executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	
+	
+	
 //	public Document update (Document document) {
 //
 //		// si document est null : return

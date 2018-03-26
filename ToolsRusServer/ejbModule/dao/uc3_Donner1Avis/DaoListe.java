@@ -7,6 +7,8 @@ import javax.persistence.PersistenceContext;
 
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
 import entity.uc3_Donner1Avis.commentaire.Commentaires;
+import entity.uc3_Donner1Avis.compteur.Compteur;
+import entity.uc3_Donner1Avis.compteur.Compteurs;
 import entity.uc3_Donner1Avis.titre.Titre;
 import entity.uc3_Donner1Avis.titre.Titres;
 
@@ -60,6 +62,28 @@ public class DaoListe {
 		if (titre == null) throw new DaoException(DaoErrorMessage.ERR_INEXISTANT);
 		return titre;
 	}
+
+	/**************************************************************************
+	 * Cette partie concerne les Titres et aura toutes les méthodes relatives *
+	 **************************************************************************/
+	
+	public Compteurs getAllCompteurParId() {
+		Compteurs liste = new Compteurs();
+
+		for (Object compteur : em.createQuery("select c from Compteur c order by c.idCompteur asc").getResultList()) {   
+			if (compteur instanceof Compteur) {
+				liste.add((Compteur) compteur);
+			}
+		}
+		return liste;
+	}
+	
+	public Compteur getCompteurParRef(int ref) throws DaoException {
+		Compteur compteur =  em.find(Compteur.class, ref);
+		if (compteur == null) throw new DaoException(DaoErrorMessage.ERR_INEXISTANT);
+		return compteur;
+	}
+
 
 	
 	

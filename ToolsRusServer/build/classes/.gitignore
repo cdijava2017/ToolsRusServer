@@ -1,8 +1,4 @@
 /dao/
-/clientServer/
 /services/
 /entity/
-/test/
-/utils/
-/META-INF/
-/exception/
+/clientServer/

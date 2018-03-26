@@ -10,6 +10,8 @@ import dao.uc3_Donner1Avis.DaoGestion;
 import dao.uc3_Donner1Avis.DaoListe;
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
 import entity.uc3_Donner1Avis.commentaire.CommentaireVideException;
+import entity.uc3_Donner1Avis.compteur.Compteur;
+import entity.uc3_Donner1Avis.compteur.CompteurVideException;
 import entity.uc3_Donner1Avis.titre.Titre;
 import entity.uc3_Donner1Avis.titre.TitreVideException;
 
@@ -74,6 +76,33 @@ public class Gestion {
 		
 	}
 
+
+	/*****************************************************************************
+	 * Cette partie concerne les Compteurs et aura toutes les méthodes relatives *
+	 * @throws DocumentVideException 											 *
+	 *****************************************************************************/
+	
+	public Compteur creerCompteur(Compteur compteur) throws CompteurVideException {
+		try {
+			System.out.println("addCompteur Gestion");
+			Objects.requireNonNull(compteur);
+			daoGestion.ajouter(compteur);
+		}
+		catch(NullPointerException npe) {
+			System.out.println("Attention : NullPointerException!");
+		}
+		return compteur;
+	}
+	
+
+	public void supAllCompteurs() {
+		daoGestion.supAllCompteurs();
+		
+	}
+	
+	
+	
+	
 //	public void modifier(Localisation localisation) {
 //		try {
 //			daoGestion.update(localisation);

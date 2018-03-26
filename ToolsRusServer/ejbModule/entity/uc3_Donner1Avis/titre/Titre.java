@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import utils.ICommentable;
 
 @Entity
-@Table(name="Titre")
+@Table(name="ECF_Titre")
 public class Titre  implements Serializable, ICommentable {
 
 	private static final long serialVersionUID = 1L;
@@ -18,7 +18,7 @@ public class Titre  implements Serializable, ICommentable {
 	@Id
 	@Column(name="idTitre")
 //	@GeneratedValue(strategy = GenerationType.AUTO)     // à commenter/décommenter si la table contient ou non une séquence active
-//	@SequenceGenerator(name="seq_comm", sequenceName="seq_comm", initialValue=1)
+//	@SequenceGenerator(name="seq_titre", sequenceName="seq_titre", initialValue=1)
 	private int idTitre;
 	
 	@Column(name="txtTitre", length=100, nullable=false)

@@ -6,14 +6,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import entity.uc3_Donner1Avis.compteur.Compteur;
 import entity.uc3_Donner1Avis.titre.Titre;
 import utils.ICommentable;
 
@@ -25,7 +24,7 @@ import utils.ICommentable;
 
 
 @Entity
-@Table(name="Commentaire") 
+@Table(name="ECF_Commentaire") 
 public class Commentaire implements Serializable, ICommentable {
 
 	private static final long serialVersionUID = 1L;
@@ -42,9 +41,13 @@ public class Commentaire implements Serializable, ICommentable {
 	 * Le titre est une association 1-1 avec la classe Titre. 
 	 * Un commentaire n'a qu'un titre et un titre n'appartient qu'à un commentaire.
 	 */
-	@OneToOne (cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name = "idTitre", unique = true, nullable = false)
+	@OneToOne (cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name = "idTitre", unique = true, nullable = true)
 	private Titre titre;
+	
+	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name = "idCompteur", nullable = true)
+	private Compteur idCompteur;
 	
 	
 	/**
@@ -67,7 +70,18 @@ public class Commentaire implements Serializable, ICommentable {
 		this.texteComm = texteComm;
 		this.titre = titre;
 	}
+	/**
+	 *  Constructeur avec le titre et le compteur en plus. 
+	 *  @param idComm, @param texteComm, @param compteur et @param titre. 
+	 */
+	public Commentaire(int idComm, String texteComm, Titre titre, Compteur compteur) {
+		this.idComm = idComm;
+		this.texteComm = texteComm;
+		this.titre = titre;
+		this.idCompteur = compteur;
+	}
 
+	
 	public int getIdComm() {
 		return idComm;
 	}
@@ -89,9 +103,16 @@ public class Commentaire implements Serializable, ICommentable {
 		this.titre = titre;
 	}
 	
-
+	public Compteur getCompteur() {
+		return idCompteur;
+	}
+	public void setCompteur(Compteur compteur) {
+		this.idCompteur = compteur;
+	}
+	@Override
 	public String toString() {
-		return "Commentaire = " + idComm + ", son titre est : " + titre.getTxtTitre();
+		return "Commentaire [idComm=" + idComm + ", texteComm=" + texteComm + ", titre=" + titre + ", compteur="
+				+ idCompteur + "]";
 	}
 	
 }
