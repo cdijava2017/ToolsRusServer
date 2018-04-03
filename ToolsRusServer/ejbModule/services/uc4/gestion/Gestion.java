@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 
 import dao.uc4.DaoGestion;
 import entity.uc4.Mot;
+
 import services.uc4.interfaces.IGestion;
 
 @Stateless
@@ -20,6 +21,13 @@ public class Gestion implements IGestion {
 		return mot;
 	}
 	
-
+//	public void delete(int refDoc) /*throws InexistantException*/ {
+//		if (refDoc!= 0) {
+//			Document document = em.find(Document.class, refDoc);
+//			
+//			em.remove(document);
+//		}
+//		
+//	}
 
 }
