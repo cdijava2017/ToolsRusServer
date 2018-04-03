@@ -25,5 +25,7 @@ public class JUnitTestMot {
 		}
 	}
 	
+	//test ju1AddMot  TODO
+	//test ju2SizeMot TODO
 
 }
