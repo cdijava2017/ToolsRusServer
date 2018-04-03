@@ -1,8 +1,14 @@
 package entity.uc4;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -14,13 +20,22 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Mot")
-public class Mot {
+public class Mot implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@Column(nullable=false)
 	int 	idMot;
 	String 	libelleMot;
+	
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="idImage", unique=true, nullable=true)
 	Image 	image;
+	
 	
 	
 	//constructor
