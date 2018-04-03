@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import entity.uc3_Donner1Avis.compteur.Compteur;
 import utils.ICommentable;
 
 @Entity
@@ -49,6 +50,13 @@ public class Titre  implements Serializable, ICommentable {
 	
 	public String toString() {
 		return "Titre = " + idTitre + ", txtTitre = " + txtTitre;
+	}
+	
+	public boolean equals(Titre titre) {
+		boolean resultat;
+		if (titre.idTitre == this.idTitre || titre.txtTitre == this.txtTitre) resultat = true;
+		else resultat = false;
+		return resultat;
 	}
 	
 }

@@ -7,6 +7,8 @@ import javax.naming.NamingException;
 import clientServer.IFacade;
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
 import entity.uc3_Donner1Avis.compteur.Compteur;
+import entity.uc3_Donner1Avis.compteur.CptDislike;
+import entity.uc3_Donner1Avis.compteur.CptLike;
 import entity.uc3_Donner1Avis.titre.Titre;
 
 public class Main {
@@ -31,22 +33,27 @@ public class Main {
 			Titre t1 = new Titre(1, "titre 1");
 			Titre t2 = new Titre(2, "titre 2");
 			Titre t3 = new Titre(3, "titre 3");
-			Compteur cc1 = new Compteur(1, 1);
-			Compteur cc2 = new Compteur(2, 2);
-			Compteur cc3 = new Compteur(3, 3);
-			c1.setTitre(t1);
-			c1.setCompteur(cc1);
-			c2.setTitre(t2);
-			c3.setTitre(t3);
-			c2.setCompteur(cc2);
-			c3.setCompteur(cc3);
+			
+			CptDislike cc1 = new CptDislike(0);
+			CptLike cc11 = new CptLike(0);
+			
+			c1.setCompteurs(cc1);
+			c1.setCompteurs(cc11);
+//			Compteur cc2 = new Compteur(2, 2);
+//			Compteur cc3 = new Compteur(3, 3);
+//			c1.setTitre(t1);
+//			c1.setCompteurs(cc1);
+//			c2.setTitre(t2);
+//			c3.setTitre(t3);
+//			c2.setCompteurs(cc2);
+//			c3.setCompteurs(cc3);
 			System.out.println(c1);
-			System.out.println(c2);
-			System.out.println(c3);
-			IF.addCommentaire(c1);
-			IF.addCommentaire(c2);
-			IF.addCommentaire(c3);
-			IF.getAllCommParId();
+//			System.out.println(c2);
+//			System.out.println(c3);
+//			IF.addCommentaire(c1);
+//			IF.addCommentaire(c2);
+//			IF.addCommentaire(c3);
+//			IF.getAllCommParId();
 			
 //			System.out.println("réussi, persist d'un document");
 //			Commentaire comm1 = new Commentaire(1, "comm 1");

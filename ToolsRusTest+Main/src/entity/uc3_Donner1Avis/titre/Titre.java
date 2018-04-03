@@ -37,4 +37,11 @@ public class Titre  implements Serializable {
 		return "Titre = " + idTitre + ", txtTitre = " + txtTitre;
 	}
 	
+	public boolean equals(Titre titre) {
+		boolean resultat;
+		if (titre.idTitre == this.idTitre || titre.txtTitre == this.txtTitre) resultat = true;
+		else resultat = false;
+		return resultat;
+	}
+	
 }
