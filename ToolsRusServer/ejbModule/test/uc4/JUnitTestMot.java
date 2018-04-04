@@ -19,7 +19,7 @@ public class JUnitTestMot {
 		try {
 			context = new InitialContext();
 			//IFacade serviceFacade = (IFacade) context.lookup(null);
-			
+			//TODO
 		}catch (NamingException ne){
 			ne.printStackTrace();
 		}
