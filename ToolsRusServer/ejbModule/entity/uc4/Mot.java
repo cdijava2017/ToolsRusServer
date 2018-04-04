@@ -38,6 +38,8 @@ public class Mot implements Serializable {
 	
 	
 	
+	
+	
 	//constructor
 	public Mot(int idMot, String libelleMot, Image image) {
 		super();

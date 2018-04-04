@@ -16,12 +16,13 @@ public class DaoGestion {
 	@PersistenceContext(unitName=DaoUtil.PERSISTENCE_UNITNAME)
 	EntityManager em;
 	
-public void persist(Mot mot) {
+		public Mot persist(Mot mot) {
+				
+				
+				em.persist(mot);
+				em.flush();
+				System.out.println("je persiste mon mot");
+				return mot;
+			}
 		
-		//System.out.println("DaoGestion_persist_ apres instance localisation");
-		em.persist(mot);
-		em.flush();
-		System.out.println("je persiste mon mot");
-	}
-
-}
+		}
