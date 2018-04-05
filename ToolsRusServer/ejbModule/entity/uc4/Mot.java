@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+//import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -37,8 +37,8 @@ public class Mot implements Serializable {
 	@JoinColumn(name="idImage", unique=true, nullable=true)
 	private Image 	image;
 	
-	@ManyToMany()
-	private Mots listeMot;
+//	@ManyToMany()
+//	private Mots listeMot;
 	
 	
 	
@@ -48,6 +48,14 @@ public class Mot implements Serializable {
 		this.idMot = idMot;
 		this.libelleMot = libelleMot;
 		this.image = image;
+	}
+	
+	//constructor for the classes which inheritence, like class MotHumeur or Theme
+	public Mot(int idMot, String libelleMot) {
+		super();
+		this.idMot = idMot;
+		this.libelleMot = libelleMot;
+		
 	}
 
 

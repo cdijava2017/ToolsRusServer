@@ -6,20 +6,21 @@ import javax.naming.NamingException;
 
 import org.junit.BeforeClass;
 
-import clientServer.IFacade;
+import services.uc4.interfaces.IGestion;
+import utils.uc4.Parametre;
 
 public class JUnitTestMot {
 	
-	static Context context;
-	IFacade serviceFacade;
+	private static Context context;
+	private static IGestion serviceFacade=null;
 	
 	@BeforeClass
 	public static void firstOfAll() {
 		
 		try {
 			context = new InitialContext();
-			//IFacade serviceFacade = (IFacade) context.lookup(null);
-			//TODO
+			serviceFacade = (IGestion) context.lookup(Parametre.EJB_SERVICE_FACADE);
+			System.out.println(serviceFacade);
 		}catch (NamingException ne){
 			ne.printStackTrace();
 		}

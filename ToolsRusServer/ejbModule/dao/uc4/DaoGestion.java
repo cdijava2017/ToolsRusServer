@@ -12,6 +12,12 @@ import dao.uc4.DaoUtil;
 import entity.uc4.Mot;
 import exception.uc4.ExistantException;
 
+/**
+ * methods to manage words
+ * method persist=> throws an exception of an existant word that already exist in database
+ * @author Fred
+ *
+ */
 
 @LocalBean
 @Singleton
@@ -20,11 +26,13 @@ public class DaoGestion {
 	@PersistenceContext(unitName=DaoUtil.PERSISTENCE_UNITNAME)
 	EntityManager em;
 	
+	
+	//method to add a word in the database
 		public Mot persist(Mot mot) throws ExistantException {
 				
 			try {	em.persist(mot);
 					em.flush();
-					System.out.println("je persiste mon mot");
+					//System.out.println("je persiste mon mot");
 					
 				} 
 			catch (PersistenceException pe) {
