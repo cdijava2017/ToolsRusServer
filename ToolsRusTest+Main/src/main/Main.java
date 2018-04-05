@@ -90,6 +90,7 @@ public class Main {
 //			interfaceFacade.modifCommentaire(comm1);
 //			System.out.println(interfaceFacade.getAllCompteurParId());
 			
+			//TODO changer modifier() comme pensé hier
 			
 		} catch (NamingException e) {
 
