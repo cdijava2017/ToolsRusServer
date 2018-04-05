@@ -18,8 +18,8 @@ public class Image {
 	
 	@Id
 	@Column(nullable=false)
-	int 	idImage;
-	String 	libelleImage;
+	private int 	idImage;
+	private String 	libelleImage;
 	
 	
 	public Image(int idImage, String libelleImage) {

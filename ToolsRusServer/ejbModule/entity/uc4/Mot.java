@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -29,14 +30,15 @@ public class Mot implements Serializable {
 	
 	@Id
 	@Column(nullable=false)
-	int 	idMot;
-	String 	libelleMot;
+	private int 	idMot;
+	private String 	libelleMot;
 	
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="idImage", unique=true, nullable=true)
-	Image 	image;
+	private Image 	image;
 	
-	
+	@ManyToMany()
+	private Mots listeMot;
 	
 	
 	

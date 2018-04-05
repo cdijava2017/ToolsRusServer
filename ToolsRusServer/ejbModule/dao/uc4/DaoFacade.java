@@ -12,7 +12,7 @@ import exception.uc4.ExistantException;
 public class DaoFacade {
 	
 	@EJB
-	DaoGestion daoGestion;
+	private DaoGestion daoGestion;
 	
 	public Mot add (Mot mot) throws ExistantException {
 		return daoGestion.persist(mot);

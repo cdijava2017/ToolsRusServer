@@ -24,7 +24,6 @@ public class Gestion implements IGestion {
 //	public void delete(int refDoc) /*throws InexistantException*/ {
 //		if (refDoc!= 0) {
 //			Document document = em.find(Document.class, refDoc);
-//			
 //			em.remove(document);
 //		}
 //		
