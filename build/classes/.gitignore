@@ -1,0 +1,10 @@
+/META-INF/
+/clientServeur/
+/dao/
+/entity/
+/jboss-ejb-client.properties
+/jndi.properties
+/parametreGestionAcces/
+/services/
+/testDDL/
+/tests/
