@@ -31,7 +31,7 @@ public class TestJunitUser {
 	}
 
 	@Before
-	public void beforedrop() throws Exception {
+	public void beforeDrop() throws Exception {
 		facadeService.removeNativeUser();
 		System.out.println("drop");
 	}
@@ -48,7 +48,7 @@ public class TestJunitUser {
 
 	@Test
 	// Testd'ajout si id existant est modifie
-	public void testmaj() {
+	public void testMaj() {
 		User user = new User(12, "Ousseynou", "afpapw");
 		facadeService.addNewUser(user);
 		System.out.println("2 " + user.toString());

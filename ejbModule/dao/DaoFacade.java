@@ -2,14 +2,14 @@ package dao;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
-import javax.ejb.Singleton;
+import javax.ejb.Stateless;
 
 import dao.gestionAcces.DaoAcces;
 import entity.gestionAcces.Profil;
 import entity.gestionAcces.Role;
 import entity.gestionAcces.User;
 
-@Singleton
+@Stateless
 @LocalBean
 public class DaoFacade {
 

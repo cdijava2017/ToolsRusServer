@@ -17,6 +17,7 @@ import entity.gestionAcces.Animateur;
 import entity.gestionAcces.Participant;
 import entity.gestionAcces.Role;
 import entity.gestionAcces.SuperAdmin;
+import entity.gestionAcces.User;
 import javassist.expr.Instanceof;
 import parametreGestionAcces.Parametres;
 
@@ -74,14 +75,15 @@ public class TestJunitRole {
 		Role role3 = new SuperAdmin(6, "vous", true);
 
 		// Verifier si le role fait partie de telle instance
-		assertThat(role,instanceof Role.class);
-		
+		// assertThat(role,instanceof Role.class);
+
 		// test si le mode admin est vrai ou pas
-		/* try { assertTrue(role.isAdmin());//ko admin } catch (Exception e) {
+		/*
+		 * try { assertTrue(role.isAdmin());//ko admin } catch (Exception e) {
 		 * assertFalse(role.isAdmin());//ko admin }
 		 */
-		//ok quand il est active le mode admin 
-		assertFalse(role.isAdmin());// ko 
+		// ok quand il est active le mode admin
+		assertFalse(role.isAdmin());// ko
 		assertTrue(role2.isAdmin());// ok
 		assertTrue(role3.isAdmin());// ok
 
@@ -94,4 +96,29 @@ public class TestJunitRole {
 
 	}
 
+	@Test
+	public void ModifierRole() {
+		// on crerer un role
+		Role role = new Participant(104, "Testoi", false);
+		facadeService.addRole(role);
+		System.out.println(role.toString());
+		
+		Role role2 = new Animateur(104, "TestMoi", true);
+		facadeService.addRole(role2);
+		System.out.println(role2.toString());
+		
+		//assertEquals("Moi", facadeService.getRole(2).getNom());
+		
+	}
+
+	@Test
+	public void delateRole() {
+		Role role = new Participant(104, "Testoi", false);
+		facadeService.addRole(role);
+
+		assertEquals("Testoi", facadeService.getRole(104).getNom());
+
+		facadeService.delRole(role);
+
+	}
 }
