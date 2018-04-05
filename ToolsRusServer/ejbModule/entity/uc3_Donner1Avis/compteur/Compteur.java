@@ -2,20 +2,18 @@ package entity.uc3_Donner1Avis.compteur;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @Table(name="ECF_Compteur")
 public abstract class Compteur implements Serializable {
 
@@ -23,46 +21,38 @@ public abstract class Compteur implements Serializable {
 
 	@Id
 	@Column(name="idCompteur")
-	//		@GeneratedValue(strategy = GenerationType.AUTO)     // à commenter/décommenter si la table contient ou non une séquence active
-	//		@SequenceGenerator(name="seq_compteur", sequenceName="seq_compteur", initialValue=1)
+	@GeneratedValue(strategy = GenerationType.AUTO)     // à commenter/décommenter si la table contient ou non une séquence active
+	@SequenceGenerator(name="seq_compteur", sequenceName="seq_compteur", initialValue=1)
 	private int idCompteur;
-
-	@Transient
-	// somme des cptlike et dislike
-	private int  clicTousCpt;
+	
+	@Column(name="nbClick", nullable=true)
+	private int compteur;
 
 //	@OneToOne (cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-//	@JoinColumn(name = "idComptLike", unique = true, nullable = true)
-//	private CptLike idComptLike;
+////	@JoinColumn(name = "idComptLike", unique = true, nullable = true)
+//	private CptLike comptLike;
 //
 //	@OneToOne (cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-//	@JoinColumn(name = "idComptDislike", unique = true, nullable = true)
-//	private CptDislike idComptDislike;
+////	@JoinColumn(name = "idComptDislike", unique = true, nullable = true)
+//	private CptDislike comptDislike;
 
 
 	public Compteur() {}
-
-	public Compteur(int id, int compteur) {
-		this.idCompteur = id;
-		this.clicTousCpt = compteur;
+	
+	public Compteur(int compteur) {
+		this.compteur = compteur;
 	}
 
-	public Compteur(int id, int compteur, CptLike comptLike, CptDislike comptDislike) {
-		this.idCompteur = id;
-//
-//		this.idComptLike = comptLike;
-//		this.idComptDislike = comptDislike;
-		
-		//TODO calculer compteur
-		this.clicTousCpt = compteur;
-	}
+//	public Compteur(int id, int compteur) {
+//		this.idCompteur = id;
+//		this.compteur = compteur;
+//	}
 
 	@Override
 	public String toString() {
-		return "Compteur [idCompteur=" + idCompteur + ", compteur=" + clicTousCpt + 
-//				", ComptLike=" + idComptLike + ", ComptDislike=" + idComptDislike + 
-				"]";
+		return "idCompteur=" + idCompteur + ", compteur=" + compteur;
 	}
+
 
 	public int getIdCompteur() {
 		return idCompteur;
@@ -72,31 +62,21 @@ public abstract class Compteur implements Serializable {
 	}
 
 	public int getCompteur() {
-		return clicTousCpt;
+		return compteur;
 	}
+
 	public void setCompteur(int compteur) {
-		this.clicTousCpt = compteur;
+		this.compteur = compteur;
 	}
-//
-//	public CptLike getComptLike() {
-//		return idComptLike;
-//	}
-//	public void setComptLike(CptLike comptLike) {
-//		this.idComptLike = comptLike;
-//	}
-//
-//	public CptDislike getComptDislike() {
-//		return idComptDislike;
-//	}
-//	public void setComptDislike(CptDislike comptDislike) {
-//		this.idComptDislike = comptDislike;
-//	}
 
-
-	public boolean equals(Compteur compt) {
-		boolean resultat;
-		if (compt.idCompteur == this.idCompteur || compt.clicTousCpt == this.clicTousCpt) resultat = true;
-		else resultat = false;
+	@Override
+	public boolean equals(Object obj) {
+		boolean resultat = false;
+		
+		if (obj instanceof Compteur) {
+			Compteur compt = (Compteur) obj;
+			if (compt.idCompteur == this.idCompteur && compt.compteur == this.compteur) resultat = true;
+		}
 		return resultat;
 	}
 

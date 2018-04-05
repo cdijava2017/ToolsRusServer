@@ -1,6 +1,5 @@
 package entity.uc3_Donner1Avis.compteur;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -10,25 +9,18 @@ public class CptLike extends Compteur{
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="comptLike", nullable=true)
-	private int nbLike;
+	public CptLike() {}
 
-	// Constructeur avec le compteur seulement car l'id est générée automatiquement.
+	//	public CptLike(int id, int compteur) {
+	//	super(id,compteur);
+	//}
 	public CptLike(int compteur) {
-		this.nbLike = compteur;
-	}
-
-
-	public int getCompteurLike() {
-		return nbLike;
-	}
-	public void setCompteurLike(int compteurLike) {
-		this.nbLike = compteurLike;
+		super(compteur);
 	}
 
 	@Override
 	public String toString() {
-		return "CptLike [ compteurLike = " + nbLike + " ]";
+		return "CptLike [ " + super.toString() + " ]";
 	}
 
 

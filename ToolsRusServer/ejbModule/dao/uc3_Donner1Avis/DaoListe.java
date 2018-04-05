@@ -25,6 +25,7 @@ public class DaoListe {
 	 ********************************************************************************/
 	
 	public Commentaires getAllCommParId() {
+		System.out.println("DaoListe méthode getAllCommParId()");
 		Commentaires liste = new Commentaires();
 
 		for (Object commentaire : em.createQuery("select c from Commentaire c order by c.idComm asc").getResultList()) {   
@@ -36,6 +37,7 @@ public class DaoListe {
 	}
 	
 	public Commentaire getCommParRef(int ref) throws DaoException {
+		System.out.println("DaoListe méthode getCommParRef()");
 		Commentaire commentaire =  em.find(Commentaire.class, ref);
 		if (commentaire == null) throw new DaoException(DaoErrorMessage.ERR_INEXISTANT);
 		return commentaire;
@@ -47,6 +49,7 @@ public class DaoListe {
 	 **************************************************************************/
 	
 	public Titres getAllTitreParId() {
+		System.out.println("DaoListe méthode getAllTitreParId()");
 		Titres liste = new Titres();
 
 		for (Object titre : em.createQuery("select t from Titre t order by t.idTitre asc").getResultList()) {   
@@ -58,6 +61,7 @@ public class DaoListe {
 	}
 	
 	public Titre getTitreParRef(int ref) throws DaoException {
+		System.out.println("DaoListe méthode getTitreParRef()");
 		Titre titre =  em.find(Titre.class, ref);
 		if (titre == null) throw new DaoException(DaoErrorMessage.ERR_INEXISTANT);
 		return titre;
@@ -68,6 +72,7 @@ public class DaoListe {
 	 **************************************************************************/
 	
 	public Compteurs getAllCompteurParId() {
+		System.out.println("DaoListe méthode getAllCompteurParId()");
 		Compteurs liste = new Compteurs();
 
 		for (Object compteur : em.createQuery("select c from Compteur c order by c.idCompteur asc").getResultList()) {   
@@ -79,6 +84,7 @@ public class DaoListe {
 	}
 	
 	public Compteur getCompteurParRef(int ref) throws DaoException {
+		System.out.println("DaoListe méthode getCompteurParRef()");
 		Compteur compteur =  em.find(Compteur.class, ref);
 		if (compteur == null) throw new DaoException(DaoErrorMessage.ERR_INEXISTANT);
 		return compteur;

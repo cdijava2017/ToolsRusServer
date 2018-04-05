@@ -28,4 +28,8 @@ public interface IFacade {
 	public Titre getTitreParRef(int ref);
 	public Compteur getCompteurParRef(int ref);
 	
+	public void modifCommentaire(Commentaire commentaire);
+	public void modifTitre(Titre titre);
+	public void modifCompteur(Compteur compteur);
+	
 }

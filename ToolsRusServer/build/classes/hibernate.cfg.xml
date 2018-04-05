@@ -6,14 +6,17 @@
     <session-factory name="">
         <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
         <property name="hibernate.connection.password">stag14pw</property>
-        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@junon:1521:afpa</property>
         <property name="hibernate.connection.username">stag14</property>
         <property name="hibernate.default_schema">STAG14</property>
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
-  		<mapping class="entity.Localisation"/>
-  		<mapping class="entity.Livre"/>
+  		<mapping class="entity.uc3_Donner1Avis.commentaire.Commentaire"/>
+  		<mapping class="entity.uc3_Donner1Avis.titre.Titre"/>
+  		<mapping class="entity.uc3_Donner1Avis.compteur.Compteur"/>
+  		<mapping class="entity.uc3_Donner1Avis.compteur.CptDislike"/>
+  		<mapping class="entity.uc3_Donner1Avis.compteur.CptLike"/>
     </session-factory>
 </hibernate-configuration>
 

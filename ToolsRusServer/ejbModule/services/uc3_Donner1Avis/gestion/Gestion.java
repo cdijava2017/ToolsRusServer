@@ -24,8 +24,8 @@ public class Gestion {
 	@EJB private DaoListe daoListe;
 
 	/*****************************************************************************
-	 * Cette partie concerne les Documents et aura toutes les méthodes relatives *
-	 * @throws DocumentVideException 											 *
+	 * Cette partie concerne les Commentaires et aura toutes les méthodes relatives *
+	 * @throws CommentaireVideException 											 *
 	 *****************************************************************************/
 	
 	public Commentaire creerComm(Commentaire commentaire) throws CommentaireVideException {
@@ -34,29 +34,26 @@ public class Gestion {
 			daoGestion.ajouter(commentaire);
 		}
 		catch(NullPointerException npe) {
-			System.out.println("Attention : NullPointerException!");
+			System.out.println("Attention : NullPointerException pour le commentaire!");
 		}
 		return commentaire;
 	}
-	
 
 	public void supAllCommentaires() {
 		daoGestion.supAllCommentaires();
-		
 	}
 	
-//	public void modifier(Document document) {
-//		try {
-//			daoGestion.update(document);
-//		} catch (DaoException e) {
-//			System.out.println("!!!!! DM Erreur : " + e.getCode() + ":" + e.getMessage());
-//		}
-//		
-//	}
+	public void modifCommentaire(Commentaire commentaire) {
+		try {
+			daoGestion.modifCommentaire(commentaire);
+		} catch (Exception e) {
+			System.out.println("Attention, Exception levée à la modification du commentaire : " + e.getMessage());
+		}
+	}
 	
 	/**************************************************************************
 	 * Cette partie concerne les Titres et aura toutes les méthodes relatives *
-	 * @throws DocumentVideException 										  *
+	 * @throws TitreVideException 										  *
 	 **************************************************************************/
 	
 	public Titre creerTitre(Titre titre) throws TitreVideException {
@@ -65,21 +62,26 @@ public class Gestion {
 			daoGestion.ajouter(titre);
 		}
 		catch(NullPointerException npe) {
-			System.out.println("Attention : NullPointerException!");
+			System.out.println("Attention : NullPointerException pour le titre!");
 		}
 		return titre;
 	}
 	
-
 	public void supAllTitres() {
 		daoGestion.supAllTitres();
-		
 	}
 
+	public void modifTitre(Titre titre) {
+		try {
+			daoGestion.modifTitre(titre);
+		} catch (Exception e) {
+			System.out.println("Attention, Exception levée à la modification du titre : " + e.getMessage());
+		}
+	}
 
 	/*****************************************************************************
 	 * Cette partie concerne les Compteurs et aura toutes les méthodes relatives *
-	 * @throws DocumentVideException 											 *
+	 * @throws CompteurVideException 											 *
 	 *****************************************************************************/
 	
 	public Compteur creerCompteur(Compteur compteur) throws CompteurVideException {
@@ -89,18 +91,23 @@ public class Gestion {
 			daoGestion.ajouter(compteur);
 		}
 		catch(NullPointerException npe) {
-			System.out.println("Attention : NullPointerException!");
+			System.out.println("Attention : NullPointerException pour le compteur!");
 		}
 		return compteur;
 	}
 	
-
 	public void supAllCompteurs() {
 		daoGestion.supAllCompteurs();
 		
 	}
 	
-	
+	public void modifCompteur(Compteur compteur) {
+		try {
+			daoGestion.modifCompteur(compteur);
+		} catch (Exception e) {
+			System.out.println("Attention, Exception levée à la modification du compteur : " + e.getMessage());
+		}
+	}
 	
 	
 //	public void modifier(Localisation localisation) {

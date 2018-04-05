@@ -4,24 +4,18 @@ public class CptDislike extends Compteur {
 
 	private static final long serialVersionUID = 1L;
 
-	private int compteurDislike;
+//	public CptDislike(int id, int compteur) {
+//	super(id,compteur);
+//}
+public CptDislike(int compteur) {
+	super(compteur);
+}
 
-	// Constructeur avec le compteur seulement car l'id est générée automatiquement.
-	public CptDislike(int compteur) {
-		this.compteurDislike = compteur;
-	}
-
-
-	public int getCompteurDislike() {
-		return compteurDislike;
-	}
-	public void setCompteurDislike(int compteurDislike) {
-		this.compteurDislike = compteurDislike;
-	}
+	public CptDislike() {}
 
 	@Override
 	public String toString() {
-		return "CptDislike [ compteurDislike = " + compteurDislike + " ]";
+		return "CptDislike [ " + super.toString() + " ]";
 	}
 
 

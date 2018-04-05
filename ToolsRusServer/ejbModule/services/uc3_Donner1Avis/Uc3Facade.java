@@ -80,5 +80,20 @@ public class Uc3Facade {
 	public Compteur getCompteurParRef(int ref) {
 		return liste.getCompteurParRef(ref);
 	}
+	
+	
+	// modifier
+	public void modifCommentaire(Commentaire commentaire) {
+		gestion.modifCommentaire(commentaire);
+	}
+
+	public void modifTitre(Titre titre) {
+		gestion.modifTitre(titre);
+	}
+
+	public void modifCompteur(Compteur compteur) {
+		gestion.modifCompteur(compteur);
+	}
+	
 
 }

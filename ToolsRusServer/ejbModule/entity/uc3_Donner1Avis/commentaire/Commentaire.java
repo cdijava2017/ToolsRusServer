@@ -37,7 +37,7 @@ public class Commentaire implements Serializable, ICommentable {
 	//	@SequenceGenerator(name="seq_comm", sequenceName="seq_comm", initialValue=1)
 	private int idComm;
 
-	@Column(name="txtCommentaire", length=100, nullable=false)
+	@Column(name="txtCommentaire", length=500, nullable=false)
 	private String  texteComm;
 	/**
 	 * Le titre est une association 1-1 avec la classe Titre. 
@@ -49,7 +49,7 @@ public class Commentaire implements Serializable, ICommentable {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name = "idCommentaire", nullable = true)
-	private Collection<Compteur> compteurs;
+	private Collection<Compteur> listeCompteurs = null;
 
 
 	/**
@@ -62,6 +62,7 @@ public class Commentaire implements Serializable, ICommentable {
 	public Commentaire(int idComm, String texteComm) {
 		this.idComm = idComm;
 		this.texteComm = texteComm;
+		this.listeCompteurs = new ArrayList<Compteur>();
 	}
 	/**
 	 *  Constructeur avec le titre en plus. 
@@ -71,6 +72,7 @@ public class Commentaire implements Serializable, ICommentable {
 		this.idComm = idComm;
 		this.texteComm = texteComm;
 		this.titre = titre;
+		this.listeCompteurs = new ArrayList<Compteur>();
 	}
 	/**
 	 *  Constructeur avec le titre et la liste de compteurs en plus. 
@@ -80,7 +82,7 @@ public class Commentaire implements Serializable, ICommentable {
 		this.idComm = idComm;
 		this.texteComm = texteComm;
 		this.titre = titre;
-		this.compteurs = new ArrayList<Compteur>();
+		this.listeCompteurs = new ArrayList<Compteur>();
 	}
 
 
@@ -106,20 +108,20 @@ public class Commentaire implements Serializable, ICommentable {
 	}
 
 	public Collection<Compteur> getCompteurs() {
-		return compteurs;
+		return listeCompteurs;
 	}
 	public void setCompteurs(ArrayList<Compteur> compteurs) {
-		this.compteurs = compteurs;
+		this.listeCompteurs = compteurs;
 	}
 	public void addCompteur(Compteur compteur) {
-		compteurs.add(compteur);
+		this.listeCompteurs.add(compteur);
 	}
 
 
 	@Override
 	public String toString() {
 		return "Commentaire [idComm=" + idComm + ", texteComm=" + texteComm + ", titre=" + titre + ", compteurs="
-				+ compteurs + "]";
+				+ listeCompteurs + "]";
 	}
 
 	public boolean equals(Commentaire comm) {

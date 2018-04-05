@@ -84,5 +84,21 @@ public class Facade implements IFacade {
 		return uc3Facade.getCompteurParRef(ref);
 	}
 
+	@Override
+	public void modifCommentaire(Commentaire commentaire) {
+		uc3Facade.modifCommentaire(commentaire);
+		
+	}
+	@Override
+	public void modifTitre(Titre titre) {
+		uc3Facade.modifTitre(titre);
+		
+	}
+	@Override
+	public void modifCompteur(Compteur compteur) {
+		uc3Facade.modifCompteur(compteur);
+		
+	}
+
 
 }

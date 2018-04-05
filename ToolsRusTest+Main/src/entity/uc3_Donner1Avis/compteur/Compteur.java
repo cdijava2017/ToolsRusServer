@@ -7,29 +7,23 @@ public abstract class Compteur implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int idCompteur;
+	// nb de click sur le compteur
 	private int compteur;
-	private CptLike idComptLike;
-	private CptDislike idComptDislike;
-
 
 	public Compteur() {}
 
-	public Compteur(int id, int compteur) {
-		this.idCompteur = id;
+	public Compteur(int compteur) {
 		this.compteur = compteur;
 	}
 
-	public Compteur(int id, int compteur, CptLike comptLike, CptDislike comptDislike) {
-		this.idCompteur = id;
-		this.compteur = compteur;
-		this.idComptLike = comptLike;
-		this.idComptDislike = comptDislike;
-	}
+//	public Compteur(int id, int compteur) {
+//		this.idCompteur = id;
+//		this.compteur = compteur;
+//	}
 
 	@Override
 	public String toString() {
-		return "Compteur [idCompteur=" + idCompteur + ", compteur=" + compteur + ", ComptLike=" + idComptLike
-				+ ", ComptDislike=" + idComptDislike + "]";
+		return "idCompteur=" + idCompteur + ", compteur=" + compteur;
 	}
 
 	public int getIdCompteur() {
@@ -46,25 +40,14 @@ public abstract class Compteur implements Serializable {
 		this.compteur = compteur;
 	}
 
-	public CptLike getComptLike() {
-		return idComptLike;
-	}
-	public void setComptLike(CptLike comptLike) {
-		this.idComptLike = comptLike;
-	}
-
-	public CptDislike getComptDislike() {
-		return idComptDislike;
-	}
-	public void setComptDislike(CptDislike comptDislike) {
-		this.idComptDislike = comptDislike;
-	}
-
-
-	public boolean equals(Compteur compt) {
-		boolean resultat;
-		if (compt.idCompteur == this.idCompteur || compt.compteur == this.compteur) resultat = true;
-		else resultat = false;
+	@Override
+	public boolean equals(Object obj) {
+		boolean resultat = false;
+		
+		if (obj instanceof Compteur) {
+			Compteur compt = (Compteur) obj;
+			if (compt.idCompteur == this.idCompteur && compt.compteur == this.compteur) resultat = true;
+		}
 		return resultat;
 	}
 

@@ -4,25 +4,16 @@ public class CptLike extends Compteur{
 
 	private static final long serialVersionUID = 1L;
 
-	private int compteurLike;
-
-	// Constructeur avec le compteur seulement car l'id est générée automatiquement.
+	//	public CptLike(int id, int compteur) {
+	//	super(id,compteur);
+	//}
 	public CptLike(int compteur) {
-		this.compteurLike = compteur;
-	}
-
-
-	public int getCompteurLike() {
-		return compteurLike;
-	}
-	public void setCompteurLike(int compteurLike) {
-		this.compteurLike = compteurLike;
+		super(compteur);
 	}
 
 	@Override
 	public String toString() {
-		return "CptLike [ compteurLike = " + compteurLike + " ]";
+		return "CptLike [ " + super.toString() + " ]";
 	}
-
 
 }
