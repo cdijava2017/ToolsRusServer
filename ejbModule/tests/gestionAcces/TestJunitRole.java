@@ -2,6 +2,7 @@ package tests.gestionAcces;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import javax.naming.Context;
@@ -16,6 +17,7 @@ import entity.gestionAcces.Animateur;
 import entity.gestionAcces.Participant;
 import entity.gestionAcces.Role;
 import entity.gestionAcces.SuperAdmin;
+import javassist.expr.Instanceof;
 import parametreGestionAcces.Parametres;
 
 /***
@@ -72,15 +74,16 @@ public class TestJunitRole {
 		Role role3 = new SuperAdmin(6, "vous", true);
 
 		// Verifier si le role fait partie de telle instance
-		// assertTrue(role,is((Role.class)));
+		assertThat(role,instanceof Role.class);
 		
 		// test si le mode admin est vrai ou pas
 		/* try { assertTrue(role.isAdmin());//ko admin } catch (Exception e) {
 		 * assertFalse(role.isAdmin());//ko admin }
 		 */
-		assertFalse(role.isAdmin());// ko admin
-		assertTrue(role2.isAdmin());// ok admin
-		assertTrue(role3.isAdmin());// ok admin
+		//ok quand il est active le mode admin 
+		assertFalse(role.isAdmin());// ko 
+		assertTrue(role2.isAdmin());// ok
+		assertTrue(role3.isAdmin());// ok
 
 		facadeService.addRole(role);
 		facadeService.addRole(role2);

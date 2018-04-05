@@ -113,7 +113,17 @@ public class DaoAcces {
 		}
 		return role;
 	}
-
+	
+	public Role majRole(Role role) {
+		if (role != null) {
+			if (role.getId() == 0)
+				role = null;
+			else
+				role = em.merge(role);
+			System.out.println("update Role au niveau du DaoAcces ");
+		}
+		return role;
+	}
 	// ----------End_Dao_Role-----
 	public void removeNativeProfil() {
 		try {
@@ -143,4 +153,23 @@ public class DaoAcces {
 		}
 		return profil;
 	}
+
+	public void supprimerRole(Role role) {
+		if (role != null) {
+			Role roles = em.find(Role.class, role.getId());
+			em.remove(roles);
+			em.flush();
+			System.out.println("delate Role au niveau du DaoAcces ");
+
+		}
+		
+	}
+
+	public void supprimerRoleId(int nom) {
+		em.remove(em.getReference(Role.class, nom));
+		System.out.println("delate Role par son id au niveau du DaoAcces ");
+		
+	}
+
+	
 }

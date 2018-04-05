@@ -69,7 +69,7 @@ public class Facade implements IFacade {
 	@Override
 	public Role addRole(Role role) {
 		// TODO Auto-generated method stub
-		return gestionAcces.ajouterProfile(role);
+		return gestionAcces.ajouterRole(role);
 	}
 
 	public void removeNativeRole() {
@@ -80,18 +80,18 @@ public class Facade implements IFacade {
 	@Override
 	public Role updRole(Role role) {
 		// TODO Auto-generated method stub
-		return null;
+		return gestionAcces.updateRole(role);
 	}
 
 	@Override
 	public void delRole(Role role) {
-		// gestionAcces.removeid(id);
+	gestionAcces.removeRole(role);
 
 	}
 
 	@Override
 	public void delRoleByid(int nom) {
-		// TODO Auto-generated method stub
+		gestionAcces.removeRoleId(nom);
 
 	}
 

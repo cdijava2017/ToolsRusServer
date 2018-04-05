@@ -66,12 +66,13 @@ public class FacGestionAcces {
 		return gererAcces.recuperProfilById(id);
 	}
 
-	public Role ajouterProfile(Role role) {
-		return gererAcces.ajouterRole(role);
-	}
+	
 /**
  * Facade gestion Role
  */
+	public Role ajouterRole(Role role) {
+		return gererAcces.ajouterRole(role);
+	}
 	public void removeNativeRole() {
 		gererAcces.removeNativeRole();
 
@@ -79,6 +80,18 @@ public class FacGestionAcces {
 
 	public Role getRolebyId(int id) {
 		return gererAcces.recupeRoleById(id);
+	}
+
+	public Role updateRole(Role role) {
+		return gererAcces.miseajourRole(role);
+	}
+
+	public void removeRole(Role role) {
+		gererAcces.removeRole(role);		
+	}
+
+	public void removeRoleId(int nom) {
+		gererAcces.removeRoleId(nom);	
 	}
 
 }

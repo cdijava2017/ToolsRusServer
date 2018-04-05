@@ -85,6 +85,20 @@ public class DaoFacade {
 		return daoAcces.findRoleId(id);
 	}
 
+	public Role updateRole(Role role) {
+		return daoAcces.majRole(role);
+	}
+
+	public void delateRole(Role role) {
+		daoAcces.supprimerRole(role);
+		
+	}
+
+	public void delateRoleId(int nom) {
+		daoAcces.supprimerRoleId(nom);
+		
+	}
+
 	// ====Fin_des_gestion_acces_======
 
 }

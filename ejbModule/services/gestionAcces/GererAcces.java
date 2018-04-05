@@ -126,4 +126,21 @@ public class GererAcces {
 		return role;
 	}
 
+	public Role miseajourRole(Role role) {
+		if (role != null) {
+			role = daoFacade.updateRole(role);
+		} else {
+			System.out.println("erreur sur maj role au niveau du ServiceGerer acces");
+		}
+		return role;
+	}
+
+	public void removeRole(Role role) {
+		daoFacade.delateRole(role);		
+	}
+
+	public void removeRoleId(int nom) {
+		daoFacade.delateRoleId(nom);	
+	}
+
 }
