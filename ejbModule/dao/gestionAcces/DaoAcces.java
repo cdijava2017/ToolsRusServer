@@ -21,6 +21,7 @@ public class DaoAcces {
 	 * Dao Gestion User
 	 * 
 	 * @param user
+	 * @return
 	 */
 	public User insert(User user) {
 		// control
@@ -82,6 +83,7 @@ public class DaoAcces {
 	 * Dao Gestion Role
 	 * 
 	 * @param role
+	 * @return
 	 */
 	public Role insertRole(Role role) {
 		if (role != null) {
@@ -111,7 +113,7 @@ public class DaoAcces {
 		}
 		return role;
 	}
-
+	
 	public Role majRole(Role role) {
 		if (role != null) {
 			if (role.getId() == 0)
@@ -122,30 +124,16 @@ public class DaoAcces {
 		}
 		return role;
 	}
-
-	public void supprimerRoleId(int id) {
-		em.remove(em.getReference(Role.class, id));
-		System.out.println("delate Role par son id au niveau du DaoAcces ");
-
-	}
-
-	public void supprimerRole(Role role) {
-		if (role != null) {
-			Role roles = em.find(Role.class, role.getId());
-			em.remove(roles);
+	// ----------End_Dao_Role-----
+	public void removeNativeProfil() {
+		try {
+			em.createNativeQuery("delete from " + Parametres.TBL_PROFIL).executeUpdate();
 			em.flush();
-			System.out.println("delate Role au niveau du DaoAcces ");
-
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}
-
-	// ----------End_Dao_Role-----
-	/***
-	 * Dao Gestion Profil
-	 * 
-	 * @param profil
-	 */
 
 	public Profil insertprofil(Profil profil) {
 		if (profil != null) {
@@ -157,16 +145,6 @@ public class DaoAcces {
 		return profil;
 	}
 
-	public void removeNativeProfil() {
-		try {
-			em.createNativeQuery("delete from " + Parametres.TBL_PROFIL).executeUpdate();
-			em.flush();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
 	public Profil findProfilId(int id) {
 		Profil profil = null;
 		if (id != 0) {
@@ -176,24 +154,22 @@ public class DaoAcces {
 		return profil;
 	}
 
-	public Profil majProfil(Profil profil) {
-		if (profil != null) {
-			if (profil.getId() == 0)
-				profil = null;
-			else
-				profil = em.merge(profil);
-			System.out.println("update profil au niveau du DaoAcces ");
+	public void supprimerRole(Role role) {
+		if (role != null) {
+			Role roles = em.find(Role.class, role.getId());
+			em.remove(roles);
+			em.flush();
+			System.out.println("delate Role au niveau du DaoAcces ");
+
 		}
-		return profil;
+		
 	}
 
-	public void supprimerProfileId(int id) {
-		em.remove(em.getReference(Role.class, id));
-		System.out.println("delate Profil par son id au niveau du DaoAcces ");
-
+	public void supprimerRoleId(int nom) {
+		em.remove(em.getReference(Role.class, nom));
+		System.out.println("delate Role par son id au niveau du DaoAcces ");
+		
 	}
-	// ----------End_Dao_Profile-----
-	/**
-	 * Fin_de_la_DaO_GESTION_ACCES
-	 */
+
+	
 }

@@ -23,7 +23,7 @@ public class FacGestionAcces {
 
 	/***
 	 * Facade gestion user
-	 */
+	 * */ 
 
 	public User ajouter(User user) {
 		return gererAcces.ajouter(user);
@@ -48,18 +48,31 @@ public class FacGestionAcces {
 
 	}
 
+	public Profil ajouterProfile(Profil profil) {
+		return gererAcces.ajoutProfil(profil);
+	}
+
 	public void removeNativeUser() {
 		gererAcces.removeNativeUser();
 
 	}
 
-	/**
-	 * Facade gestion Role
-	 */
+	public void removeNativeProfil() {
+		gererAcces.removeNativeProfil();
+
+	}
+
+	public Profil getProfilbyId(int id) {
+		return gererAcces.recuperProfilById(id);
+	}
+
+	
+/**
+ * Facade gestion Role
+ */
 	public Role ajouterRole(Role role) {
 		return gererAcces.ajouterRole(role);
 	}
-
 	public void removeNativeRole() {
 		gererAcces.removeNativeRole();
 
@@ -74,38 +87,11 @@ public class FacGestionAcces {
 	}
 
 	public void removeRole(Role role) {
-		gererAcces.removeRole(role);
+		gererAcces.removeRole(role);		
 	}
 
-	public void removeRoleId(int id) {
-		gererAcces.removeRoleId(id);
-	}
-
-	/**
-	 * Profil User
-	 * 
-	 * @param profil
-	 */
-
-	public Profil ajouterProfile(Profil profil) {
-		return gererAcces.ajoutProfil(profil);
-	}
-
-	public void removeNativeProfil() {
-		gererAcces.removeNativeProfil();
-
-	}
-
-	public Profil getProfilbyId(int id) {
-		return gererAcces.recuperProfilById(id);
-	}
-
-	public Profil updateProfil(Profil profil) {
-		return gererAcces.miseAJourProfil(profil);
-	}
-
-	public void removeProfilById(int id) {
-		gererAcces.removeProfileId(id);
+	public void removeRoleId(int nom) {
+		gererAcces.removeRoleId(nom);	
 	}
 
 }

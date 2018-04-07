@@ -90,8 +90,8 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public void delRoleByid(int id) {
-		gestionAcces.removeRoleId(id);
+	public void delRoleByid(int nom) {
+		gestionAcces.removeRoleId(nom);
 
 	}
 
@@ -105,6 +105,7 @@ public class Facade implements IFacade {
 	 */
 	@Override
 	public Profil addNewProfile(Profil profil) {
+		// TODO Auto-generated method stub
 		return gestionAcces.ajouterProfile(profil);
 	}
 
@@ -114,7 +115,8 @@ public class Facade implements IFacade {
 
 	@Override
 	public Profil updProfile(Profil profil) {
-		return gestionAcces.updateProfil(profil);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -125,13 +127,8 @@ public class Facade implements IFacade {
 
 	@Override
 	public Profil getProfil(int id) {
+		// TODO Auto-generated method stub
 		return gestionAcces.getProfilbyId(id);
-	}
-
-	@Override
-	public void delProfileByid(int id) {
-		gestionAcces.removeProfilById(id);
-		
 	}
 
 	// ==============Fin_Gestion_Acces====================

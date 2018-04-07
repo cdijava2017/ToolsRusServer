@@ -11,7 +11,7 @@
          <property name="hibernate.show_sql" value="true" />
          <property name="hibernate.format_sql" value="false" />
          <property name="hibernate.use_sql_comments" value="true" />
-         <property name="hibernate.default_schema" value="zinks"/>
+         <property name="hibernate.default_schema" value="stag08"/>
       </properties>
    </persistence-unit>
 </persistence>

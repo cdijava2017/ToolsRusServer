@@ -22,7 +22,7 @@ public interface IFacade {
 
 	public void delUser(User user);
 
-	public void delUserByid(int id);
+	public void delUserByid(int nom);
 
 	public User getUser(int id);
 
@@ -38,8 +38,6 @@ public interface IFacade {
 	public Profil updProfile(Profil profil);
 
 	public void delProfile(Profil profil);
-
-	public void delProfileByid(int id);
 
 	public Profil getProfil(int id);
 
@@ -60,7 +58,7 @@ public interface IFacade {
 
 	public Role getRole(int id);
 
-	public void delRoleByid(int id);
+	public void delRoleByid(int nom);
 
 	public void removeNativeRole();
 

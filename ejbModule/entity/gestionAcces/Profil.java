@@ -98,8 +98,8 @@ public class Profil implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Profil [\n id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ",\n user=" + user
-				+ ",\n roles=" + role + ",\n image=" + image + "\n]";
+		return "Profil [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", user=" + user
+				+ ", roles=" + role + ", image=" + image + "]";
 	}
 
 	/************* ACCESSEURS **************/
