@@ -57,6 +57,7 @@ public class TestJunitProfil {
 		System.out.println(profil.toString());
 		assertEquals("Ousseynou", facadeService.getProfil(1).getId());
 		System.out.println("1 " + profil.toString());
+		
 	}
 
 }
