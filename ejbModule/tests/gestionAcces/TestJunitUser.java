@@ -1,12 +1,14 @@
 package tests.gestionAcces;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import clientServeur.IFacade;
@@ -50,19 +52,26 @@ public class TestJunitUser {
 	// Testd'ajout si id existant est modifie
 	public void testMaj() {
 		User user = new User(12, "Ousseynou", "afpapw");
-		facadeService.addNewUser(user);
+		facadeService.addNewUser(user);		
 		System.out.println("2 " + user.toString());
-		User user2 = new User(15, "xxx", "afpapw");
-		facadeService.addNewUser(user2);
+		
+		User user2 = new User(15, "xxx", "afpapw");		
+		facadeService.addNewUser(user2);		
 		System.out.println("3 " + user2.toString());
+		
 		assertEquals("Ousseynou", facadeService.getUser(12).getPseudo());
 		assertEquals("xxx", facadeService.getUser(15).getPseudo());
+		
 		user2.setId(12);
+		
 		facadeService.updUser(user2);
+		
 		System.out.println("4 " + user.toString());
 		System.out.println("5 " + user2.toString());
+		
 		assertEquals("xxx", facadeService.getUser(12).getPseudo());
 		assertEquals("xxx", facadeService.getUser(15).getPseudo());
+		
 		System.out.println("4bis " + user.toString());
 		System.out.println("5bis " + user2.toString());
 	}
@@ -79,5 +88,29 @@ public class TestJunitUser {
 
 	}
 	//TODO doublon_&_null
+	@Ignore
+	public void AddGhostUser() {
+		User user = new User(22, null, "afpapw");
+		facadeService.addNewUser(user);	
+		System.out.println("user no name" + user.toString());
+		assertEquals(null, facadeService.getUser(22).getPseudo());
+	}
+	@Ignore
+	// on cree user ,on ajoute et on le rajoute
+	public void AddIdemUser() {
+		User user = new User(22, "Nous", "afpapw");
+		facadeService.addNewUser(user);
+		facadeService.addNewUser(user);		
+
+	}
+	@Ignore
+	// on chercher user non enregristtre et on le delate
+	public void delateUserInexistant() {
+		User user = new User(222, "NullAutor", "PwNull");
+		
+		facadeService.delUser(user);
+		assertTrue(false);//genere erreur
+
+	}
 
 }

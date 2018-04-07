@@ -44,25 +44,9 @@ public class DaoFacade {
 
 	}
 
-	public Profil addProfil(Profil profil) {
-		return daoAcces.insertprofil(profil);
-	}
-
 	public void removeNativeUser() {
 		daoAcces.removeNativeUser();
 
-	}
-
-	/**
-	 * Mathode Dao_Profil
-	 */
-	public void removeNativeProfil() {
-		daoAcces.removeNativeProfil();
-
-	}
-
-	public Profil findprofilbyId(int id) {
-		return daoAcces.findProfilId(id);
 	}
 
 	/**
@@ -91,12 +75,37 @@ public class DaoFacade {
 
 	public void delateRole(Role role) {
 		daoAcces.supprimerRole(role);
-		
+
 	}
 
-	public void delateRoleId(int nom) {
-		daoAcces.supprimerRoleId(nom);
-		
+	public void delateRoleId(int id) {
+		daoAcces.supprimerRoleId(id);
+
+	}
+
+	/**
+	 * Mathode Dao_Profil
+	 */
+
+	public Profil addProfil(Profil profil) {
+		return daoAcces.insertprofil(profil);
+	}
+
+	public void removeNativeProfil() {
+		daoAcces.removeNativeProfil();
+
+	}
+
+	public Profil findprofilbyId(int id) {
+		return daoAcces.findProfilId(id);
+	}
+
+	public Profil updateProfil(Profil profil) {
+		return daoAcces.majProfil(profil);
+	}
+
+	public void delateProfileId(int id) {
+		daoAcces.supprimerProfileId(id);
 	}
 
 	// ====Fin_des_gestion_acces_======

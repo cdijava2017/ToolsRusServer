@@ -22,7 +22,6 @@ public class GererAcces {
 	 * Ajout d'un user dans la Dao
 	 * 
 	 * @param user
-	 * @return
 	 */
 	public User ajouter(User user) {
 		// controler les datas
@@ -62,50 +61,19 @@ public class GererAcces {
 
 	}
 
-	/**
-	 * ajout Profil dans dao
-	 * 
-	 * @param profil
-	 * @return
-	 */
-	public Profil ajoutProfil(Profil profil) {
-		if (profil != null) {
-			// mettre en place les regles de gestion
-			daoFacade.addProfil(profil);
-		} else {
-			System.out.println("erreur sur l'ajout profil au niveau du ServiceGerer acces");
-		}
-		return profil;
-	}
-
 	public void removeNativeUser() {
 		daoFacade.removeNativeUser();
 
-	}
-
-	public void removeNativeProfil() {
-		daoFacade.removeNativeProfil();
-
-	}
-
-	public Profil recuperProfilById(int id) {
-		Profil profil = null;
-		if (id != 0) {
-			profil = daoFacade.findprofilbyId(id);
-		}
-		return profil;
 	}
 
 	/***
 	 * ajout role dans dao
 	 * 
 	 * @param role
-	 * @return
 	 */
 
 	public Role ajouterRole(Role role) {
 		if (role != null) {
-			// mettre en place les regles de gestion
 			daoFacade.addRole(role);
 		} else {
 			System.out.println("erreur sur l'ajout role au niveau du ServiceGerer acces");
@@ -136,11 +104,53 @@ public class GererAcces {
 	}
 
 	public void removeRole(Role role) {
-		daoFacade.delateRole(role);		
+		daoFacade.delateRole(role);
 	}
 
-	public void removeRoleId(int nom) {
-		daoFacade.delateRoleId(nom);	
+	
+	public void removeRoleId(int id) {
+		daoFacade.delateRoleId(id);
 	}
 
+	/**
+	 * ajout Profil dans dao
+	 * 
+	 * @param profil
+	 */
+	public Profil ajoutProfil(Profil profil) {
+		if (profil != null) {
+			// mettre en place les regles de gestion
+			daoFacade.addProfil(profil);
+		} else {
+			System.out.println("erreur sur l'ajout profil au niveau du ServiceGerer acces");
+		}
+		return profil;
+	}
+
+	public void removeNativeProfil() {
+		daoFacade.removeNativeProfil();
+
+	}
+
+	public Profil recuperProfilById(int id) {
+		Profil profil = null;
+		if (id != 0) {
+			profil = daoFacade.findprofilbyId(id);
+		}
+		return profil;
+	}
+
+	public Profil miseAJourProfil(Profil profil) {
+		if (profil != null) {
+			profil = daoFacade.updateProfil(profil);
+		} else {
+			System.out.println("erreur sur maj Profil au niveau du ServiceGerer acces");
+		}
+		return profil;
+	}
+
+	public void removeProfileId(int id) {
+		daoFacade.delateProfileId(id);
+		
+	}
 }

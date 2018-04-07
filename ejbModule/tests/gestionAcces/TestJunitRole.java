@@ -2,7 +2,6 @@ package tests.gestionAcces;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import javax.naming.Context;
@@ -10,6 +9,7 @@ import javax.naming.InitialContext;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import clientServeur.IFacade;
@@ -17,8 +17,6 @@ import entity.gestionAcces.Animateur;
 import entity.gestionAcces.Participant;
 import entity.gestionAcces.Role;
 import entity.gestionAcces.SuperAdmin;
-import entity.gestionAcces.User;
-import javassist.expr.Instanceof;
 import parametreGestionAcces.Parametres;
 
 /***
@@ -41,13 +39,27 @@ public class TestJunitRole {
 	@Before
 	public void beforeDrop() throws Exception {
 		facadeService.removeNativeRole();
-		System.out.println("delete table Role");
+		System.out.println("\n delete table Role\n");
+	}
+
+	/**
+	 * test de supresion d'un role dans la table
+	 */
+	@Test
+	public void delateRole() {
+		Role role = new Participant(104, "Testoi", false);
+		facadeService.addRole(role);
+
+		assertEquals("Testoi", facadeService.getRole(104).getNom());
+
+		facadeService.delRole(role);
+
 	}
 
 	/**
 	 * 
 	 */
-	@Test
+	@Ignore
 	// test on va s'allouer un role
 	public void test1() {
 		// on va creer des roles
@@ -67,7 +79,7 @@ public class TestJunitRole {
 		assertEquals(null, facadeService.getRole(3).getNom());
 	}
 
-	@Test
+	@Ignore
 	public void testRoleAttribuer() {
 		// on va creer des roles
 		Role role = new Participant(4, "Toi", false);
@@ -98,27 +110,33 @@ public class TestJunitRole {
 
 	@Test
 	public void ModifierRole() {
-		// on crerer un role
-		Role role = new Participant(104, "Testoi", false);
+		// on creer un role
+		Role role = new Participant(10, "Testoi", false);
 		facadeService.addRole(role);
 		System.out.println(role.toString());
-		
-		Role role2 = new Animateur(104, "TestMoi", true);
+
+		Role role2 = new Animateur(11, "TestMoi", true);
 		facadeService.addRole(role2);
 		System.out.println(role2.toString());
+
+		 assertEquals("Testoi", facadeService.getRole(10).getNom());
+		 assertEquals("TestMoi", facadeService.getRole(11).getNom());
+		 // Modifier le type 	
+		//role2.setId(10);
+		// role2.getClass().asSubclass(Role.class). isAssignableFrom((Participant.class));
+		 
+		 facadeService.updRole(role2);
 		
-		//assertEquals("Moi", facadeService.getRole(2).getNom());
-		
+		System.out.println("update "+role.toString());
+		System.out.println("update "+role2.toString());
+
+		/*
+		 * assertEquals("TestMoi", facadeService.getRole(10).getNom());
+		assertEquals("TestMoi", facadeService.getRole(11).getNom());
+
+		System.out.println(role.toString());
+		System.out.println(role2.toString());*/
+
 	}
 
-	@Test
-	public void delateRole() {
-		Role role = new Participant(104, "Testoi", false);
-		facadeService.addRole(role);
-
-		assertEquals("Testoi", facadeService.getRole(104).getNom());
-
-		facadeService.delRole(role);
-
-	}
 }
