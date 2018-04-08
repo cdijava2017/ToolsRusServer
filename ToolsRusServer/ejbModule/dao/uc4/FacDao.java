@@ -9,7 +9,7 @@ import exception.uc4.ExistantException;
 
 @Singleton
 @LocalBean
-public class DaoFacade {
+public class FacDao {
 	
 	@EJB
 	private DaoGestion daoGestion;

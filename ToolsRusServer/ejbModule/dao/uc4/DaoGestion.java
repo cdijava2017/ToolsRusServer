@@ -26,6 +26,9 @@ public class DaoGestion {
 	@PersistenceContext(unitName=DaoUtil.PERSISTENCE_UNITNAME)
 	EntityManager em;
 	
+	/******************************************************
+						GESTION DU MOT
+	 ******************************************************/
 	
 	//method to add a word in the database
 		public Mot persist(Mot mot) throws ExistantException {
@@ -45,5 +48,10 @@ public class DaoGestion {
 				}
 					return mot;
 		}
+		
+		/*******************************************************
+							GESTION DE L IMAGE
+		*******************************************************/
+		
 		
 }
