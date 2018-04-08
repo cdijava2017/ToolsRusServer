@@ -11,10 +11,10 @@ import org.junit.Test;
 
 import clientServeur.IFacade;
 import entity.gestionAcces.Animateur;
-import entity.gestionAcces.Image;
 import entity.gestionAcces.Profil;
 import entity.gestionAcces.Role;
 import entity.gestionAcces.User;
+import entity.uc4.Image;
 import parametreGestionAcces.Parametres;
 
 /***

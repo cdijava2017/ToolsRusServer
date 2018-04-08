@@ -1,4 +1,4 @@
-package entity.gestionAcces;
+package entity.uc4;
 
 import java.io.Serializable;
 
