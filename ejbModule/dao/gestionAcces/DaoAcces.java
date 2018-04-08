@@ -43,6 +43,10 @@ public class DaoAcces {
 
 	public User majUser(User user) {
 		if (user != null) {
+			/**
+			 * Rg Si l'id n'est pas renseigne ou mis a defaut user est null sinon si user
+			 * existe ,modificationn effectif
+			 */
 			if (user.getId() == 0)
 				user = null;
 			else
@@ -54,6 +58,10 @@ public class DaoAcces {
 
 	public void supprimer(User user) {
 		if (user != null) {
+			/**
+			 * Rg: on creer un user qu'on va cherche par rapport au type de l'entite de sa
+			 * class et de son id en suite on le dequille pius on synchronize
+			 */
 			User usertrouver = em.find(User.class, user.getId());
 			em.remove(usertrouver);
 			em.flush();
@@ -67,6 +75,24 @@ public class DaoAcces {
 		em.remove(em.getReference(User.class, id));
 		System.out.println("delate User par son id au niveau du DaoAcces ");
 	}
+
+	/**
+	 * Find () délivre l'entité à partir du cache du contexte de persistance ou s'il
+	 * n'y est pas, il sera chargé à partir de la base de données. GetReference ()
+	 * ne charge pas l'entité immédiatement. Un proxy (un certain objet, un
+	 * soi-disant "adjoint" avec des méthodes enrichies pour charger l'entité
+	 * réelle) est renvoyé. C'est donc une réalisation avec l'aide de LazyLoading.
+	 * Seulement si les attributs du proxy ou d'autres méthodes de persistance sont
+	 * nécessaires / appelé le proxy interagit et charge l'entité réelle à partir de
+	 * la base de données.
+	 * 
+	 * Quand doit-on utiliser quelle méthode? L'utilisation de find () doit avoir la
+	 * priorité sur les méthodes de requête, car find () peut renvoyer des entités
+	 * déjà chargées à partir du cache du contexte de persistance. Si vous savez
+	 * qu'une entité est nécessaire plus tard, l'utilisation de getReference () est
+	 * un bon choix
+	 * 
+	 */
 
 	public void removeNativeUser() {
 		try {
