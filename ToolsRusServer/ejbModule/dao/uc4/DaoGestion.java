@@ -35,7 +35,6 @@ public class DaoGestion {
 				
 			try {	em.persist(mot);
 					em.flush();
-					//System.out.println("je persiste mon mot");
 					
 				} 
 			catch (PersistenceException pe) {
@@ -48,6 +47,29 @@ public class DaoGestion {
 				}
 					return mot;
 		}
+		
+	//method to update a word in the database
+		public Mot update(Mot mot) throws ExistantException {
+			if (mot !=null) {
+				try {
+					em.merge(mot);
+					em.flush();
+				}
+				catch (PersistenceException pe) {
+					
+					Throwable t = pe.getCause();
+						while ((t!=null) && !(t instanceof SQLIntegrityConstraintViolationException)) {
+							t = t.getCause();
+						}
+						if (t instanceof SQLIntegrityConstraintViolationException) throw new ExistantException();
+					}
+				
+			}
+			return mot;
+		}
+		
+		
+		
 		
 		/*******************************************************
 							GESTION DE L IMAGE

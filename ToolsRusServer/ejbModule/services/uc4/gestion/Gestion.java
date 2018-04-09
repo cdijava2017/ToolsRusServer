@@ -21,6 +21,10 @@ public class Gestion implements IGestion {
 		return mot;
 	}
 	
-
+	@Override
+	public Mot update(Mot mot) throws ExistantException {
+		daoG.update(mot);
+		return mot;
+	}
 
 }
