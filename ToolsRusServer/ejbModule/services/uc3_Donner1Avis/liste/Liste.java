@@ -27,8 +27,11 @@ public class Liste {
 	 *******************************************************************************/
 	
 	public Commentaires getAllCommParId() {
-
 		Commentaires commentaires = daoListe.getAllCommParId();
+		for (Commentaire comm : commentaires) {
+			comm = comm.commToDto();
+			commentaires.add(comm);
+		}
 		return commentaires;
 	}
 
@@ -48,8 +51,11 @@ public class Liste {
 	 *************************************************************************/
 	
 	public Titres getAllTitreParId() {
-
 		Titres titres = daoListe.getAllTitreParId();
+		for (Titre titre : titres) {
+			titre = titre.titreToDto();
+			titres.add(titre);
+		}
 		return titres;
 	}
 
@@ -69,8 +75,11 @@ public class Liste {
 	 *****************************************************************************/
 	
 	public Compteurs getAllCompteurParId() {
-
 		Compteurs compteurs = daoListe.getAllCompteurParId();
+		for (Compteur compteur : compteurs) {
+			compteur = compteur.cptToDto();
+			compteurs.add(compteur);
+		}
 		return compteurs;
 	}
 
@@ -81,7 +90,7 @@ public class Liste {
 		} catch (DaoException e) {
 			System.out.println("!!!!! DM Erreur : " + e.getCode() + ":" + e.getMessage());
 		}
-		return compteur;
+		return compteur.cptToDto();
 	}
 
 

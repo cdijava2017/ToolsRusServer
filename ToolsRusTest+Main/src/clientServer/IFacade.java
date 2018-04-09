@@ -15,14 +15,17 @@ public interface IFacade {
 	/**
 	 * Partie de l'interface groupe qui fait référence aux méthodes de l'UC3 - Donner un avis (commenter)
 	 * @param commentaire @param titre @param compteur @param ref
-	 * @return
+	 * 
 	 * @throws CommentaireVideException 
+	 * @author Nacer ATOUT
 	 */
+	
 	public Commentaire addCommentaire(Commentaire commentaire) throws CommentaireVideException;
 	public Titre addTitre(Titre titre) throws TitreVideException;
 	public Compteur addCompteur(Compteur compteur) throws CompteurVideException;
 	
 	public void supAllCommentaires();
+	public void supCommParId(Commentaire commentaire);
 	public void supAllTitres();
 	public void supAllCompteurs();
 	
@@ -37,8 +40,7 @@ public interface IFacade {
 	public void modifCommentaire(Commentaire commentaire);
 	public void modifTitre(Titre titre);
 	public void modifCompteur(Compteur compteur);
-	
-	public void incrementerCompteur(Compteur compteur);
+
 	
 	
 }

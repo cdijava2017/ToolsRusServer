@@ -27,7 +27,6 @@ public class DaoGestion {
 	 *****************************************************************************/
 
 	public Commentaire ajouter(Commentaire commentaire) throws CommentaireVideException {
-		System.out.println("DaoGestion méthode ajouter() commentaire");
 		try {
 			if (commentaire != null) {
 				em.persist(commentaire);
@@ -43,7 +42,12 @@ public class DaoGestion {
 		System.out.println("** DaoGestion - ajouter(Commentaire commentaire) : " + commentaire);
 		return commentaire.commToDto();
 	}
-
+	
+	/**
+	 *  <p>La méthode supAllCommentaires() est fonctionnelle mais ne sera jamais appelée par le client Web.</p>
+	 *  <p>Elle n'est codée qu'à des fins de tests car il ne sera pas possible de supprimer tous les commentaires depuis le client Web.</p>
+	 *  <p>En effet, je pars du principe qu'on ne peut supprimer qu'un commentaire à la fois.</p>
+	 */
 	public void supAllCommentaires() {
 		System.out.println("DaoGestion méthode supAllCommentaires() commentaire");
 		try {
@@ -54,20 +58,17 @@ public class DaoGestion {
 	}
 
 	public void supCommParId(Commentaire commentaire) {
-		System.out.println("DaoGestion méthode supCommParId() commentaire");
-		//TODO à coder
+		commentaire = recupCommentaire(commentaire.getIdComm());
+		em.remove(commentaire);
 	}
 	
 	public void modifCommentaire(Commentaire commentaire) {
-		System.out.println("DaoGestion méthode modifCommentaire() " + commentaire);
-//		Commentaire commentaireBis = recupCommentaire(commentaire.getIdComm());
-//		if (commentaire != commentaireBis) 
-			em.merge(commentaire);
+		Commentaire commentaireBis = recupCommentaire(commentaire.getIdComm());
+		if (commentaire != commentaireBis) em.merge(commentaire);
 		em.flush();
 	}
 	
 	public Commentaire recupCommentaire(int id) {
-		System.out.println("DaoGestion méthode recupCommentaire() commentaire");
 		Commentaire commentaire = em.find(Commentaire.class, id);
 		return commentaire.commToDto();
 	}
@@ -93,7 +94,11 @@ public class DaoGestion {
 		}
 		return titre;
 	}
-
+	
+	/**
+	 *  <p>La méthode supAllTitres() est fonctionnelle mais ne sera jamais appelée par le client Web.</p>
+	 *  <p>Elle n'est codée qu'à des fins de tests car il ne sera pas possible de supprimer un titre depuis le client Web.</p>
+	 */
 	public void supAllTitres() {
 		System.out.println("DaoGestion méthode supAllTitres() ");
 		try {
@@ -101,11 +106,6 @@ public class DaoGestion {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void supTitreParId(Titre titre) {
-		System.out.println("DaoGestion méthode supTitreParId() ");
-		//TODO à coder
 	}
 	
 	public void modifTitre(Titre titre) {
@@ -127,9 +127,7 @@ public class DaoGestion {
 	 *****************************************************************************/
 
 	public Compteur ajouter(Compteur compteur) throws CompteurVideException {
-		System.out.println("DaoGestion méthode ajouter() Compteur");
 		try {
-			System.out.println("addCompteur DaoGestion");
 			if (compteur != null) {
 				em.persist(compteur);
 				em.flush();
@@ -144,6 +142,10 @@ public class DaoGestion {
 		return compteur;
 	}
 
+	/**
+	 *  <p>La méthode supAllCompteurs() est fonctionnelle mais ne sera jamais appelée par le client Web.</p>
+	 *  <p>Elle n'est codée qu'à des fins de tests car il ne sera pas possible de supprimer un compteur depuis le client Web.</p>
+	 */
 	public void supAllCompteurs() {
 		System.out.println("DaoGestion méthode supAllCompteurs() ");
 		try {
@@ -152,36 +154,22 @@ public class DaoGestion {
 			e.printStackTrace();
 		}
 	}
-
-	public void supCompteurParId(Compteur compteur) {
-		System.out.println("DaoGestion méthode supCompteurParId() ");
-		//TODO à coder
-	}
-	
+	/**
+	 *  <p>La méthode modifCompteur() est fonctionnelle mais ne sera jamais appelée par le client Web.</p>
+	 *  <p>Elle n'est codée qu'à des fins de tests car il ne sera pas possible de modifier un compteur depuis le client Web.</p>
+	 *  <p>En effet, je pars du principe qu'on ne peut qu'incrémenter un compteur et non pas le personnaliser.</p>
+	 */
 	public void modifCompteur(Compteur compteur) {
-		System.out.println("DaoGestion méthode modifCompteur() ");
-		System.out.println("***** 1 " + compteur);
 		Compteur compteurBis = recupCompteur(compteur.getIdCompteur());
-		System.out.println("***** 2 " + compteur);
-		System.out.println("***** 3 bis" + compteurBis);
 		if (compteur != compteurBis) em.merge(compteur);
 		em.flush();
 	}
 	
 	public Compteur recupCompteur(int id) {
-		System.out.println("DaoGestion méthode recupCompteur()");
 		Compteur compteur = em.find(Compteur.class, id);
 		return compteur;
 	}
 
-	public void incrementerCompteur(Compteur compteur) {
-		System.out.println("DaoGestion méthode incrementerCompteur() Compteur");
-		Compteur compteurBis = recupCompteur(compteur.getIdCompteur());
-		compteur.compteurPlus1();
-		em.merge(compteur);
-		em.flush();	
-		
-	}
 	
 
 

@@ -105,6 +105,8 @@ public class Main2 {
 //			interfaceFacade.modifCommentaire(comm1);
 			System.out.println("**** syso de tous les compteurs :");
 			System.out.println(interfaceFacade.getAllCompteurParId());
+			
+			interfaceFacade.supCommParId(comm1);
 
 
 		} catch (NamingException e) {

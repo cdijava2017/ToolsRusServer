@@ -32,12 +32,10 @@ public class Gestion {
 		try {
 			Objects.requireNonNull(commentaire);
 			commentaire = daoGestion.ajouter(commentaire);
-			
 		}
 		catch(NullPointerException npe) {
 			System.out.println("Attention : NullPointerException pour le commentaire!");
 		}
-		System.out.println("** Gestion - creerComm(Commentaire commentaire) : " + commentaire);
 		return commentaire;
 	}
 
@@ -45,9 +43,12 @@ public class Gestion {
 		daoGestion.supAllCommentaires();
 	}
 	
+	public void supCommParId(Commentaire commentaire) {
+		daoGestion.supCommParId(commentaire);
+	}
+	
 	public void modifCommentaire(Commentaire commentaire) {
 		try {
-			System.out.println("*** entrée modifCommentaire Gestion " + commentaire);
 			daoGestion.modifCommentaire(commentaire);
 		} catch (Exception e) {
 			System.out.println("Attention, Exception levée à la modification du commentaire : " + e.getMessage());
@@ -89,7 +90,6 @@ public class Gestion {
 	
 	public Compteur creerCompteur(Compteur compteur) throws CompteurVideException {
 		try {
-			System.out.println("addCompteur Gestion");
 			Objects.requireNonNull(compteur);
 			daoGestion.ajouter(compteur);
 		}
@@ -111,14 +111,7 @@ public class Gestion {
 			System.out.println("Attention, Exception levée à la modification du compteur : " + e.getMessage());
 		}
 	}
-	
-	public void incrementerCompteur(Compteur compteur) {
-		try {
-			daoGestion.incrementerCompteur(compteur);
-		} catch (Exception e) {
-			System.out.println("Attention, Exception levée pendant l'incrémentation du compteur : " + e.getMessage());
-		}
-	}
+
 
 
 

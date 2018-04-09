@@ -25,11 +25,17 @@ public class Uc3Facade {
 	@EJB private Liste liste;
 
 	
-	// Ajouter en BdD
+	/**
+	 * <p> Méthodes pour ajouter en Base de Données.</p>
+	 * <p> On reçoit en paramètre un objet à persister et on retourne le même objet traité (en DTO) et utilisable dans des listes. </p>
+	 * @param commentaire @param titre @param compteur @param ref
+	 * @return commentaire @return titre @return compteur
+	 * @throws CommentaireVideException @throws TitreVideException @throws CompteurVideException
+	 * @author Nacer ATOUT
+	 */
+	
 	public Commentaire addCommentaire(Commentaire commentaire) throws CommentaireVideException {
-		
 		commentaire = gestion.creerComm(commentaire);
-		System.out.println("** Uc3Facade - addCommentaire(Commentaire commentaire) : " + commentaire);
 		return commentaire;
 	}
 
@@ -38,14 +44,21 @@ public class Uc3Facade {
 	}
 
 	public Compteur addCompteur(Compteur compteur) throws CompteurVideException {
-		System.out.println("addCompteur UC3Facade");
 		return gestion.creerCompteur(compteur);
 	}
 	
 	
-	// Supprimer tout
+	/**
+	 * <p> Méthodes pour supprimer en Base de Données. On supprime tout dans la table correspondante.</p>
+	 * @author Nacer ATOUT
+	 */
+	
 	public void supAllCommentaires() {
 		gestion.supAllCommentaires();
+	}
+	
+	public void supCommParId(Commentaire commentaire) {
+		gestion.supCommParId(commentaire);
 	}
 
 	public void supAllTitres() {
@@ -57,7 +70,13 @@ public class Uc3Facade {
 	}
 	
 	
-	// Get all
+	/**
+	 * <p> Méthodes pour lister les données stockées en Base de Données</p>
+	 * <p> On récupère tout ce qui se trouve dans une table et on le met dans une ArrayList pour pouvoir le traiter au besoin.</p>
+	 * @return liste.getAllCommParId() @return liste.getAllTitreParId() @return liste.getAllCompteurParId()
+	 * @author Nacer ATOUT
+	 */
+	
 	public Commentaires getAllCommParId() {
 		return liste.getAllCommParId();
 	}
@@ -71,7 +90,14 @@ public class Uc3Facade {
 	}
 	
 	
-	// Get par référence
+	/**
+	 *<p> Méthodes pour lister individuellement les données stockées en Base de Données depuis leur référence (ID).</p>
+	 *<p> Elles recoivent en paramètre un chiffre qui correspond à l'ID de l'objet qu'on veut récupérer en base et afficher.</p>
+	 * @param ref
+	 * @return liste.getCommParRef() @return liste.getTitreParRef() @return liste.getCompteurParRef()
+	 * @author Nacer ATOUT
+	 */
+	
 	public Commentaire getCommParRef(int ref) {
 		return liste.getCommParRef(ref);
 	}
@@ -85,9 +111,15 @@ public class Uc3Facade {
 	}
 	
 	
-	// modifier
+	/**
+	 * <p> Méthodes pour modifier en Base de Données.</p>
+	 * <p> Ces méthodes remplacent en mémoire les objets stockés par hibernate 
+	 * par celui qu'on leur transmet en paramètre avant de les persister.</p>
+	 * @param commentaire @param titre @param compteur
+	 * @author Nacer ATOUT
+	 */
+	
 	public void modifCommentaire(Commentaire commentaire) {
-		System.out.println("*** entrée modifCommentaire UC3Facade " + commentaire);
 		gestion.modifCommentaire(commentaire);
 	}
 
@@ -98,10 +130,7 @@ public class Uc3Facade {
 	public void modifCompteur(Compteur compteur) {
 		gestion.modifCompteur(compteur);
 	}
-	
-	public void incrementerCompteur(Compteur compteur) {
-		gestion.incrementerCompteur(compteur);
-	}
+
 	
 
 }
