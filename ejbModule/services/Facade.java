@@ -121,8 +121,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public void delProfile(Profil profil) {
-		// TODO Auto-generated method stub
-
+		gestionAcces.removeProfil(profil);
 	}
 
 	@Override

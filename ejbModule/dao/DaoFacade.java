@@ -109,6 +109,10 @@ public class DaoFacade {
 	public void delateProfileId(int id) {
 		daoAcces.supprimerProfileId(id);
 	}
+
+	public void delateProfile(Profil profil) {
+		daoAcces.supprimerProfile(profil);
+	}
 	// ====Fin_des_gestion_acces_======
 
 	/*
@@ -135,5 +139,4 @@ public class DaoFacade {
 		return daoAcces.getAllbyUserByPseudo();
 	}
 
-	
 }

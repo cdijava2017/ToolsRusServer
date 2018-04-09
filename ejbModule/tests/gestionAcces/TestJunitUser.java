@@ -14,6 +14,7 @@ import org.junit.Test;
 import clientServeur.IFacade;
 import entity.gestionAcces.User;
 import parametreGestionAcces.Parametres;
+import parametreGestionAcces.UserException;
 
 /***
  * Test d'un user
@@ -40,7 +41,7 @@ public class TestJunitUser {
 
 	@Test
 	// test d'ajout d'un user
-	public void test1() {
+	public void test1() throws UserException {
 		User user = new User(10, "Ousseynou", "afpapw");
 		facadeService.addNewUser(user);
 		System.out.println("Youppi");
@@ -50,7 +51,7 @@ public class TestJunitUser {
 
 	@Test
 	// Testd'ajout si id existant est modifie
-	public void testMaj() {
+	public void testMaj() throws UserException {
 		User user = new User(12, "Ousseynou", "afpapw");
 		facadeService.addNewUser(user);		
 		System.out.println("2 " + user.toString());
@@ -78,7 +79,7 @@ public class TestJunitUser {
 
 	@Test
 	// on cree user ,le cherche et on le delate
-	public void delateUser() {
+	public void delateUser() throws UserException {
 		User user = new User(12, "Ousseynou", "afpapw");
 		facadeService.addNewUser(user);
 
@@ -89,7 +90,7 @@ public class TestJunitUser {
 	}
 	//TODO doublon_&_null
 	@Ignore
-	public void AddGhostUser() {
+	public void AddGhostUser() throws UserException {
 		User user = new User(22, null, "afpapw");
 		facadeService.addNewUser(user);	
 		System.out.println("user no name" + user.toString());
@@ -97,7 +98,7 @@ public class TestJunitUser {
 	}
 	@Ignore
 	// on cree user ,on ajoute et on le rajoute
-	public void AddIdemUser() {
+	public void AddIdemUser() throws UserException {
 		User user = new User(22, "Nous", "afpapw");
 		facadeService.addNewUser(user);
 		facadeService.addNewUser(user);		
@@ -105,7 +106,7 @@ public class TestJunitUser {
 	}
 	@Ignore
 	// on chercher user non enregristtre et on le delate
-	public void delateUserInexistant() {
+	public void delateUserInexistant() throws UserException {
 		User user = new User(222, "NullAutor", "PwNull");
 		
 		facadeService.delUser(user);

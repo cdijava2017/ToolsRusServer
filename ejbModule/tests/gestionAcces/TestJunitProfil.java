@@ -17,6 +17,7 @@ import entity.gestionAcces.Role;
 import entity.gestionAcces.User;
 import entity.uc4.Image;
 import parametreGestionAcces.Parametres;
+import parametreGestionAcces.UserException;
 
 /***
  * Test d'un user
@@ -45,11 +46,12 @@ public class TestJunitProfil {
 	}
 
 	/**
+	 * @throws UserException 
 	 * 
 	 */
 	@Test
 	// test d'ajout d'un Profil
-	public void test1() {
+	public void test1() throws UserException {
 		/*
 		 * Vu en creeant un Profil, on va automatique creer l'utilisateur 
 		 */

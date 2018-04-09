@@ -91,6 +91,10 @@ public class FacGestionAcces {
 	 * @param profil
 	 */
 
+
+	public void removeProfil(Profil profil) {
+		gererAcces.removeProfile(profil);
+	}
 	public Profil ajouterProfile(Profil profil) {
 		return gererAcces.ajoutProfil(profil);
 	}
@@ -111,6 +115,9 @@ public class FacGestionAcces {
 	public void removeProfilById(int id) {
 		gererAcces.removeProfileId(id);
 	}
+	/**
+	 * 
+	 */
 
 	public List<Profil> getAllbyProfilById() {
 		return listeAcces.getAllbyProfilById();

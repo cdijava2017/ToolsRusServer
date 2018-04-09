@@ -107,7 +107,6 @@ public class GererAcces {
 		daoFacade.delateRole(role);
 	}
 
-	
 	public void removeRoleId(int id) {
 		daoFacade.delateRoleId(id);
 	}
@@ -151,6 +150,11 @@ public class GererAcces {
 
 	public void removeProfileId(int id) {
 		daoFacade.delateProfileId(id);
-		
+
+	}
+
+	public void removeProfile(Profil profil) {
+		daoFacade.delateProfile(profil);
+
 	}
 }

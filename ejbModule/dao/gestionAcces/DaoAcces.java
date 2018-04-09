@@ -221,6 +221,17 @@ public class DaoAcces {
 		System.out.println("delate Profil par son id au niveau du DaoAcces ");
 
 	}
+
+	public void supprimerProfile(Profil profil) {
+		if (profil != null) {
+			Role roles = em.find(Role.class, profil.getId());
+			em.remove(roles);
+			em.flush();
+			System.out.println("delate Profil au niveau du DaoAcces ");
+		}
+
+	}
+
 	// ----------End_Dao_Profile-----
 	/**
 	 * Fin_de_la_DaO_GESTION_ACCES
@@ -228,7 +239,7 @@ public class DaoAcces {
 
 	@SuppressWarnings("unchecked")
 	public List<Profil> getAllbyProfilById() {
-		
+
 		Query query = em.createQuery("select p from Profil p order by p.id asc");
 		return query.getResultList();
 	}

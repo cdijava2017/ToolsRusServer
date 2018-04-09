@@ -18,11 +18,11 @@ public interface IFacade {
 	 * @throws UserException
 	 */
 
-	public User addNewUser(User user);
+	public User addNewUser(User user) throws UserException;
 
-	public User updUser(User user);
+	public User updUser(User user) throws UserException;
 
-	public void delUser(User user);
+	public void delUser(User user) throws UserException;
 
 	public void delUserByid(int id);
 
@@ -35,9 +35,9 @@ public interface IFacade {
 	 * 
 	 * @param profil
 	 */
-	public Profil addNewProfile(Profil profil);
+	public Profil addNewProfile(Profil profil) throws UserException;
 
-	public Profil updProfile(Profil profil);
+	public Profil updProfile(Profil profil) throws UserException;
 
 	public void delProfile(Profil profil);
 

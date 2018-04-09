@@ -7,17 +7,18 @@ import javax.naming.NamingException;
 import clientServeur.IFacade;
 import entity.gestionAcces.User;
 import parametreGestionAcces.Parametres;
+import parametreGestionAcces.UserException;
 
 public class TestMain {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UserException {
 
 		try {
 			Context context = new InitialContext();
 
 			IFacade serviceFacade = (IFacade) context.lookup(Parametres.EJB_SERVICE_FACADE);
 
-			
+			serviceFacade.removeNativeUser();
 			User user = null;
 
 			user = new User(10, "Ousseynou", "afpapw");
