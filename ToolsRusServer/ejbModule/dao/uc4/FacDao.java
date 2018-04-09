@@ -22,5 +22,7 @@ public class FacDao {
 		return daoGestion.update(mot);
 	}
 
-	
+	public void delete(Mot mot) {
+		
+	}
 }

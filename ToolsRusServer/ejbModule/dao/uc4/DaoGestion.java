@@ -8,9 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
-import dao.uc4.DaoUtil;
 import entity.uc4.Mot;
 import exception.uc4.ExistantException;
+import exception.uc4.InexistantException;
 
 /**
  * methods to manage words
@@ -68,9 +68,16 @@ public class DaoGestion {
 			return mot;
 		}
 		
-		
-		
-		
+	//method to delete a word in the database
+		public void delete(Mot mot) throws InexistantException{
+			if (mot !=null) {
+				Mot motLambda = em.find(Mot.class, mot);
+				
+				em.remove(motLambda);
+			}
+		}
+
+	
 		/*******************************************************
 							GESTION DE L IMAGE
 		*******************************************************/
