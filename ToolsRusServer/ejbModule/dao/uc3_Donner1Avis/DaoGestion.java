@@ -170,7 +170,14 @@ public class DaoGestion {
 		return compteur;
 	}
 
-
+	public void incrementerCompteur(Compteur compteur) {
+		System.out.println("DaoGestion méthode incrementerCompteur() Compteur");
+		compteur = recupCompteur(compteur.getIdCompteur());
+		compteur.compteurPlus1();
+		em.merge(compteur);
+		em.flush();	
+		
+	}
 	
 
 

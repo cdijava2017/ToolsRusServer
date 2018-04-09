@@ -95,5 +95,9 @@ public class Uc3Facade {
 		gestion.modifCompteur(compteur);
 	}
 	
+	public void incrementerCompteur(Compteur compteur) {
+		gestion.incrementerCompteur(compteur);
+	}
+	
 
 }

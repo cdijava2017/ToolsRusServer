@@ -109,7 +109,13 @@ public class Gestion {
 		}
 	}
 	
-	
+	public void incrementerCompteur(Compteur compteur) {
+		try {
+			daoGestion.incrementerCompteur(compteur);
+		} catch (Exception e) {
+			System.out.println("Attention, Exception levée pendant l'incrémentation du compteur : " + e.getMessage());
+		}
+	}
 //	public void modifier(Localisation localisation) {
 //		try {
 //			daoGestion.update(localisation);

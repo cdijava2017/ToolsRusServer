@@ -43,8 +43,8 @@ public class Main {
 //			ArrayList<Compteur> c11 = new ArrayList<Compteur>();
 //			c11.add(cptDislike1);
 //			c11.add(cptLike1);
-			
 //			comm1.setCompteurs(c11);
+			
 			comm1.addCompteur(cptDislike1);
 			comm1.addCompteur(cptLike1);
 			comm1.setTitre(t1);
@@ -91,7 +91,7 @@ public class Main {
 //			System.out.println(interfaceFacade.getAllCompteurParId());
 			
 			//TODO changer modifier() comme pensé hier
-			//TODO bis
+
 		} catch (NamingException e) {
 
 			e.printStackTrace();

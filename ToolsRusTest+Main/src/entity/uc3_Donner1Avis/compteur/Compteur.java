@@ -40,6 +40,10 @@ public abstract class Compteur implements Serializable {
 		this.compteur = compteur;
 	}
 
+	public void compteurPlus1(){
+		compteur = compteur++;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		boolean resultat = false;

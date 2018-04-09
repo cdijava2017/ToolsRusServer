@@ -12,7 +12,13 @@ import entity.uc3_Donner1Avis.titre.Titres;
 
 public interface IFacade {
 
-	public Commentaire addCommentaire(Commentaire comm) throws CommentaireVideException;
+	/**
+	 * Partie de l'interface groupe qui fait référence aux méthodes de l'UC3 - Donner un avis (commenter)
+	 * @param commentaire @param titre @param compteur @param ref
+	 * @return
+	 * @throws CommentaireVideException 
+	 */
+	public Commentaire addCommentaire(Commentaire commentaire) throws CommentaireVideException;
 	public Titre addTitre(Titre titre) throws TitreVideException;
 	public Compteur addCompteur(Compteur compteur) throws CompteurVideException;
 	
@@ -31,5 +37,8 @@ public interface IFacade {
 	public void modifCommentaire(Commentaire commentaire);
 	public void modifTitre(Titre titre);
 	public void modifCompteur(Compteur compteur);
+	
+	public void incrementerCompteur(Compteur compteur);
+	
 	
 }
