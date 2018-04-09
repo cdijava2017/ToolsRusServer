@@ -1,12 +1,8 @@
-/META-INF/
 /clientServeur/
 /dao/
 /entity/
-/jboss-ejb-client.properties
-/jndi.properties
 /parametreGestionAcces/
 /services/
 /testDDL/
 /tests/
-/hibernate (1)_Image_Profil_Role_Role_Role_Role_User.bmp
-/.gitignore
+/META-INF/
