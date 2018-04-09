@@ -17,6 +17,9 @@ public class FacDao {
 	public Mot add (Mot mot) throws ExistantException {
 		return daoGestion.persist(mot);
 	}
-	//TODO
+	
+	public Mot update(Mot mot) throws ExistantException {
+		return daoGestion.update(mot);
+	}
 
 }
