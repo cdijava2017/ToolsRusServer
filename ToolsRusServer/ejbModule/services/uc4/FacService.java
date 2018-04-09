@@ -20,5 +20,8 @@ public class FacService {
 	public Mot ajouter(Mot mot) throws ExistantException {
 		return serviceGestion.ajouter(mot);
 	}
-
+	
+	public Mot update(Mot mot) throws ExistantException {
+		return serviceGestion.update(mot);
+	}
 }
