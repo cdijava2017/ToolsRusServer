@@ -35,9 +35,10 @@ public class Facade implements IFacade {
 	 * Méthodes de l'UC3 - Donner un avis / Commenter
 	 */
 	@Override
-	public Commentaire addCommentaire(Commentaire comm) throws CommentaireVideException {
-		System.out.println("addCommentaire Facade");
-		return uc3Facade.addCommentaire(comm);
+	public Commentaire addCommentaire(Commentaire commentaire) throws CommentaireVideException {		
+		commentaire = uc3Facade.addCommentaire(commentaire);
+		System.out.println("** Facade - addCommentaire(Commentaire commentaire) : " + commentaire);
+		return commentaire;
 	}
 	@Override
 	public Titre addTitre(Titre titre) throws TitreVideException {
@@ -97,7 +98,7 @@ public class Facade implements IFacade {
 	
 	@Override
 	public void modifCommentaire(Commentaire commentaire) {
-		System.out.println("modifCommentaire Facade");
+		System.out.println("*** entrée modifCommentaire UC3Facade " + commentaire);
 		uc3Facade.modifCommentaire(commentaire);
 	}
 	@Override
@@ -107,7 +108,7 @@ public class Facade implements IFacade {
 	}
 	@Override
 	public void modifCompteur(Compteur compteur) {
-		System.out.println("modifCompteur Facade");
+		System.out.println("**** modifCompteur Facade");
 		uc3Facade.modifCompteur(compteur);
 	}
 	public void incrementerCompteur(Compteur compteur) {

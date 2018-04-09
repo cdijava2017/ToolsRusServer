@@ -86,6 +86,11 @@ public class Main {
 			System.out.println(interfaceFacade.getAllCompteurParId());
 			
 			
+			interfaceFacade.incrementerCompteur(cptDislike1);
+			System.out.println("Les compteurs modifiés :");
+			System.out.println(interfaceFacade.getAllCompteurParId());
+			
+			
 //			cptDislike1.setCompteur(cptDislike1.getCompteur()+1);
 //			interfaceFacade.modifCommentaire(comm1);
 //			System.out.println(interfaceFacade.getAllCompteurParId());

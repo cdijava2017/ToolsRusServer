@@ -26,8 +26,11 @@ public class Uc3Facade {
 
 	
 	// Ajouter en BdD
-	public Commentaire addCommentaire(Commentaire comm) throws CommentaireVideException {
-		return gestion.creerComm(comm);
+	public Commentaire addCommentaire(Commentaire commentaire) throws CommentaireVideException {
+		
+		commentaire = gestion.creerComm(commentaire);
+		System.out.println("** Uc3Facade - addCommentaire(Commentaire commentaire) : " + commentaire);
+		return commentaire;
 	}
 
 	public Titre addTitre(Titre titre) throws TitreVideException {
@@ -84,6 +87,7 @@ public class Uc3Facade {
 	
 	// modifier
 	public void modifCommentaire(Commentaire commentaire) {
+		System.out.println("*** entrée modifCommentaire UC3Facade " + commentaire);
 		gestion.modifCommentaire(commentaire);
 	}
 

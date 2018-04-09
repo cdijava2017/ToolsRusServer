@@ -43,5 +43,9 @@ public class Titre  implements Serializable {
 		else resultat = false;
 		return resultat;
 	}
+
+	public Titre titreToDto() {
+		return new Titre(this.getIdTitre(), this.getTxtTitre());
+	}
 	
 }

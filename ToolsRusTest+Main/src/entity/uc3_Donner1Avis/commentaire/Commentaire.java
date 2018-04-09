@@ -1,12 +1,17 @@
 package entity.uc3_Donner1Avis.commentaire;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import clientServer.ICommentable;
+
 import entity.uc3_Donner1Avis.compteur.Compteur;
+import entity.uc3_Donner1Avis.compteur.CptDislike;
+import entity.uc3_Donner1Avis.compteur.CptLike;
 import entity.uc3_Donner1Avis.titre.Titre;
+import utils.ICommentable;
+
 
 /**
  * TODO Commenter cette classe au maximum
@@ -17,7 +22,7 @@ import entity.uc3_Donner1Avis.titre.Titre;
 public class Commentaire implements Serializable, ICommentable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	private int idComm;
 	private String  texteComm;
 	private Titre titre;
@@ -101,5 +106,30 @@ public class Commentaire implements Serializable, ICommentable {
 		if (comm.idComm == this.idComm || comm.texteComm == this.texteComm) resultat = true;
 		else resultat = false;
 		return resultat;
+	}
+	
+	public void incrementDislike() {
+		for (Compteur cpt : listeCompteurs) {
+			if (cpt instanceof CptDislike) cpt.compteurPlus1();
+		}		
+	}
+	public void incrementLike() {
+		for (Compteur cpt : listeCompteurs) {
+			if (cpt instanceof CptLike) cpt.compteurPlus1();
+		}		
+	}
+	
+	public Commentaire commToDto() {
+		Commentaire commToDto = new Commentaire(this.getIdComm(), this.getTexteComm());
+		if (this.getTitre() != null) commToDto.setTitre(this.getTitre().titreToDto());
+		if (this.getCompteurs() != null) {
+			ArrayList<Compteur> cptToDto = new ArrayList<>();
+			for (Compteur compteur : this.getCompteurs()) {
+				Compteur compteurDto = compteur.cptToDto();
+				cptToDto.add(compteurDto);
+			}
+			commToDto.setCompteurs(cptToDto);
+		}
+		return commToDto;
 	}
 }

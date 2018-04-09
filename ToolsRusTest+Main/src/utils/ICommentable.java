@@ -1,4 +1,4 @@
-package clientServer;
+package utils;
 
 public interface ICommentable {
 

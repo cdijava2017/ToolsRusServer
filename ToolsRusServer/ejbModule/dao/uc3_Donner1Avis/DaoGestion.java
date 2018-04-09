@@ -40,7 +40,8 @@ public class DaoGestion {
 		catch (PersistenceException e) {	
 			System.out.println(e);
 		}
-		return commentaire;
+		System.out.println("** DaoGestion - ajouter(Commentaire commentaire) : " + commentaire);
+		return commentaire.commToDto();
 	}
 
 	public void supAllCommentaires() {
@@ -58,16 +59,17 @@ public class DaoGestion {
 	}
 	
 	public void modifCommentaire(Commentaire commentaire) {
-		System.out.println("DaoGestion méthode modifCommentaire() commentaire");
-		Commentaire commentaireBis = recupCommentaire(commentaire.getIdComm());
-		if (commentaire != commentaireBis) em.merge(commentaire);
+		System.out.println("DaoGestion méthode modifCommentaire() " + commentaire);
+//		Commentaire commentaireBis = recupCommentaire(commentaire.getIdComm());
+//		if (commentaire != commentaireBis) 
+			em.merge(commentaire);
 		em.flush();
 	}
 	
 	public Commentaire recupCommentaire(int id) {
 		System.out.println("DaoGestion méthode recupCommentaire() commentaire");
 		Commentaire commentaire = em.find(Commentaire.class, id);
-		return commentaire;
+		return commentaire.commToDto();
 	}
 
 	/**************************************************************************
@@ -158,9 +160,11 @@ public class DaoGestion {
 	
 	public void modifCompteur(Compteur compteur) {
 		System.out.println("DaoGestion méthode modifCompteur() ");
-//		Compteur compteurBis = recupCompteur(compteur.getIdCompteur());
-//		if (compteur != compteurBis) 
-			em.merge(compteur);
+		System.out.println("***** 1 " + compteur);
+		Compteur compteurBis = recupCompteur(compteur.getIdCompteur());
+		System.out.println("***** 2 " + compteur);
+		System.out.println("***** 3 bis" + compteurBis);
+		if (compteur != compteurBis) em.merge(compteur);
 		em.flush();
 	}
 	
@@ -172,7 +176,7 @@ public class DaoGestion {
 
 	public void incrementerCompteur(Compteur compteur) {
 		System.out.println("DaoGestion méthode incrementerCompteur() Compteur");
-		compteur = recupCompteur(compteur.getIdCompteur());
+		Compteur compteurBis = recupCompteur(compteur.getIdCompteur());
 		compteur.compteurPlus1();
 		em.merge(compteur);
 		em.flush();	

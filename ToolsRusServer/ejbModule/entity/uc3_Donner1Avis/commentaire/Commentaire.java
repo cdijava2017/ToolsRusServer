@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import entity.uc3_Donner1Avis.compteur.Compteur;
+import entity.uc3_Donner1Avis.compteur.CptDislike;
+import entity.uc3_Donner1Avis.compteur.CptLike;
 import entity.uc3_Donner1Avis.titre.Titre;
 import utils.ICommentable;
 
@@ -130,4 +132,30 @@ public class Commentaire implements Serializable, ICommentable {
 		else resultat = false;
 		return resultat;
 	}
+	
+	public void incrementDislike() {
+		for (Compteur cpt : listeCompteurs) {
+			if (cpt instanceof CptDislike) cpt.compteurPlus1();
+		}		
+	}
+	public void incrementLike() {
+		for (Compteur cpt : listeCompteurs) {
+			if (cpt instanceof CptLike) cpt.compteurPlus1();
+		}		
+	}
+	
+	public Commentaire commToDto() {
+		Commentaire commToDto = new Commentaire(this.getIdComm(), this.getTexteComm());
+		if (this.getTitre() != null) commToDto.setTitre(this.getTitre().titreToDto());
+		if (this.getCompteurs() != null) {
+			ArrayList<Compteur> cptToDto = new ArrayList<>();
+			for (Compteur compteur : this.getCompteurs()) {
+				Compteur compteurDto = compteur.cptToDto();
+				cptToDto.add(compteurDto);
+			}
+			commToDto.setCompteurs(cptToDto);
+		}
+		return commToDto;
+	}
+	
 }

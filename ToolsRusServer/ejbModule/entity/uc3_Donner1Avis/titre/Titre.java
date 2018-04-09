@@ -58,5 +58,9 @@ public class Titre  implements Serializable, ICommentable {
 		else resultat = false;
 		return resultat;
 	}
+
+	public Titre titreToDto() {
+		return new Titre(this.getIdTitre(), this.getTxtTitre());
+	}
 	
 }

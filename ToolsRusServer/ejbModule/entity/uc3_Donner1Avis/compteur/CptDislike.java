@@ -18,6 +18,9 @@ public class CptDislike extends Compteur {
 		super(compteur);
 	}
 
+	public CptDislike(int idCompteur, int compteur) {
+		super(idCompteur, compteur);
+	}
 
 	@Override
 	public String toString() {

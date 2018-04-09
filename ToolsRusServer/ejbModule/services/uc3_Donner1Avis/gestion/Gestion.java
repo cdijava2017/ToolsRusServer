@@ -23,19 +23,21 @@ public class Gestion {
 	
 	@EJB private DaoListe daoListe;
 
-	/*****************************************************************************
+	/********************************************************************************
 	 * Cette partie concerne les Commentaires et aura toutes les méthodes relatives *
-	 * @throws CommentaireVideException 											 *
-	 *****************************************************************************/
+	 * @throws CommentaireVideException 											*
+	 ********************************************************************************/
 	
 	public Commentaire creerComm(Commentaire commentaire) throws CommentaireVideException {
 		try {
 			Objects.requireNonNull(commentaire);
-			daoGestion.ajouter(commentaire);
+			commentaire = daoGestion.ajouter(commentaire);
+			
 		}
 		catch(NullPointerException npe) {
 			System.out.println("Attention : NullPointerException pour le commentaire!");
 		}
+		System.out.println("** Gestion - creerComm(Commentaire commentaire) : " + commentaire);
 		return commentaire;
 	}
 
@@ -45,6 +47,7 @@ public class Gestion {
 	
 	public void modifCommentaire(Commentaire commentaire) {
 		try {
+			System.out.println("*** entrée modifCommentaire Gestion " + commentaire);
 			daoGestion.modifCommentaire(commentaire);
 		} catch (Exception e) {
 			System.out.println("Attention, Exception levée à la modification du commentaire : " + e.getMessage());
@@ -53,7 +56,7 @@ public class Gestion {
 	
 	/**************************************************************************
 	 * Cette partie concerne les Titres et aura toutes les méthodes relatives *
-	 * @throws TitreVideException 										  *
+	 * @throws TitreVideException 										  	  *
 	 **************************************************************************/
 	
 	public Titre creerTitre(Titre titre) throws TitreVideException {
@@ -116,41 +119,10 @@ public class Gestion {
 			System.out.println("Attention, Exception levée pendant l'incrémentation du compteur : " + e.getMessage());
 		}
 	}
-//	public void modifier(Localisation localisation) {
-//		try {
-//			daoGestion.update(localisation);
-//		} catch (DaoException e) {
-//			System.out.println("!!!!! DM Erreur : " + e.getCode() + ":" + e.getMessage());
-//		}
-//		
-//	}
-//
-//	@Override
-//	public void supAllCalcul() {
-//		daoG.deleteAll();
-//		
-//	}
-//
-//	@Override
-//	public void supByRef(int ref) {
-//		try {
-//			Calcul calcul =  daoC.getByRef(ref);
-//			daoG.delete(calcul);
-//		} catch (DaoException e) {
-//			System.out.println("!!!!! DM Erreur : " + e.getCode() + ":" + e.getMessage());
-//		}
-//		
-//	}
-//
-//	@Override
-//	public void sup(Calcul calcul) {
-//		try {
-//			daoG.delete(calcul);
-//		} catch (DaoException e) {
-//			System.out.println("!!!!! DM Erreur : " + e.getCode() + ":" + e.getMessage());
-//		}
-//		
-//	}
+
+
+
+
 
 
 }

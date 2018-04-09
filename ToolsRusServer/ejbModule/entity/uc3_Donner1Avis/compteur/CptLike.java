@@ -18,6 +18,10 @@ public class CptLike extends Compteur{
 		super(compteur);
 	}
 
+	public CptLike(int idCompteur, int compteur) {
+		super(idCompteur, compteur);
+	}
+
 	@Override
 	public String toString() {
 		return "CptLike [ " + super.toString() + " ]";
