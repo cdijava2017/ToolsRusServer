@@ -10,7 +10,7 @@ import clientServeur.IFacade;
 import entity.gestionAcces.Profil;
 import entity.gestionAcces.Role;
 import entity.gestionAcces.User;
-import parametreGestionAcces.UserException;
+import exception.gestionAcces.UserException;
 import services.gestionAcces.FacGestionAcces;
 
 /**

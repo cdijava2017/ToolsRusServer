@@ -1,0 +1,10 @@
+clientServeur
+dao
+dao.gestionAcces
+entity.gestionAcces
+entity.uc4
+parametreGestionAcces
+services
+services.gestionAcces
+testDDL
+tests.gestionAcces

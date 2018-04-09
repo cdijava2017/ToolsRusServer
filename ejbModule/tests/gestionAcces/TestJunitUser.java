@@ -13,8 +13,8 @@ import org.junit.Test;
 
 import clientServeur.IFacade;
 import entity.gestionAcces.User;
+import exception.gestionAcces.UserException;
 import parametreGestionAcces.Parametres;
-import parametreGestionAcces.UserException;
 
 /***
  * Test d'un user

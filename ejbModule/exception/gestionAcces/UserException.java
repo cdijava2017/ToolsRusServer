@@ -1,4 +1,4 @@
-package parametreGestionAcces;
+package exception.gestionAcces;
 
 
 public class UserException extends Exception {

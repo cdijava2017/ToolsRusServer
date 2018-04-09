@@ -6,8 +6,8 @@ import javax.naming.NamingException;
 
 import clientServeur.IFacade;
 import entity.gestionAcces.User;
+import exception.gestionAcces.UserException;
 import parametreGestionAcces.Parametres;
-import parametreGestionAcces.UserException;
 
 public class TestMain {
 

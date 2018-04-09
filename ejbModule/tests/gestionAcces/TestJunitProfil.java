@@ -17,8 +17,8 @@ import entity.gestionAcces.Profil;
 import entity.gestionAcces.Role;
 import entity.gestionAcces.User;
 import entity.uc4.Image;
+import exception.gestionAcces.UserException;
 import parametreGestionAcces.Parametres;
-import parametreGestionAcces.UserException;
 
 /***
  * Test d'un user

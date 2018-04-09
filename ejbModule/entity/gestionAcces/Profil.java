@@ -60,7 +60,10 @@ public class Profil implements Serializable {
 	@JoinColumn(name = "idRole", nullable = true)
 	private Role role;
 
-	/** relation inverse image(one)<-profil(many) */
+	/** 
+	 * relation inverse image(one)<-profil(many) 
+	 * 
+	 */
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idImage", nullable = true)
 	private Image image;
