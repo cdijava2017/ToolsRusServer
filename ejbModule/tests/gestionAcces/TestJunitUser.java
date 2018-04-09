@@ -107,7 +107,7 @@ public class TestJunitUser {
 	@Ignore
 	// on chercher user non enregristtre et on le delate
 	public void delateUserInexistant() throws UserException {
-		User user = new User(222, "NullAutor", "PwNull");
+		User user = new User(222);
 		
 		facadeService.delUser(user);
 		assertTrue(false);//genere erreur
