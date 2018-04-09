@@ -1,5 +1,7 @@
 package clientServeur;
 
+import java.util.List;
+
 import entity.gestionAcces.Profil;
 import entity.gestionAcces.Role;
 import entity.gestionAcces.User;
@@ -8,7 +10,7 @@ import parametreGestionAcces.UserException;
 public interface IFacade {
 
 	// Ousseynou
-
+	// Dao_Gestion
 	/**
 	 * implement User
 	 * 
@@ -64,6 +66,20 @@ public interface IFacade {
 
 	public void removeNativeRole();
 
+	/*
+	 * Dao_Liste_Acces
+	 */
+	// PRofil List
+	public List<Profil> getAllbyProfilById();
+
+	public List<Profil> getAllbyProfilByNom();
+
+	public List<Profil> getAllbyProfilByPrenom();
+
+	// User List
+	public List<User> getAllbyUserById();
+
+	public List<User> getAllbyUserByPseudo();
 	// =================== FIN ousseynou
 
 	/**

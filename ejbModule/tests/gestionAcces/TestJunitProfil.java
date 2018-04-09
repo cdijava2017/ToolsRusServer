@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import clientServeur.IFacade;
 import entity.gestionAcces.Animateur;
+import entity.gestionAcces.Participant;
 import entity.gestionAcces.Profil;
 import entity.gestionAcces.Role;
 import entity.gestionAcces.User;
@@ -38,7 +39,7 @@ public class TestJunitProfil {
 	public void beforeDrop() throws Exception {
 		facadeService.removeNativeProfil();
 		facadeService.removeNativeUser();
-		facadeService.removeNativeUser();
+		facadeService.removeNativeRole();
 		System.out.println("Remove all table for this test");
 
 	}
@@ -50,20 +51,28 @@ public class TestJunitProfil {
 	// test d'ajout d'un Profil
 	public void test1() {
 		/*
-		 * Vu en creeant un Profil, on va automatique creer l'utilisateur et son role
+		 * Vu en creeant un Profil, on va automatique creer l'utilisateur 
 		 */
 		User user = new User(10);
-		// facadeService.addNewUser(user); //-->inutile ici
+		//facadeService.addNewUser(user); //-->inutile ici
+		User user2 = new User(11);
 
-		Role role = new Animateur(1, "anim", true);
-		// facadeService.addRole(role);//-->inutile ici
+		Role role = new Animateur(1, true);
+		facadeService.addRole(role);// on cree un role d'office
+		
+		Role role2 = new Participant(2,true);
+		facadeService.addRole(role2);// on cree un role d'office
+
 
 		Image avatar = null;
 		
 		Profil profil = new Profil(1, "Diagne", "Ousseynou", "climbatize.reload@gmail.com", user, role, avatar);
 		facadeService.addNewProfile(profil);
-		
 		System.out.println(profil.toString());
+		Profil profil2 = new Profil(3, "Delta", "ynou", "climbatize.reload@gmail.com", user2, role2, avatar);
+		facadeService.addNewProfile(profil2);
+		
+		System.out.println(profil2.toString());
 		
 		assertEquals("Ousseynou", facadeService.getProfil(1).getPrenom());
 		

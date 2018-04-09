@@ -30,10 +30,10 @@ public abstract class Role implements Serializable {
 	@Id
 	@Column(name = "idRole")
 	private int id;
-	@Column(name = "nom", length = 70, nullable = true)
-	private String nom;
+	// @Column(name = "nom", length = 70, nullable = true)
+	// private String nom;
 	@Column(name = "admin", nullable = false)
-	private boolean admin; // verif si ok admin ou pas - 
+	private boolean admin; // verif si ok admin ou pas -
 
 	public Role() {
 
@@ -43,16 +43,16 @@ public abstract class Role implements Serializable {
 		super();
 	}
 
-	public Role(int id, String nom, boolean admin) {
+	public Role(int id, /* String nom, */ boolean admin) {
 		super();
 		this.id = id;
-		this.nom = nom;
+		// this.nom = nom;
 		this.admin = admin;
 	}
 
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", nom=" + nom + ", admin=" + admin + "]";
+		return "Role [id=" + id + ", nom=" + /* nom + */", admin=" + admin + "]";
 	}
 
 	public boolean isAdmin() {
@@ -67,16 +67,12 @@ public abstract class Role implements Serializable {
 		return id;
 	}
 
-	public String getNom() {
-		return nom;
-	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
+	/*
+	 * public String getNom() { return nom; }
+	 * 
+	 * public void setNom(String nom) { this.nom = nom; }
+	 */
 }

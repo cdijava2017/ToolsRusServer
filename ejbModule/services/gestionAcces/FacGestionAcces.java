@@ -1,5 +1,7 @@
 package services.gestionAcces;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
@@ -20,6 +22,8 @@ public class FacGestionAcces {
 
 	@EJB
 	private GererAcces gererAcces;
+	@EJB
+	private ListeAcces listeAcces;
 
 	/***
 	 * Facade gestion user
@@ -106,6 +110,27 @@ public class FacGestionAcces {
 
 	public void removeProfilById(int id) {
 		gererAcces.removeProfileId(id);
+	}
+
+	public List<Profil> getAllbyProfilById() {
+		return listeAcces.getAllbyProfilById();
+	}
+
+	public List<Profil> getAllbyProfilByNom() {
+		return listeAcces.getAllbyProfilByNom();
+	}
+
+	public List<Profil> getAllbyProfilByPrenom() {
+		return listeAcces.getAllbyProfilByPreNom();
+	}
+
+	public List<User> getAllbyUserById() {
+		return listeAcces.getAllbyUserById();
+	}
+
+	public List<User> getAllbyUserByPseudo() {
+		// TODO Auto-generated method stub
+		return listeAcces.getAllbyUserByPseudo();
 	}
 
 }

@@ -25,8 +25,8 @@ public class Animateur extends Role implements Serializable {
 	public Animateur(){
 
 	}
-	public Animateur(int id, String nom, boolean admin) {
-		super(id, nom, admin);
+	public Animateur(int id,boolean admin) {
+		super(id, admin);
 
 	}
 
@@ -36,6 +36,6 @@ public class Animateur extends Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Override
 	public String toString() {
-		return "Animateur [isAdmin()=" + isAdmin() + ", getId()=" + getId() + ", getNom()=" + getNom() + "]";
+		return "Animateur [isAdmin()=" + isAdmin() + ", getId()=" + getId()+ "]";
 		}
 }

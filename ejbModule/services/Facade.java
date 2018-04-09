@@ -1,5 +1,7 @@
 package services;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -85,7 +87,7 @@ public class Facade implements IFacade {
 
 	@Override
 	public void delRole(Role role) {
-	gestionAcces.removeRole(role);
+		gestionAcces.removeRole(role);
 
 	}
 
@@ -131,9 +133,39 @@ public class Facade implements IFacade {
 	@Override
 	public void delProfileByid(int id) {
 		gestionAcces.removeProfilById(id);
-		
+
 	}
 
 	// ==============Fin_Gestion_Acces====================
+	/*
+	 * Debut List acces
+	 */
+	@Override
+	public List<Profil> getAllbyProfilById() {
+		// TODO Auto-generated method stub
+		return gestionAcces.getAllbyProfilById();
+	}
+
+	@Override
+	public List<Profil> getAllbyProfilByNom() {
+		return gestionAcces.getAllbyProfilByNom();
+	}
+
+	@Override
+	public List<Profil> getAllbyProfilByPrenom() {
+		return gestionAcces.getAllbyProfilByPrenom();
+	}
+
+	@Override
+	public List<User> getAllbyUserById() {
+		// TODO Auto-generated method stub
+		return gestionAcces.getAllbyUserById();
+	}
+
+	@Override
+	public List<User> getAllbyUserByPseudo() {
+		// TODO Auto-generated method stub
+		return gestionAcces.getAllbyUserByPseudo();
+	}
 
 }

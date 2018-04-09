@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -107,7 +109,31 @@ public class DaoFacade {
 	public void delateProfileId(int id) {
 		daoAcces.supprimerProfileId(id);
 	}
-
 	// ====Fin_des_gestion_acces_======
 
+	/*
+	 * Liste_Prodil
+	 */
+
+	public List<Profil> getAllbyProfilById() {
+		return daoAcces.getAllbyProfilById();
+	}
+
+	public List<Profil> getAllbyProfilByNom() {
+		return daoAcces.getAllbyProfilByNom();
+	}
+
+	public List<Profil> getAllbyProfilByPreNom() {
+		return daoAcces.getAllbyProfilByPreNom();
+	}
+
+	public List<User> getAllbyUserById() {
+		return daoAcces.getAllbyUserById();
+	}
+
+	public List<User> getAllbyUserByPseudo() {
+		return daoAcces.getAllbyUserByPseudo();
+	}
+
+	
 }

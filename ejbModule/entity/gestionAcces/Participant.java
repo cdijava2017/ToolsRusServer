@@ -23,8 +23,8 @@ public class Participant extends Role implements Serializable {
 		super();
 	}
 
-	public Participant(int id, String nom, boolean admin) {
-		super(id, nom, admin);
+	public Participant(int id,boolean admin) {
+		super(id, /*nom,*/ admin);
 	}
 
 	public Participant(int id) {
@@ -38,7 +38,7 @@ public class Participant extends Role implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Participant [isAdmin()=" + isAdmin() + ", getId()=" + getId() + ", getNom()=" + getNom() + "]";
+		return "Participant [isAdmin()=" + isAdmin() + ", getId()=" + getId() +/* ", getNom()=" + getNom() +*/ "]";
 	}
 	
 }

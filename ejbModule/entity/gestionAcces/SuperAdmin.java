@@ -23,8 +23,8 @@ public class SuperAdmin extends Role implements Serializable {
 		super();
 	}
 
-	public SuperAdmin(int id, String nom, boolean admin) {
-		super(id, nom, admin);
+	public SuperAdmin(int id, boolean admin) {
+		super(id,admin);
 	}
 
 	public SuperAdmin(int id) {
@@ -33,7 +33,7 @@ public class SuperAdmin extends Role implements Serializable {
 
 	@Override
 	public String toString() {
-		return "SuperAdmin [isAdmin()=" + isAdmin() + ", getId()=" + getId() + ", getNom()=" + getNom() + "]";
+		return "SuperAdmin [isAdmin()=" + isAdmin() + ", getId()=" + getId() + "]";
 	}
 
 	/**

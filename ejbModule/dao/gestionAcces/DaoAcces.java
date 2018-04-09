@@ -1,9 +1,12 @@
 package dao.gestionAcces;
 
+import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import entity.gestionAcces.Profil;
 import entity.gestionAcces.Role;
@@ -222,4 +225,35 @@ public class DaoAcces {
 	/**
 	 * Fin_de_la_DaO_GESTION_ACCES
 	 */
+
+	@SuppressWarnings("unchecked")
+	public List<Profil> getAllbyProfilById() {
+		
+		Query query = em.createQuery("select p from Profil p order by p.id asc");
+		return query.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Profil> getAllbyProfilByNom() {
+		Query query = em.createQuery("select p from Profil p order by p.nom asc");
+		return query.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Profil> getAllbyProfilByPreNom() {
+		Query query = em.createQuery("select p from Profil p order by p.prenom asc");
+		return query.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<User> getAllbyUserById() {
+		Query query = em.createQuery("select u from User u order by u.id asc");
+		return query.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<User> getAllbyUserByPseudo() {
+		Query query = em.createQuery("select u from User u order by u.pseudo asc");
+		return query.getResultList();
+	}
 }

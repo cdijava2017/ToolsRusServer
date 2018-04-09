@@ -47,10 +47,10 @@ public class TestJunitRole {
 	 */
 	@Test
 	public void delateRole() {
-		Role role = new Participant(104, "Testoi", false);
+		Role role = new Participant(104, false);
 		facadeService.addRole(role);
 
-		assertEquals("Testoi", facadeService.getRole(104).getNom());
+		assertEquals(104, facadeService.getRole(104).getId());
 
 		facadeService.delRole(role);
 
@@ -63,9 +63,9 @@ public class TestJunitRole {
 	// test on va s'allouer un role
 	public void test1() {
 		// on va creer des roles
-		Role role = new Participant(1, "Griszelda", false);
-		Role role2 = new Animateur(2, "Moi", true);
-		Role role3 = new SuperAdmin(3, null, true);
+		Role role = new Participant(1, false);
+		Role role2 = new Animateur(2, true);
+		Role role3 = new SuperAdmin(3,true);
 
 		facadeService.addRole(role);
 		facadeService.addRole(role2);
@@ -74,17 +74,17 @@ public class TestJunitRole {
 				"000 " + role.toString() + "\n" + "002 " + role2.toString() + "\n" + "006 " + role3.toString() + "\n");
 		/* test des enregistrement */
 
-		assertEquals("Griszelda", facadeService.getRole(1).getNom());
-		assertEquals("Moi", facadeService.getRole(2).getNom());
-		assertEquals(null, facadeService.getRole(3).getNom());
+		assertEquals("Griszelda", facadeService.getRole(1).getId());
+		assertEquals("Moi", facadeService.getRole(2).getId());
+		assertEquals(null, facadeService.getRole(3).getId());
 	}
 
-	@Ignore
+	@Test
 	public void testRoleAttribuer() {
 		// on va creer des roles
-		Role role = new Participant(4, "Toi", false);
-		Role role2 = new Animateur(5, "Moi", true);
-		Role role3 = new SuperAdmin(6, "vous", true);
+		Role role = new Participant(4,  false);
+		Role role2 = new Animateur(5,  true);
+		Role role3 = new SuperAdmin(6,true);
 
 		// Verifier si le role fait partie de telle instance
 		// assertThat(role,instanceof Role.class);
@@ -107,21 +107,24 @@ public class TestJunitRole {
 				"000 " + role.toString() + "\n" + "002 " + role2.toString() + "\n" + "006 " + role3.toString() + "\n");
 
 	}
-
+	
+	/**
+	 * apres refllexion se sont des 3 type de role donc pas besoin de les modifier
+	 */
+	
+/* 
 	@Test
 	public void ModifierRole() {
 		// on creer un role
-		Role role = new Participant(10, "Testoi", false);
+		Role role = new Participant(10, false);
 		facadeService.addRole(role);
 		System.out.println(role.toString());
 
-		Role role2 = new Animateur(11, "TestMoi", true);
+		Role role2 = new Animateur(11,true);
 		facadeService.addRole(role2);
 		System.out.println(role2.toString());
 
-		 assertEquals("Testoi", facadeService.getRole(10).getNom());
-		 assertEquals("TestMoi", facadeService.getRole(11).getNom());
-		 // Modifier le type 	
+		// Modifier le type 	
 		//role2.setId(10);
 		// role2.getClass().asSubclass(Role.class). isAssignableFrom((Participant.class));
 		 
@@ -130,13 +133,12 @@ public class TestJunitRole {
 		System.out.println("update "+role.toString());
 		System.out.println("update "+role2.toString());
 
-		/*
-		 * assertEquals("TestMoi", facadeService.getRole(10).getNom());
+		// assertEquals("TestMoi", facadeService.getRole(10).getNom());
 		assertEquals("TestMoi", facadeService.getRole(11).getNom());
 
-		System.out.println(role.toString());
-		System.out.println(role2.toString());*/
+		//System.out.println(role.toString());
+	//	System.out.println(role2.toString());
 
 	}
-
+*/
 }
