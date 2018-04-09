@@ -11,16 +11,17 @@ import services.uc4.interfaces.IGestion;
 
 @Stateless
 @Remote(IGestion.class)
-public class FacService {
+public class FacService implements IGestion {
 	
 	@EJB
 	Gestion serviceGestion;
 	
-	
+	@Override
 	public Mot ajouter(Mot mot) throws ExistantException {
 		return serviceGestion.ajouter(mot);
 	}
 	
+	@Override
 	public Mot update(Mot mot) throws ExistantException {
 		return serviceGestion.update(mot);
 	}

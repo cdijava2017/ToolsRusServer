@@ -5,7 +5,7 @@ import exception.uc4.ExistantException;
 
 public interface IGestion {
 	
-	public Mot ajouter (Mot mot) throws ExistantException;
+	public Mot ajouter(Mot mot) throws ExistantException;
 	
 	public Mot update(Mot mot) throws ExistantException;
 

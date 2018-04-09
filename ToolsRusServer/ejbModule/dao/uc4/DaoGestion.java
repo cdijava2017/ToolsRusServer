@@ -24,7 +24,7 @@ import exception.uc4.ExistantException;
 public class DaoGestion {
 	
 	@PersistenceContext(unitName=DaoUtil.PERSISTENCE_UNITNAME)
-	EntityManager em;
+	private EntityManager em;
 	
 	/******************************************************
 						GESTION DU MOT

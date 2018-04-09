@@ -1,29 +1,26 @@
 package services.uc4.gestion;
 
 import javax.ejb.EJB;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
+import javax.ejb.LocalBean;
+import javax.ejb.Singleton;
 
-import dao.uc4.DaoGestion;
+import dao.uc4.FacDao;
 import entity.uc4.Mot;
 import exception.uc4.ExistantException;
-import services.uc4.interfaces.IGestion;
 
-@Stateless
-@Remote(IGestion.class)
-public class Gestion implements IGestion {
+@Singleton
+@LocalBean
+public class Gestion {
 	
-	@EJB private DaoGestion daoG;
+	@EJB private FacDao facDao;
 
-	@Override
 	public Mot ajouter(Mot mot) throws ExistantException {
-		daoG.persist(mot);
+		facDao.add(mot);
 		return mot;
 	}
 	
-	@Override
 	public Mot update(Mot mot) throws ExistantException {
-		daoG.update(mot);
+		facDao.update(mot);
 		return mot;
 	}
 
