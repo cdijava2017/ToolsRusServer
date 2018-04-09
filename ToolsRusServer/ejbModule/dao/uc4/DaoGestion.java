@@ -5,6 +5,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
@@ -70,14 +71,23 @@ public class DaoGestion {
 		
 	//method to delete a word in the database
 		public void delete(Mot mot) throws InexistantException{
-			if (mot !=null) {
-				Mot motLambda = em.find(Mot.class, mot);
+			
+				Mot motLambda = null;
+			try {
 				
-				em.remove(motLambda);
-			}
-		}
-
-	
+					if (mot !=null) {
+						motLambda = em.find(Mot.class, mot);
+					}
+				}catch (PersistenceException pe){
+					if (pe.getClass().equals(NoResultException.class)) {
+						throw new InexistantException();
+						}
+					}
+					em.remove(motLambda);
+					em.flush();
+				}
+			
+		
 		/*******************************************************
 							GESTION DE L IMAGE
 		*******************************************************/
