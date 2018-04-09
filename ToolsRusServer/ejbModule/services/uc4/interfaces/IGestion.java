@@ -10,6 +10,8 @@ public interface IGestion {
 	
 	public Mot update(Mot mot) throws ExistantException;
 	
-	public void delete(Mot mot) throws InexistantException;
+	public void delete(Mot mot)  throws InexistantException;
+	
+	public Mot getMot(int idMot) throws InexistantException;
 
 }

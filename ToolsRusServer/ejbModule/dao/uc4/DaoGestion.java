@@ -70,7 +70,7 @@ public class DaoGestion {
 		}
 		
 	//method to delete a word in the database
-		public void delete(Mot mot) throws InexistantException{
+		public void delete(Mot mot) throws InexistantException {
 			
 				Mot motLambda = null;
 			try {
@@ -87,6 +87,23 @@ public class DaoGestion {
 					em.flush();
 				}
 			
+		public Mot getMot(int idMot) throws InexistantException {
+			
+			Mot mot = null;
+			
+			try {
+				mot = em.find(Mot.class, idMot);
+			}
+			catch (PersistenceException pe) {
+				if (pe.getClass().equals(NoResultException.class)) {
+					throw new InexistantException();
+				}
+			}
+			
+			return mot;
+		}
+		
+		
 		
 		/*******************************************************
 							GESTION DE L IMAGE

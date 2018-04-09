@@ -6,6 +6,7 @@ import javax.ejb.Singleton;
 
 import entity.uc4.Mot;
 import exception.uc4.ExistantException;
+import exception.uc4.InexistantException;
 
 @Singleton
 @LocalBean
@@ -23,6 +24,9 @@ public class FacDao {
 	}
 
 	public void delete(Mot mot) {
-		
+	}
+	
+	public Mot getMot(int idMot) throws InexistantException {
+		return daoGestion.getMot(idMot);
 	}
 }

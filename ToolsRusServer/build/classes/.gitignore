@@ -1,6 +1,3 @@
-/services/
-/META-INF/
 /test/
-/utils/
+/services/
 /dao/
-/exception/

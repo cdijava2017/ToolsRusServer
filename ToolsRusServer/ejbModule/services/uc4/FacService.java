@@ -10,6 +10,7 @@ import exception.uc4.InexistantException;
 import services.uc4.gestion.Gestion;
 import services.uc4.interfaces.IGestion;
 
+
 @Stateless
 @Remote(IGestion.class)
 public class FacService implements IGestion {
@@ -30,4 +31,12 @@ public class FacService implements IGestion {
 	@Override
 	public void delete(Mot mot) throws InexistantException{
 	}
+
+	@Override
+	public Mot getMot(int idMot) throws InexistantException {
+		
+		return serviceGestion.getMot(idMot);
+	}
+
+
 }

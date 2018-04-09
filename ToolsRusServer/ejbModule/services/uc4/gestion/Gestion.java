@@ -28,4 +28,10 @@ public class Gestion {
 	public void delete(Mot mot) throws InexistantException {
 		facDao.delete(mot);
 	}
+	
+	public Mot getMot(int idMot) throws InexistantException {
+		Mot mot = null;
+		mot = facDao.getMot(idMot);
+		return mot;
+	}
 }
