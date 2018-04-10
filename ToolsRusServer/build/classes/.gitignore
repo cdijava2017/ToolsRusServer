@@ -1,3 +1,5 @@
 /test/
+/utils/
+/clientServer/
 /services/
-/dao/
+/entity/

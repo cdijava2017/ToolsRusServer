@@ -4,11 +4,11 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import clientServer.uc4.IGestion;
 import entity.uc4.Mot;
 import exception.uc4.ExistantException;
 import exception.uc4.InexistantException;
 import services.uc4.gestion.Gestion;
-import services.uc4.interfaces.IGestion;
 
 
 @Stateless

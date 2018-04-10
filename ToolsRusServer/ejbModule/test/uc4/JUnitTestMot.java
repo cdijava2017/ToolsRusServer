@@ -37,11 +37,14 @@ public class JUnitTestMot {
 	@Test
 	public void ju1AddMot() throws InexistantException, ExistantException, UserException {
 		
-		Mot testMot = new Mot (1,"super");
+		Mot testMot  = new Mot (1,"super");
 		Mot testMot2 = null;
+		System.out.println("affiche mot1 " + testMot);
 		
 		testMot = serviceFacade.ajouter(testMot);
+		System.out.println("affiche mot2 " + testMot);
 		testMot2 = serviceFacade.getMot(1);
+		System.out.println("affiche mot3 " + testMot2);
 		
 		assertEquals("ajout d'un mot: ", 1 , testMot2.getIdMot());
 		

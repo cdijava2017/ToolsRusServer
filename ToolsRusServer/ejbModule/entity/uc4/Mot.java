@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 //import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
@@ -15,13 +17,15 @@ import javax.persistence.Table;
 /**
  * class Mot have an association with class Image
  * class Mot knows her Image wich associate
+ * inheritance for class MotHumeur and Theme: one table by concrete class
  * @author iceman
  *
  */
 
 @Entity
 @Table(name="Mot")
-public class Mot implements Serializable {
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+public /*abstract*/ class Mot implements Serializable {
 	
 	/**
 	 * 
@@ -29,8 +33,10 @@ public class Mot implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(nullable=false)
+	@Column(name="idmot", nullable=false)
 	private int 	idMot;
+	
+	@Column(name="libellemot", length=50, nullable=true)
 	private String 	libelleMot;
 	
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
@@ -38,7 +44,9 @@ public class Mot implements Serializable {
 	private Image 	image;
 	
 //	@ManyToMany()
-//	private Mots listeMot;
+//	this relation could be analysed this way: a word can contain many words, like a compound word:
+//	court-circuit is the association of the word "court" and the word "circuit".
+//	TODO
 	
 	
 	

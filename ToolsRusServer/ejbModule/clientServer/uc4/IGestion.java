@@ -1,4 +1,4 @@
-package services.uc4.interfaces;
+package clientServer.uc4;
 
 import entity.uc4.Mot;
 import exception.uc4.ExistantException;

@@ -1,8 +1,12 @@
 package entity.uc4;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 /**
@@ -14,18 +18,36 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Image")
-public class Image {
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+public /*abstract*/ class Image implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@Column(nullable=false)
+	@Column(name="idimage", nullable=false)
 	private int 	idImage;
+	
+	@Column(name="libelleimage", length=30, nullable=true)
 	private String 	libelleImage;
+	
+	@Column(name="fichier", nullable=true)
+	private Fichier fichier;
 	
 	
 	public Image(int idImage, String libelleImage) {
 		super();
-		this.idImage = idImage;
-		this.libelleImage = libelleImage;
+		this.idImage 		= idImage;
+		this.libelleImage 	= libelleImage;
+	}
+	
+	public Image(int idImage, String libelleImage, Fichier fichier) {
+		super();
+		this.idImage 		= idImage;
+		this.libelleImage 	= libelleImage;
+		this.fichier 		= fichier;
 	}
 
 
@@ -49,9 +71,19 @@ public class Image {
 	}
 
 
+	public Fichier getFichier() {
+		return fichier;
+	}
+
+
+	public void setFichier(Fichier fichier) {
+		this.fichier = fichier;
+	}
+
+
 	@Override
 	public String toString() {
-		return "identifiant de l'Image= (" + idImage + ", libelle de l'Image=" + libelleImage + ")";
+		return "Image [idImage=" + idImage + ", libelleImage=" + libelleImage + ", fichier=" + fichier + "]";
 	}
 	
 
