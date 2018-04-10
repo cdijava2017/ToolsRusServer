@@ -70,7 +70,7 @@ public class DaoGestion {
 	
 	public Commentaire recupCommentaire(int id) {
 		Commentaire commentaire = em.find(Commentaire.class, id);
-		return commentaire.commToDto();
+		return commentaire;
 	}
 
 	/**************************************************************************
