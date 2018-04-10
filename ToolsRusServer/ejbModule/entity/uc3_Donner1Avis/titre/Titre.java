@@ -18,8 +18,6 @@ public class Titre  implements Serializable, ICommentable {
 
 	@Id
 	@Column(name="idTitre")
-//	@GeneratedValue(strategy = GenerationType.AUTO)     // à commenter/décommenter si la table contient ou non une séquence active
-//	@SequenceGenerator(name="seq_titre", sequenceName="seq_titre", initialValue=1)
 	private int idTitre;
 	
 	@Column(name="txtTitre", length=100, nullable=false)
