@@ -65,7 +65,8 @@ public class Facade implements IFacade {
 	}
 	@Override
 	public Commentaires getAllCommParId() {
-		return uc3Facade.getAllCommParId();
+		Commentaires commentaires = uc3Facade.getAllCommParId();
+		return commentaires;
 	}
 	@Override
 	public Titres getAllTitreParId() {

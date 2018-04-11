@@ -10,6 +10,8 @@ import entity.uc3_Donner1Avis.commentaire.Commentaire;
 import entity.uc3_Donner1Avis.commentaire.CommentaireVideException;
 import entity.uc3_Donner1Avis.compteur.Compteur;
 import entity.uc3_Donner1Avis.compteur.CompteurVideException;
+import entity.uc3_Donner1Avis.compteur.CptDislike;
+import entity.uc3_Donner1Avis.compteur.CptLike;
 import entity.uc3_Donner1Avis.titre.Titre;
 import entity.uc3_Donner1Avis.titre.TitreVideException;
 
@@ -28,7 +30,25 @@ public class DaoGestion {
 
 	public Commentaire ajouter(Commentaire commentaire) throws CommentaireVideException {
 		try {
+			// On teste si le commentaire n'est pas null
 			if (commentaire != null) {
+				// S'il n'est pas null, alors on verifie les compteurs
+				// Si la liste des compteurs est vide (null), alors on créé des compteurs à 0
+				if (commentaire.getListeCompteurs().isEmpty()) {
+					commentaire.addCompteur(new CptDislike(0));
+					commentaire.addCompteur(new CptLike(0));
+				// Si la liste n'a qu'un compteur, on lui rajoute l'autre
+				} else if (commentaire.getListeCompteurs().size() == 1) {
+					for (Compteur cpt : commentaire.getListeCompteurs()) {
+						if (cpt instanceof CptLike) 	commentaire.addCompteur(new CptDislike(0));
+						if (cpt instanceof CptDislike) 	commentaire.addCompteur(new CptLike(0));
+					}
+				// Si la liste a plus de 2 compteur, on la vide et lui rajoute 1 compteur de chaque à 0
+				} else if (commentaire.getListeCompteurs().size() > 2) {
+					commentaire.setListeCompteurs(null);
+					commentaire.addCompteur(new CptDislike(0));
+					commentaire.addCompteur(new CptLike(0));
+				}
 				em.persist(commentaire);
 				em.flush();
 			}

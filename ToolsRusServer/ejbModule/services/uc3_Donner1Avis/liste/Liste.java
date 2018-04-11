@@ -27,8 +27,9 @@ public class Liste {
 	 *******************************************************************************/
 	
 	public Commentaires getAllCommParId() {
-		Commentaires commentaires = daoListe.getAllCommParId();
-		for (Commentaire comm : commentaires) {
+		Commentaires recup = daoListe.getAllCommParId();
+		Commentaires commentaires = null;
+		for (Commentaire comm : recup) {
 			comm = comm.commToDto();
 			commentaires.add(comm);
 		}

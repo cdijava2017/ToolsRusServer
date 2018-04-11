@@ -78,7 +78,8 @@ public class Uc3Facade {
 	 */
 	
 	public Commentaires getAllCommParId() {
-		return liste.getAllCommParId();
+		Commentaires commentaires = liste.getAllCommParId();
+		return commentaires;
 	}
 
 	public Titres getAllTitreParId() {
