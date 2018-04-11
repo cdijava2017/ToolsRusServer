@@ -1,5 +1,7 @@
+/clientServer/
+/dao/
+/entity/
+/exception/
+/services/
 /test/
 /utils/
-/clientServer/
-/services/
-/entity/
