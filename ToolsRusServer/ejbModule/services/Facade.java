@@ -1,6 +1,8 @@
 package services;
 
 
+import java.util.ArrayList;
+
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -64,8 +66,8 @@ public class Facade implements IFacade {
 		uc3Facade.supAllCompteurs();
 	}
 	@Override
-	public Commentaires getAllCommParId() {
-		Commentaires commentaires = uc3Facade.getAllCommParId();
+	public ArrayList<Commentaire> getAllCommParId() {
+		ArrayList<Commentaire> commentaires = uc3Facade.getAllCommParId();
 		return commentaires;
 	}
 	@Override
@@ -101,6 +103,8 @@ public class Facade implements IFacade {
 	public void modifCompteur(Compteur compteur) {
 		uc3Facade.modifCompteur(compteur);
 	}
-
+	public void incrementCompteur(Compteur compteur) {
+		uc3Facade.incrementCompteur(compteur);
+	}
 
 }

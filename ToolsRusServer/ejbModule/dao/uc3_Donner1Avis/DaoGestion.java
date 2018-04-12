@@ -190,7 +190,9 @@ public class DaoGestion {
 		return compteur;
 	}
 
-	
+	public void incrementCompteur(Compteur compteur) {
+		compteur.compteurPlus1();
+	}
 
 
 }

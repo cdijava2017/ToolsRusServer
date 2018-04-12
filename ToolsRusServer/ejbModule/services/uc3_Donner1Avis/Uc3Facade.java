@@ -1,12 +1,13 @@
 package services.uc3_Donner1Avis;
 
+import java.util.ArrayList;
+
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
 import entity.uc3_Donner1Avis.commentaire.CommentaireVideException;
-import entity.uc3_Donner1Avis.commentaire.Commentaires;
 import entity.uc3_Donner1Avis.compteur.Compteur;
 import entity.uc3_Donner1Avis.compteur.CompteurVideException;
 import entity.uc3_Donner1Avis.compteur.Compteurs;
@@ -77,8 +78,8 @@ public class Uc3Facade {
 	 * @author Nacer ATOUT
 	 */
 	
-	public Commentaires getAllCommParId() {
-		Commentaires commentaires = liste.getAllCommParId();
+	public ArrayList<Commentaire> getAllCommParId() {
+		ArrayList<Commentaire> commentaires = liste.getAllCommParId();
 		return commentaires;
 	}
 
@@ -132,6 +133,9 @@ public class Uc3Facade {
 		gestion.modifCompteur(compteur);
 	}
 
+	public void incrementCompteur(Compteur compteur) {
+		gestion.incrementCompteur(compteur);
+	}
 	
 
 }

@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import entity.uc3_Donner1Avis.compteur.Compteur;
 import utils.ICommentable;
 
 @Entity

@@ -112,7 +112,9 @@ public class Gestion {
 		}
 	}
 
-
+	public void incrementCompteur(Compteur compteur) {
+		daoGestion.incrementCompteur(compteur);
+	}
 
 
 

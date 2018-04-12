@@ -1,12 +1,13 @@
 package dao.uc3_Donner1Avis;
 
+import java.util.ArrayList;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
-import entity.uc3_Donner1Avis.commentaire.Commentaires;
 import entity.uc3_Donner1Avis.compteur.Compteur;
 import entity.uc3_Donner1Avis.compteur.Compteurs;
 import entity.uc3_Donner1Avis.titre.Titre;
@@ -24,9 +25,9 @@ public class DaoListe {
 	 * Cette partie concerne les Commentaires et aura toutes les méthodes relatives *
 	 ********************************************************************************/
 	
-	public Commentaires getAllCommParId() {
+	public ArrayList<Commentaire> getAllCommParId() {
 		System.out.println("DaoListe méthode getAllCommParId()");
-		Commentaires liste = new Commentaires();
+		ArrayList<Commentaire> liste = new ArrayList<Commentaire>();
 
 		for (Object commentaire : em.createQuery("select c from Commentaire c order by c.idComm asc").getResultList()) {   
 			if (commentaire instanceof Commentaire) {

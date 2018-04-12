@@ -1,5 +1,7 @@
 package services.uc3_Donner1Avis.liste;
 
+import java.util.ArrayList;
+
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
@@ -7,7 +9,6 @@ import javax.ejb.Singleton;
 import dao.uc3_Donner1Avis.DaoException;
 import dao.uc3_Donner1Avis.DaoListe;
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
-import entity.uc3_Donner1Avis.commentaire.Commentaires;
 import entity.uc3_Donner1Avis.compteur.Compteur;
 import entity.uc3_Donner1Avis.compteur.Compteurs;
 import entity.uc3_Donner1Avis.titre.Titre;
@@ -26,14 +27,14 @@ public class Liste {
 	 * Cette partie concerne les Commentaires et aura toutes les méthodes relatives*
 	 *******************************************************************************/
 	
-	public Commentaires getAllCommParId() {
-		Commentaires recup = daoListe.getAllCommParId();
-		Commentaires commentaires = null;
+	public ArrayList<Commentaire> getAllCommParId() {
+		ArrayList<Commentaire> recup = daoListe.getAllCommParId();
+		ArrayList<Commentaire> comms = new ArrayList<Commentaire>();
 		for (Commentaire comm : recup) {
-			comm = comm.commToDto();
-			commentaires.add(comm);
+			Commentaire commDto = comm.commToDto();
+			comms.add(commDto);
 		}
-		return commentaires;
+		return comms;
 	}
 
 	public Commentaire getCommParRef(int ref) {
