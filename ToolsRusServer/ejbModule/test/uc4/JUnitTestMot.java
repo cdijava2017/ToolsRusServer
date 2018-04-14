@@ -64,6 +64,7 @@ public class JUnitTestMot {
 			
 		}catch (UserExistantException ue) {
 			System.out.println("dans mon existantException" + ue);
+			ue.printStackTrace();
 		}
 		
 		assertEquals("ajout d'un mot: ", 1 , testMot2.getIdMot());
@@ -78,15 +79,18 @@ public class JUnitTestMot {
 	//test delete a word existing in the database
 	@Test
 	public void ju1DeleteMot() throws UserInexistantException {
+		
 		Mot motEfface = new Mot();
-		motEfface = serviceFacade.getMot(1);
-		System.out.println("ju1DeleteMot_mot efface " + motEfface);
 		
-		serviceFacade.supprimer(motEfface);
-		
-		assertEquals(null, serviceFacade.getMot(1));
-		
-		
+		try {
+			motEfface = serviceFacade.getMot(1);
+			System.out.println("ju1DeleteMot_mot efface " + motEfface);		
+			serviceFacade.supprimer(motEfface);
+		} catch (UserInexistantException iue) {
+			iue.printStackTrace();
+		}
+			
+		assertEquals(null, serviceFacade.getMot(1));		
 	}
 	
 	
