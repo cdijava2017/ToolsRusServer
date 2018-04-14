@@ -8,6 +8,7 @@ import dao.uc4.FacDao;
 import entity.uc4.Mot;
 import exception.uc4.ExistantException;
 import exception.uc4.InexistantException;
+import exception.uc4.UserExistantException;
 
 @Singleton
 @LocalBean
@@ -15,8 +16,10 @@ public class Gestion {
 	
 	@EJB private FacDao facDao;
 
-	public Mot ajouter(Mot mot) throws ExistantException {
+	public Mot ajouter(Mot mot) throws UserExistantException, ExistantException {
+		
 		facDao.add(mot);
+		System.out.println("Gestion_ajouter  "+ mot);
 		return mot;
 	}
 	

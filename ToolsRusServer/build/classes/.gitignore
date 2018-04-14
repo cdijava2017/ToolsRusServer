@@ -1,7 +1,4 @@
-/clientServer/
-/dao/
-/entity/
-/exception/
-/services/
 /test/
-/utils/
+/jndi.properties
+/jboss-ejb-client.properties
+/entity/

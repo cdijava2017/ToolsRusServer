@@ -32,9 +32,10 @@ public class DaoGestion {
 	 ******************************************************/
 	
 	//method to add a word in the database
-		public Mot persist(Mot mot) throws ExistantException {
+		public Mot add(Mot mot) throws ExistantException {
 				
 			try {	em.persist(mot);
+						System.out.println("DaoGestion_add  " + mot);
 					em.flush();
 					
 				} 

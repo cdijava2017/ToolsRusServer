@@ -48,7 +48,9 @@ public /*abstract*/ class Mot implements Serializable {
 //	court-circuit is the association of the word "court" and the word "circuit".
 //	TODO
 	
-	
+	public Mot() {
+		super();
+		}
 	
 	//constructor
 	public Mot(int idMot, String libelleMot, Image image) {
@@ -98,8 +100,10 @@ public /*abstract*/ class Mot implements Serializable {
 
 	@Override
 	public String toString() {
-		return "identifiant du Mot= (" + idMot + ", libelle du Mot=" + libelleMot + ")";
+		return "identifiant du Mot= " + idMot + ", libelle du Mot=" + libelleMot;
 	}
+
+	
 	
 
 }
