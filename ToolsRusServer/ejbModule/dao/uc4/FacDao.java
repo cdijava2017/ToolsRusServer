@@ -35,7 +35,7 @@ public class FacDao {
 		return daoGestion.update(mot);
 	}
 
-	public void delete(Mot mot) throws InexistantException, UserInexistantException{
+	public void delete(Mot mot) throws UserInexistantException{
 		try {
 			daoGestion.delete(mot);
 		}catch(InexistantException ie) {
@@ -47,7 +47,18 @@ public class FacDao {
 		}
 	}
 	
-	public Mot getMot(int idMot) throws InexistantException {
-		return daoGestion.getMot(idMot);
+	public Mot avoirMot(int idMot) throws UserInexistantException {
+		Mot mot = null;
+		try {
+			mot = daoGestion.avoirMot(idMot);
+		}catch(InexistantException ie) {
+			Throwable thro = ie.getCause();
+				while ((thro!=null) && !(thro instanceof InexistantException)) {
+					thro = thro.getCause();
+				}
+				if (thro instanceof InexistantException) throw new UserInexistantException();
+		}
+		
+		return mot;
 	}
 }

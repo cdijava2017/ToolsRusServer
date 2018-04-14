@@ -7,7 +7,6 @@ import javax.ejb.Stateless;
 import clientServer.uc4.IFacService;
 import entity.uc4.Mot;
 import exception.uc4.ExistantException;
-import exception.uc4.InexistantException;
 import exception.uc4.UserExistantException;
 import exception.uc4.UserInexistantException;
 import services.uc4.gestion.Gestion;
@@ -32,11 +31,11 @@ public class FacService implements IFacService {
 	}
 
 	@Override
-	public void delete(Mot mot) throws UserInexistantException{
+	public void supprimer(Mot mot) throws UserInexistantException{
 	}
 
 	@Override
-	public Mot getMot(int idMot) throws InexistantException {
+	public Mot getMot(int idMot) throws UserInexistantException {
 		
 		return serviceGestion.getMot(idMot);
 	}

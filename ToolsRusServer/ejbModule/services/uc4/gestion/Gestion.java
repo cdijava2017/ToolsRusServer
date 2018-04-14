@@ -7,7 +7,6 @@ import javax.ejb.Singleton;
 import dao.uc4.FacDao;
 import entity.uc4.Mot;
 import exception.uc4.ExistantException;
-import exception.uc4.InexistantException;
 import exception.uc4.UserExistantException;
 import exception.uc4.UserInexistantException;
 
@@ -29,13 +28,13 @@ public class Gestion {
 		return mot;
 	}
 
-	public void delete(Mot mot) throws InexistantException, UserInexistantException {
+	public void supprimer(Mot mot) throws UserInexistantException {
 		facDao.delete(mot);
 	}
 	
-	public Mot getMot(int idMot) throws InexistantException {
+	public Mot getMot(int idMot) throws UserInexistantException {
 		Mot mot = null;
-		mot = facDao.getMot(idMot);
+		mot = facDao.avoirMot(idMot);
 		return mot;
 	}
 }

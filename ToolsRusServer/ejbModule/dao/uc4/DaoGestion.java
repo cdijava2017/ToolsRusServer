@@ -89,7 +89,7 @@ public class DaoGestion {
 				}
 	
 	//method to get the word with his id
-		public Mot getMot(int idMot) throws InexistantException {
+		public Mot avoirMot(int idMot) throws InexistantException {
 			
 			Mot mot = null;
 			

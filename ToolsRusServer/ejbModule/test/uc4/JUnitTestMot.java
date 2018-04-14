@@ -12,8 +12,8 @@ import org.junit.Test;
 
 import clientServer.uc4.IFacService;
 import entity.uc4.Mot;
-import exception.uc4.InexistantException;
 import exception.uc4.UserExistantException;
+import exception.uc4.UserInexistantException;
 import utils.uc4.Parametre;
 
 public class JUnitTestMot {
@@ -50,7 +50,7 @@ public class JUnitTestMot {
 	
 	//test ju1AddMot
 	@Test
-	public void ju1AddMot() throws UserExistantException, InexistantException {
+	public void ju1AddMot() throws UserExistantException, UserInexistantException {
 		
 		Mot testMot  = new Mot (1,"super");
 		Mot testMot2 = null;
@@ -73,5 +73,22 @@ public class JUnitTestMot {
 	
 
 	//test add a word without libelle TODO
-	//test add a word already exist: must return ExistantException
+	//test add a word already exist: must return ExistantException TODO
+	
+	//test delete a word existing in the database
+	@Test
+	public void ju1DeleteMot() throws UserInexistantException {
+		Mot motEfface = new Mot();
+		motEfface = serviceFacade.getMot(1);
+		System.out.println("ju1DeleteMot_mot efface " + motEfface);
+		
+		serviceFacade.supprimer(motEfface);
+		
+		assertEquals(null, serviceFacade.getMot(1));
+		
+		
+	}
+	
+	
+	
 }
