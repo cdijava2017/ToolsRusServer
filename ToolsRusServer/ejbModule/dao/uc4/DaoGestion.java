@@ -87,7 +87,8 @@ public class DaoGestion {
 					em.remove(motLambda);
 					em.flush();
 				}
-			
+	
+	//method to get the word with his id
 		public Mot getMot(int idMot) throws InexistantException {
 			
 			Mot mot = null;
@@ -109,6 +110,6 @@ public class DaoGestion {
 		/*******************************************************
 							GESTION DE L IMAGE
 		*******************************************************/
-		
+		//TODO
 		
 }

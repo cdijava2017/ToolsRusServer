@@ -9,6 +9,7 @@ import entity.uc4.Mot;
 import exception.uc4.ExistantException;
 import exception.uc4.InexistantException;
 import exception.uc4.UserExistantException;
+import exception.uc4.UserInexistantException;
 import services.uc4.gestion.Gestion;
 
 
@@ -20,7 +21,7 @@ public class FacService implements IFacService {
 	Gestion serviceGestion;
 	
 	@Override
-	public Mot ajouter(Mot mot) throws ExistantException, UserExistantException {
+	public Mot ajouter(Mot mot) throws UserExistantException {
 		System.out.println("FacService_ajouter  "+ mot);
 		return serviceGestion.ajouter(mot);
 	}
@@ -31,7 +32,7 @@ public class FacService implements IFacService {
 	}
 
 	@Override
-	public void delete(Mot mot) throws InexistantException{
+	public void delete(Mot mot) throws UserInexistantException{
 	}
 
 	@Override

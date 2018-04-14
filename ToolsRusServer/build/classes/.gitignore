@@ -2,3 +2,7 @@
 /jndi.properties
 /jboss-ejb-client.properties
 /entity/
+/dao/
+/exception/
+/services/
+/clientServer/

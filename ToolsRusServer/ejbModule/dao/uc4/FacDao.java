@@ -8,6 +8,7 @@ import entity.uc4.Mot;
 import exception.uc4.ExistantException;
 import exception.uc4.InexistantException;
 import exception.uc4.UserExistantException;
+import exception.uc4.UserInexistantException;
 
 @Singleton
 @LocalBean
@@ -16,7 +17,7 @@ public class FacDao {
 	@EJB
 	private DaoGestion daoGestion;
 	
-	public Mot add (Mot mot) throws ExistantException, UserExistantException {
+	public Mot add (Mot mot) throws UserExistantException {
 		try {
 			daoGestion.add(mot);
 			System.out.println("FacDao_add  "+ mot);
@@ -34,7 +35,16 @@ public class FacDao {
 		return daoGestion.update(mot);
 	}
 
-	public void delete(Mot mot) {
+	public void delete(Mot mot) throws InexistantException, UserInexistantException{
+		try {
+			daoGestion.delete(mot);
+		}catch(InexistantException ie) {
+			Throwable thro = ie.getCause();
+				while ((thro!=null) && !(thro instanceof InexistantException)) {
+					thro = thro.getCause();
+				}
+				if (thro instanceof InexistantException) throw new UserInexistantException();
+		}
 	}
 	
 	public Mot getMot(int idMot) throws InexistantException {

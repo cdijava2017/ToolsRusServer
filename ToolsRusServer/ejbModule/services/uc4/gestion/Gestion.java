@@ -9,6 +9,7 @@ import entity.uc4.Mot;
 import exception.uc4.ExistantException;
 import exception.uc4.InexistantException;
 import exception.uc4.UserExistantException;
+import exception.uc4.UserInexistantException;
 
 @Singleton
 @LocalBean
@@ -16,7 +17,7 @@ public class Gestion {
 	
 	@EJB private FacDao facDao;
 
-	public Mot ajouter(Mot mot) throws UserExistantException, ExistantException {
+	public Mot ajouter(Mot mot) throws UserExistantException {
 		
 		facDao.add(mot);
 		System.out.println("Gestion_ajouter  "+ mot);
@@ -28,7 +29,7 @@ public class Gestion {
 		return mot;
 	}
 
-	public void delete(Mot mot) throws InexistantException {
+	public void delete(Mot mot) throws InexistantException, UserInexistantException {
 		facDao.delete(mot);
 	}
 	

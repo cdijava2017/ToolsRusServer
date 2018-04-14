@@ -48,6 +48,7 @@ public /*abstract*/ class Mot implements Serializable {
 //	court-circuit is the association of the word "court" and the word "circuit".
 //	TODO
 	
+	//default constructor
 	public Mot() {
 		super();
 		}
