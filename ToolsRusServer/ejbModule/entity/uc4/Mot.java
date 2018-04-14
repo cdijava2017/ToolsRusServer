@@ -24,8 +24,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Mot")
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public /*abstract*/ class Mot implements Serializable {
+@Inheritance(strategy=InheritanceType.JOINED)
+public abstract class Mot implements Serializable {
 	
 	/**
 	 * 

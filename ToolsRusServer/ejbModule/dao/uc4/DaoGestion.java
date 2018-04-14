@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
 import entity.uc4.Mot;
+import entity.uc4.MotHumeur;
 import exception.uc4.ExistantException;
 import exception.uc4.InexistantException;
 
@@ -73,11 +74,11 @@ public class DaoGestion {
 	//method to delete a word in the database
 		public void delete(Mot mot) throws InexistantException {
 			
-				Mot motLambda = null;
+				MotHumeur motLambda = null;
 			try {
 				
 					if (mot !=null) {
-						motLambda = em.find(Mot.class, mot);
+						motLambda = em.find(MotHumeur.class, mot);
 					}
 				}catch (PersistenceException pe){
 					if (pe.getClass().equals(NoResultException.class)) {

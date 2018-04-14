@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import clientServer.uc4.IFacService;
 import entity.uc4.Mot;
+import entity.uc4.MotHumeur;
 import exception.uc4.UserExistantException;
 import exception.uc4.UserInexistantException;
 import utils.uc4.Parametre;
@@ -52,7 +53,7 @@ public class JUnitTestMot {
 	@Test
 	public void ju1AddMot() throws UserExistantException, UserInexistantException {
 		
-		Mot testMot  = new Mot (1,"super");
+		Mot testMot  = new MotHumeur (1,"super",null,2,"marvellous");
 		Mot testMot2 = null;
 		System.out.println("affiche mot1 " + testMot);
 		
@@ -80,7 +81,7 @@ public class JUnitTestMot {
 	@Test
 	public void ju1DeleteMot() throws UserInexistantException {
 		
-		Mot motEfface = new Mot();
+		Mot motEfface = new MotHumeur();
 		
 		try {
 			motEfface = serviceFacade.getMot(1);
