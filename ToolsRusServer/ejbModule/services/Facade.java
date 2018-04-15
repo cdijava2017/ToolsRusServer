@@ -10,7 +10,6 @@ import javax.ejb.Stateless;
 import clientServer.IFacade;
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
 import entity.uc3_Donner1Avis.commentaire.CommentaireVideException;
-import entity.uc3_Donner1Avis.commentaire.Commentaires;
 import entity.uc3_Donner1Avis.compteur.Compteur;
 import entity.uc3_Donner1Avis.compteur.CompteurVideException;
 import entity.uc3_Donner1Avis.compteur.Compteurs;
@@ -103,8 +102,10 @@ public class Facade implements IFacade {
 	public void modifCompteur(Compteur compteur) {
 		uc3Facade.modifCompteur(compteur);
 	}
-	public void incrementCompteur(Compteur compteur) {
-		uc3Facade.incrementCompteur(compteur);
+	@Override
+	public void incrementCompteur(int idCompteur) {
+		uc3Facade.incrementCompteur(idCompteur);
 	}
+
 
 }

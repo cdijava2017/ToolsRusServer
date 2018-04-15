@@ -31,7 +31,7 @@ public class DaoGestion {
 	public Commentaire ajouter(Commentaire commentaire) throws CommentaireVideException {
 		try {
 			// On teste si le commentaire n'est pas null
-			if (commentaire != null) {
+			if (commentaire.getIdComm() != 0 && commentaire.getTexteComm() != null) {
 				// S'il n'est pas null, alors on verifie les compteurs
 				// Si la liste des compteurs est vide (null), alors on créé des compteurs à 0
 				if (commentaire.getListeCompteurs().isEmpty()) {
@@ -84,6 +84,9 @@ public class DaoGestion {
 	
 	public void modifCommentaire(Commentaire commentaire) {
 		Commentaire commentaireBis = recupCommentaire(commentaire.getIdComm());
+		if (commentaire.getTexteComm().isEmpty()) commentaire.setTexteComm(commentaireBis.getTexteComm());
+		if (commentaire.getTitre().getTxtTitre().isEmpty()) commentaire.setTitre(commentaireBis.getTitre());
+		commentaire.setListeCompteurs(commentaireBis.getListeCompteurs());
 		if (commentaire != commentaireBis) em.merge(commentaire);
 		em.flush();
 	}
@@ -190,8 +193,10 @@ public class DaoGestion {
 		return compteur;
 	}
 
-	public void incrementCompteur(Compteur compteur) {
+	public void incrementCompteur(int idCompteur) {
+		Compteur compteur = recupCompteur(idCompteur);
 		compteur.compteurPlus1();
+		modifCompteur(compteur);
 	}
 
 

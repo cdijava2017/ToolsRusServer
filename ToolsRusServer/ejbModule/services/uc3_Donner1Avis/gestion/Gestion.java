@@ -112,8 +112,8 @@ public class Gestion {
 		}
 	}
 
-	public void incrementCompteur(Compteur compteur) {
-		daoGestion.incrementCompteur(compteur);
+	public void incrementCompteur(int idCompteur) {
+		daoGestion.incrementCompteur(idCompteur);
 	}
 
 

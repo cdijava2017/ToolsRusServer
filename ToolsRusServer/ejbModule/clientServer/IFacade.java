@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
 import entity.uc3_Donner1Avis.commentaire.CommentaireVideException;
-import entity.uc3_Donner1Avis.commentaire.Commentaires;
 import entity.uc3_Donner1Avis.compteur.Compteur;
 import entity.uc3_Donner1Avis.compteur.CompteurVideException;
 import entity.uc3_Donner1Avis.compteur.Compteurs;
@@ -43,6 +42,6 @@ public interface IFacade {
 	public void modifCommentaire(Commentaire commentaire);
 	public void modifTitre(Titre titre);
 	public void modifCompteur(Compteur compteur);
-	public void incrementCompteur(Compteur compteur);
+	public void incrementCompteur(int idCompteur);
 	
 }

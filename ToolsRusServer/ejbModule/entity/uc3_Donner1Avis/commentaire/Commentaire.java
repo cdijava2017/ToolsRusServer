@@ -113,7 +113,7 @@ public class Commentaire implements Serializable, ICommentable {
 	public Collection<Compteur> getListeCompteurs() {
 		return listeCompteurs;
 	}
-	public void setListeCompteurs(ArrayList<Compteur> compteurs) {
+	public void setListeCompteurs(Collection<Compteur> compteurs) {
 		this.listeCompteurs = compteurs;
 	}
 	public void addCompteur(Compteur compteur) {

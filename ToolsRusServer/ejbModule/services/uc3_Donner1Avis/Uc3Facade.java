@@ -133,8 +133,8 @@ public class Uc3Facade {
 		gestion.modifCompteur(compteur);
 	}
 
-	public void incrementCompteur(Compteur compteur) {
-		gestion.incrementCompteur(compteur);
+	public void incrementCompteur(int idCompteur) {
+		gestion.incrementCompteur(idCompteur);
 	}
 	
 
