@@ -24,7 +24,7 @@ public class TestGestion {
 	private DaoGestion daoG;
 	private DaoListe daoL;
 	private static IFacade interfaceFacade;
-	
+	private Commentaire comm1 = new Commentaire(nb, "comm" + nb);
 	
 	@BeforeClass // 1 fois
 	public static void debutClasse() throws Exception { 
@@ -45,7 +45,6 @@ public class TestGestion {
 	@Test
 	public void testCreerComm() {
 		boolean retour = false;
-		Commentaire comm1 = new Commentaire(nb, "comm" + nb);
 		try {
 			interfaceFacade.addCommentaire(comm1);
 		} catch (CommentaireVideException e) {
@@ -57,7 +56,8 @@ public class TestGestion {
 	}
 
 	@Test
-	public void testSupAllCommentaires() {
+	public void testSupAllCommentaires() throws CommentaireVideException {
+		interfaceFacade.addCommentaire(comm1);
 		interfaceFacade.supAllCommentaires();
 		boolean retour = false;
 		try {
