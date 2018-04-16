@@ -13,10 +13,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clientServer.IFacade;
+import dao.uc3_Donner1Avis.DaoException;
 import dao.uc3_Donner1Avis.DaoGestion;
 import dao.uc3_Donner1Avis.DaoListe;
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
-import entity.uc3_Donner1Avis.commentaire.CommentaireVideException;
+import entity.uc3_Donner1Avis.commentaire.CommentaireException;
 
 public class TestGestion {
 
@@ -47,7 +48,7 @@ public class TestGestion {
 		boolean retour = false;
 		try {
 			interfaceFacade.addCommentaire(comm1);
-		} catch (CommentaireVideException e) {
+		} catch (DaoException e) {
 			e.printStackTrace();
 			System.out.println("CommentaireVideException levée");
 		}
@@ -56,7 +57,7 @@ public class TestGestion {
 	}
 
 	@Test
-	public void testSupAllCommentaires() throws CommentaireVideException {
+	public void testSupAllCommentaires() throws DaoException {
 		interfaceFacade.addCommentaire(comm1);
 		interfaceFacade.supAllCommentaires();
 		boolean retour = false;

@@ -6,14 +6,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
+import org.hibernate.exception.ConstraintViolationException;
+
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
-import entity.uc3_Donner1Avis.commentaire.CommentaireVideException;
 import entity.uc3_Donner1Avis.compteur.Compteur;
-import entity.uc3_Donner1Avis.compteur.CompteurVideException;
 import entity.uc3_Donner1Avis.compteur.CptDislike;
 import entity.uc3_Donner1Avis.compteur.CptLike;
 import entity.uc3_Donner1Avis.titre.Titre;
-import entity.uc3_Donner1Avis.titre.TitreVideException;
 
 @Singleton
 @LocalBean
@@ -23,12 +22,12 @@ public class DaoGestion {
 	private EntityManager em;
 
 
-	/*****************************************************************************
+	/********************************************************************************
 	 * Cette partie concerne les Commentaires et aura toutes les méthodes relatives *
-	 * @throws CommentaireVideException 											 *
-	 *****************************************************************************/
+	 * @throws DaoException 											 			*
+	 ********************************************************************************/
 
-	public Commentaire ajouter(Commentaire commentaire) throws CommentaireVideException {
+	public Commentaire ajouter(Commentaire commentaire) throws DaoException {
 		try {
 			// On teste si le commentaire n'est pas null
 			if (commentaire.getIdComm() != 0 && commentaire.getTexteComm() != null) {
@@ -37,13 +36,13 @@ public class DaoGestion {
 				if (commentaire.getListeCompteurs().isEmpty()) {
 					commentaire.addCompteur(new CptDislike(0));
 					commentaire.addCompteur(new CptLike(0));
-				// Si la liste n'a qu'un compteur, on lui rajoute l'autre
+					// Si la liste n'a qu'un compteur, on lui rajoute l'autre
 				} else if (commentaire.getListeCompteurs().size() == 1) {
 					for (Compteur cpt : commentaire.getListeCompteurs()) {
 						if (cpt instanceof CptLike) 	commentaire.addCompteur(new CptDislike(0));
 						if (cpt instanceof CptDislike) 	commentaire.addCompteur(new CptLike(0));
 					}
-				// Si la liste a plus de 2 compteur, on la vide et lui rajoute 1 compteur de chaque à 0
+					// Si la liste a plus de 2 compteurs, on la vide et lui rajoute 1 compteur de chaque à 0
 				} else if (commentaire.getListeCompteurs().size() > 2) {
 					commentaire.setListeCompteurs(null);
 					commentaire.addCompteur(new CptDislike(0));
@@ -53,16 +52,19 @@ public class DaoGestion {
 				em.flush();
 			}
 			else { 
-				throw new CommentaireVideException();
+				throw new DaoException("*** Attention, erreur à la persistence du commentaire ***", 1);
 			}
 		}
 		catch (PersistenceException e) {	
-			System.out.println(e);
+			System.out.println("*** Nacer : " + e.getMessage());
+			throw new DaoException("*** Attention, un commentaire existe déjà en base avec cet id ***", 2);
+		} catch (ConstraintViolationException e) {
+			System.out.println("*** Doublon : " + e);
 		}
 		System.out.println("** DaoGestion - ajouter(Commentaire commentaire) : " + commentaire);
 		return commentaire.commToDto();
 	}
-	
+
 	/**
 	 *  <p>La méthode supAllCommentaires() est fonctionnelle mais ne sera jamais appelée par le client Web.</p>
 	 *  <p>Elle n'est codée qu'à des fins de tests car il ne sera pas possible de supprimer tous les commentaires depuis le client Web.</p>
@@ -77,12 +79,12 @@ public class DaoGestion {
 		}
 	}
 
-	public void supCommParId(Commentaire commentaire) {
+	public void supCommParId(Commentaire commentaire) throws DaoException {
 		commentaire = recupCommentaire(commentaire.getIdComm());
 		em.remove(commentaire);
 	}
-	
-	public void modifCommentaire(Commentaire commentaire) {
+
+	public void modifCommentaire(Commentaire commentaire) throws DaoException {
 		Commentaire commentaireBis = recupCommentaire(commentaire.getIdComm());
 		if (commentaire.getTexteComm().isEmpty()) commentaire.setTexteComm(commentaireBis.getTexteComm());
 		if (commentaire.getTitre().getTxtTitre().isEmpty()) commentaire.setTitre(commentaireBis.getTitre());
@@ -90,18 +92,24 @@ public class DaoGestion {
 		if (commentaire != commentaireBis) em.merge(commentaire);
 		em.flush();
 	}
-	
-	public Commentaire recupCommentaire(int id) {
-		Commentaire commentaire = em.find(Commentaire.class, id);
+
+	public Commentaire recupCommentaire(int id) throws DaoException {
+		Commentaire commentaire;
+		try {
+			commentaire = em.find(Commentaire.class, id);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			throw new DaoException("*** Attention, aucun commentaire n'existe en base avec cet id ***", 3);
+		}
 		return commentaire;
 	}
 
 	/**************************************************************************
 	 * Cette partie concerne les Titres et aura toutes les méthodes relatives *
-	 * @throws TitreVideException 										  *
+	 * @throws DaoException 										  *
 	 **************************************************************************/
 
-	public Titre ajouter(Titre titre) throws TitreVideException {
+	public Titre ajouter(Titre titre) throws DaoException {
 		System.out.println("DaoGestion méthode ajouter() Titre");
 		try {
 			if (titre != null) {
@@ -109,7 +117,7 @@ public class DaoGestion {
 				em.flush();
 			}
 			else { 
-				throw new TitreVideException();
+				throw new DaoException("*** Attention, erreur à la persistence du titre ***");
 			}
 		}
 		catch (PersistenceException e) {	
@@ -117,7 +125,7 @@ public class DaoGestion {
 		}
 		return titre;
 	}
-	
+
 	/**
 	 *  <p>La méthode supAllTitres() est fonctionnelle mais ne sera jamais appelée par le client Web.</p>
 	 *  <p>Elle n'est codée qu'à des fins de tests car il ne sera pas possible de supprimer un titre depuis le client Web.</p>
@@ -130,14 +138,14 @@ public class DaoGestion {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void modifTitre(Titre titre) {
 		System.out.println("DaoGestion méthode modifTitre() ");
 		Titre titreBis = recupTitre(titre.getIdTitre());
 		if (titre != titreBis) em.merge(titre);
 		em.flush();
 	}
-	
+
 	public Titre recupTitre(int id) {
 		System.out.println("DaoGestion méthode recupTitre() ");
 		Titre titre = em.find(Titre.class, id);
@@ -146,17 +154,17 @@ public class DaoGestion {
 
 	/*****************************************************************************
 	 * Cette partie concerne les Compteurs et aura toutes les méthodes relatives *
-	 * @throws CompteurVideException 											 *
+	 * @throws DaoException 											 *
 	 *****************************************************************************/
 
-	public Compteur ajouter(Compteur compteur) throws CompteurVideException {
+	public Compteur ajouter(Compteur compteur) throws DaoException {
 		try {
 			if (compteur != null) {
 				em.persist(compteur);
 				em.flush();
 			}
 			else { 
-				throw new CompteurVideException();
+				throw new DaoException("*** Attention, erreur à la persistence du compteur ***");
 			}
 		}
 		catch (PersistenceException e) {	
@@ -177,6 +185,7 @@ public class DaoGestion {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 *  <p>La méthode modifCompteur() est fonctionnelle mais ne sera jamais appelée par le client Web.</p>
 	 *  <p>Elle n'est codée qu'à des fins de tests car il ne sera pas possible de modifier un compteur depuis le client Web.</p>
@@ -187,7 +196,7 @@ public class DaoGestion {
 		if (compteur != compteurBis) em.merge(compteur);
 		em.flush();
 	}
-	
+
 	public Compteur recupCompteur(int id) {
 		Compteur compteur = em.find(Compteur.class, id);
 		return compteur;

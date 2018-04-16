@@ -8,13 +8,12 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import clientServer.IFacade;
+import dao.uc3_Donner1Avis.DaoException;
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
-import entity.uc3_Donner1Avis.commentaire.CommentaireVideException;
+import entity.uc3_Donner1Avis.commentaire.CommentaireException;
 import entity.uc3_Donner1Avis.compteur.Compteur;
-import entity.uc3_Donner1Avis.compteur.CompteurVideException;
 import entity.uc3_Donner1Avis.compteur.Compteurs;
 import entity.uc3_Donner1Avis.titre.Titre;
-import entity.uc3_Donner1Avis.titre.TitreVideException;
 import entity.uc3_Donner1Avis.titre.Titres;
 import services.uc3_Donner1Avis.Uc3Facade;
 
@@ -36,16 +35,16 @@ public class Facade implements IFacade {
 	 * Méthodes de l'UC3 - Donner un avis / Commenter
 	 */
 	@Override
-	public Commentaire addCommentaire(Commentaire commentaire) throws CommentaireVideException {		
+	public Commentaire addCommentaire(Commentaire commentaire) throws CommentaireException {		
 		commentaire = uc3Facade.addCommentaire(commentaire);
 		return commentaire;
 	}
 	@Override
-	public Titre addTitre(Titre titre) throws TitreVideException {
+	public Titre addTitre(Titre titre) throws DaoException {
 		return uc3Facade.addTitre(titre);
 	}
 	@Override
-	public Compteur addCompteur(Compteur compteur) throws CompteurVideException {
+	public Compteur addCompteur(Compteur compteur) throws DaoException {
 		return uc3Facade.addCompteur(compteur);
 	}
 	@Override
@@ -53,7 +52,7 @@ public class Facade implements IFacade {
 		uc3Facade.supAllCommentaires();
 	}
 	@Override
-	public void supCommParId(Commentaire commentaire) {
+	public void supCommParId(Commentaire commentaire) throws CommentaireException  {
 		uc3Facade.supCommParId(commentaire);
 	}
 	@Override
@@ -91,7 +90,7 @@ public class Facade implements IFacade {
 	}
 	
 	@Override
-	public void modifCommentaire(Commentaire commentaire) {
+	public void modifCommentaire(Commentaire commentaire) throws CommentaireException {
 		uc3Facade.modifCommentaire(commentaire);
 	}
 	@Override

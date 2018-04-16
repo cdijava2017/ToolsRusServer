@@ -5,11 +5,13 @@ import java.util.Objects;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
+import javax.persistence.PersistenceException;
 
+import dao.uc3_Donner1Avis.DaoException;
 import dao.uc3_Donner1Avis.DaoGestion;
 import dao.uc3_Donner1Avis.DaoListe;
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
-import entity.uc3_Donner1Avis.commentaire.CommentaireVideException;
+import entity.uc3_Donner1Avis.commentaire.CommentaireException;
 import entity.uc3_Donner1Avis.compteur.Compteur;
 import entity.uc3_Donner1Avis.compteur.CompteurVideException;
 import entity.uc3_Donner1Avis.titre.Titre;
@@ -20,21 +22,24 @@ import entity.uc3_Donner1Avis.titre.TitreVideException;
 public class Gestion {
 
 	@EJB private DaoGestion daoGestion;
-	
+
 	@EJB private DaoListe daoListe;
 
 	/********************************************************************************
 	 * Cette partie concerne les Commentaires et aura toutes les méthodes relatives *
-	 * @throws CommentaireVideException 											*
+	 * @throws CommentaireException 											*
 	 ********************************************************************************/
-	
-	public Commentaire creerComm(Commentaire commentaire) throws CommentaireVideException {
+
+	public Commentaire creerComm(Commentaire commentaire) throws CommentaireException {
 		try {
 			Objects.requireNonNull(commentaire);
 			commentaire = daoGestion.ajouter(commentaire);
 		}
 		catch(NullPointerException npe) {
 			System.out.println("Attention : NullPointerException pour le commentaire!");
+		} catch (DaoException e) {
+			if (e.getCode() == 1) throw new CommentaireException("*** Attention le commentaire est vide ***");
+			if (e.getCode() == 2) throw new CommentaireException("*** Attention, un commentaire existe déjà en base avec cet id ***");
 		}
 		return commentaire;
 	}
@@ -42,25 +47,29 @@ public class Gestion {
 	public void supAllCommentaires() {
 		daoGestion.supAllCommentaires();
 	}
-	
-	public void supCommParId(Commentaire commentaire) {
-		daoGestion.supCommParId(commentaire);
-	}
-	
-	public void modifCommentaire(Commentaire commentaire) {
+
+	public void supCommParId(Commentaire commentaire) throws CommentaireException {
 		try {
-			daoGestion.modifCommentaire(commentaire);
-		} catch (Exception e) {
-			System.out.println("Attention, Exception levée à la modification du commentaire : " + e.getMessage());
+			daoGestion.supCommParId(commentaire);
+		} catch (DaoException e) {
+			if (e.getCode() == 3) throw new CommentaireException("*** Attention, aucun commentaire n'existe en base avec cet id ***");
 		}
 	}
-	
+
+	public void modifCommentaire(Commentaire commentaire) throws CommentaireException {
+		try {
+			daoGestion.modifCommentaire(commentaire);
+		} catch (DaoException e) {
+			if (e.getCode() == 3) throw new CommentaireException(e.getMessage());
+		}
+	}
+
 	/**************************************************************************
 	 * Cette partie concerne les Titres et aura toutes les méthodes relatives *
 	 * @throws TitreVideException 										  	  *
 	 **************************************************************************/
-	
-	public Titre creerTitre(Titre titre) throws TitreVideException {
+
+	public Titre creerTitre(Titre titre) throws DaoException {
 		try {
 			Objects.requireNonNull(titre);
 			daoGestion.ajouter(titre);
@@ -70,7 +79,7 @@ public class Gestion {
 		}
 		return titre;
 	}
-	
+
 	public void supAllTitres() {
 		daoGestion.supAllTitres();
 	}
@@ -87,8 +96,8 @@ public class Gestion {
 	 * Cette partie concerne les Compteurs et aura toutes les méthodes relatives *
 	 * @throws CompteurVideException 											 *
 	 *****************************************************************************/
-	
-	public Compteur creerCompteur(Compteur compteur) throws CompteurVideException {
+
+	public Compteur creerCompteur(Compteur compteur) throws DaoException {
 		try {
 			Objects.requireNonNull(compteur);
 			daoGestion.ajouter(compteur);
@@ -98,12 +107,12 @@ public class Gestion {
 		}
 		return compteur;
 	}
-	
+
 	public void supAllCompteurs() {
 		daoGestion.supAllCompteurs();
-		
+
 	}
-	
+
 	public void modifCompteur(Compteur compteur) {
 		try {
 			daoGestion.modifCompteur(compteur);

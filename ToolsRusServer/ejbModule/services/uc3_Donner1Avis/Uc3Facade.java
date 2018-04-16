@@ -6,13 +6,12 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
+import dao.uc3_Donner1Avis.DaoException;
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
-import entity.uc3_Donner1Avis.commentaire.CommentaireVideException;
+import entity.uc3_Donner1Avis.commentaire.CommentaireException;
 import entity.uc3_Donner1Avis.compteur.Compteur;
-import entity.uc3_Donner1Avis.compteur.CompteurVideException;
 import entity.uc3_Donner1Avis.compteur.Compteurs;
 import entity.uc3_Donner1Avis.titre.Titre;
-import entity.uc3_Donner1Avis.titre.TitreVideException;
 import entity.uc3_Donner1Avis.titre.Titres;
 import services.uc3_Donner1Avis.gestion.Gestion;
 import services.uc3_Donner1Avis.liste.Liste;
@@ -31,20 +30,20 @@ public class Uc3Facade {
 	 * <p> On reçoit en paramètre un objet à persister et on retourne le même objet traité (en DTO) et utilisable dans des listes. </p>
 	 * @param commentaire @param titre @param compteur @param ref
 	 * @return commentaire @return titre @return compteur
-	 * @throws CommentaireVideException @throws TitreVideException @throws CompteurVideException
+	 * @throws CommentaireException @throws TitreVideException @throws CompteurVideException
 	 * @author Nacer ATOUT
 	 */
 	
-	public Commentaire addCommentaire(Commentaire commentaire) throws CommentaireVideException {
+	public Commentaire addCommentaire(Commentaire commentaire) throws CommentaireException {
 		commentaire = gestion.creerComm(commentaire);
 		return commentaire;
 	}
 
-	public Titre addTitre(Titre titre) throws TitreVideException {
+	public Titre addTitre(Titre titre) throws DaoException {
 		return gestion.creerTitre(titre);
 	}
 
-	public Compteur addCompteur(Compteur compteur) throws CompteurVideException {
+	public Compteur addCompteur(Compteur compteur) throws DaoException {
 		return gestion.creerCompteur(compteur);
 	}
 	
@@ -58,7 +57,7 @@ public class Uc3Facade {
 		gestion.supAllCommentaires();
 	}
 	
-	public void supCommParId(Commentaire commentaire) {
+	public void supCommParId(Commentaire commentaire) throws CommentaireException  {
 		gestion.supCommParId(commentaire);
 	}
 
@@ -121,7 +120,7 @@ public class Uc3Facade {
 	 * @author Nacer ATOUT
 	 */
 	
-	public void modifCommentaire(Commentaire commentaire) {
+	public void modifCommentaire(Commentaire commentaire) throws CommentaireException {
 		gestion.modifCommentaire(commentaire);
 	}
 

@@ -1,4 +1,4 @@
-package dao.uc3_Donner1Avis;
+package utils;
 
 
 public class DaoException extends Exception  {
@@ -23,10 +23,10 @@ public class DaoException extends Exception  {
 		this.code = code;
 	}
 	
-	public DaoException(DaoErrorMessage daoErrorMessage) {
-		super(daoErrorMessage.getMessage());
-		this.code = daoErrorMessage.getCode();
-	}
+//	public DaoException(DaoErrorMessage daoErrorMessage) {
+//		super(daoErrorMessage.getMessage());
+//		this.code = daoErrorMessage.getCode();
+//	}
 
 	public DaoException(Throwable cause, int code) {
 		super(cause);
