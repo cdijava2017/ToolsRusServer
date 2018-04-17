@@ -79,8 +79,8 @@ public class DaoGestion {
 		}
 	}
 
-	public void supCommParId(Commentaire commentaire) throws DaoException {
-		commentaire = recupCommentaire(commentaire.getIdComm());
+	public void supCommParId(int idComm) throws DaoException {
+		Commentaire commentaire = recupCommentaire(idComm);
 		em.remove(commentaire);
 	}
 

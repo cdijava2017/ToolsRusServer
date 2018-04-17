@@ -57,8 +57,8 @@ public class Uc3Facade {
 		gestion.supAllCommentaires();
 	}
 	
-	public void supCommParId(Commentaire commentaire) throws CommentaireException  {
-		gestion.supCommParId(commentaire);
+	public void supCommParId(int idComm) throws CommentaireException  {
+		gestion.supCommParId(idComm);
 	}
 
 	public void supAllTitres() {

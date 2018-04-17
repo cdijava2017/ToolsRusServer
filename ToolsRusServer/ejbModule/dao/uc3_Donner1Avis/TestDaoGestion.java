@@ -1,7 +1,5 @@
 package dao.uc3_Donner1Avis;
 
-import static org.junit.Assert.assertTrue;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
@@ -13,7 +11,7 @@ import org.junit.Test;
 
 import clientServer.IFacade;
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
-import entity.uc3_Donner1Avis.commentaire.CommentaireVideException;
+import entity.uc3_Donner1Avis.commentaire.CommentaireException;
 import junit.framework.TestCase;
 
 public class TestDaoGestion extends TestCase {
@@ -35,7 +33,7 @@ public class TestDaoGestion extends TestCase {
 	public void debut() throws Exception { 
 		try {
 			interfaceFacade.addCommentaire(comm1);
-		} catch (CommentaireVideException e) {
+		} catch (CommentaireException e) {
 			e.printStackTrace();
 			System.out.println("CommentaireVideException levée");
 		}

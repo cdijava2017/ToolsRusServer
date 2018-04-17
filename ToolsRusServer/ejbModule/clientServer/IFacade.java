@@ -26,7 +26,7 @@ public interface IFacade {
 	public Compteur addCompteur(Compteur compteur) throws DaoException;
 	
 	public void supAllCommentaires();
-	public void supCommParId(Commentaire commentaire) throws CommentaireException;
+	public void supCommParId(int idComm) throws CommentaireException;
 	public void supAllTitres();
 	public void supAllCompteurs();
 	

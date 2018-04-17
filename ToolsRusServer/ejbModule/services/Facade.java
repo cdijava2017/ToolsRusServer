@@ -52,8 +52,8 @@ public class Facade implements IFacade {
 		uc3Facade.supAllCommentaires();
 	}
 	@Override
-	public void supCommParId(Commentaire commentaire) throws CommentaireException  {
-		uc3Facade.supCommParId(commentaire);
+	public void supCommParId(int idComm) throws CommentaireException  {
+		uc3Facade.supCommParId(idComm);
 	}
 	@Override
 	public void supAllTitres() {

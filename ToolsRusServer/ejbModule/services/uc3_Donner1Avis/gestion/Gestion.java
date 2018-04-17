@@ -48,9 +48,9 @@ public class Gestion {
 		daoGestion.supAllCommentaires();
 	}
 
-	public void supCommParId(Commentaire commentaire) throws CommentaireException {
+	public void supCommParId(int idComm) throws CommentaireException {
 		try {
-			daoGestion.supCommParId(commentaire);
+			daoGestion.supCommParId(idComm);
 		} catch (DaoException e) {
 			if (e.getCode() == 3) throw new CommentaireException("*** Attention, aucun commentaire n'existe en base avec cet id ***");
 		}
