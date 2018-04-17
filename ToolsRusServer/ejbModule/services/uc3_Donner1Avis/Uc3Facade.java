@@ -75,9 +75,10 @@ public class Uc3Facade {
 	 * <p> On récupère tout ce qui se trouve dans une table et on le met dans une ArrayList pour pouvoir le traiter au besoin.</p>
 	 * @return liste.getAllCommParId() @return liste.getAllTitreParId() @return liste.getAllCompteurParId()
 	 * @author Nacer ATOUT
+	 * @throws DaoException 
 	 */
 	
-	public ArrayList<Commentaire> getAllCommParId() {
+	public ArrayList<Commentaire> getAllCommParId() throws CommentaireException {
 		ArrayList<Commentaire> commentaires = liste.getAllCommParId();
 		return commentaires;
 	}
@@ -97,9 +98,10 @@ public class Uc3Facade {
 	 * @param ref
 	 * @return liste.getCommParRef() @return liste.getTitreParRef() @return liste.getCompteurParRef()
 	 * @author Nacer ATOUT
+	 * @throws DaoException 
 	 */
 	
-	public Commentaire getCommParRef(int ref) {
+	public Commentaire getCommParRef(int ref) throws CommentaireException {
 		return liste.getCommParRef(ref);
 	}
 

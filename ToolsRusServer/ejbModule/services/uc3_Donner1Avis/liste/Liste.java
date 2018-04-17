@@ -9,6 +9,7 @@ import javax.ejb.Singleton;
 import dao.uc3_Donner1Avis.DaoException;
 import dao.uc3_Donner1Avis.DaoListe;
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
+import entity.uc3_Donner1Avis.commentaire.CommentaireException;
 import entity.uc3_Donner1Avis.compteur.Compteur;
 import entity.uc3_Donner1Avis.compteur.Compteurs;
 import entity.uc3_Donner1Avis.titre.Titre;
@@ -27,7 +28,7 @@ public class Liste {
 	 * Cette partie concerne les Commentaires et aura toutes les méthodes relatives*
 	 *******************************************************************************/
 	
-	public ArrayList<Commentaire> getAllCommParId() {
+	public ArrayList<Commentaire> getAllCommParId() throws CommentaireException {
 		ArrayList<Commentaire> recup = daoListe.getAllCommParId();
 		ArrayList<Commentaire> comms = new ArrayList<Commentaire>();
 		for (Commentaire comm : recup) {
@@ -37,12 +38,13 @@ public class Liste {
 		return comms;
 	}
 
-	public Commentaire getCommParRef(int ref) {
+	public Commentaire getCommParRef(int ref) throws CommentaireException {
 		Commentaire commentaire = null;
 		try {
 			commentaire = daoListe.getCommParRef(ref);
 		} catch (DaoException e) {
 			System.out.println(e);
+			throw new CommentaireException(e.getMessage());
 		}
 		return commentaire;
 	}

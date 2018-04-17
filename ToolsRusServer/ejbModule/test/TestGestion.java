@@ -44,7 +44,7 @@ public class TestGestion {
 
 
 	@Test
-	public void testCreerComm() {
+	public void testCreerComm() throws DaoException {
 		boolean retour = false;
 		try {
 			interfaceFacade.addCommentaire(comm1);

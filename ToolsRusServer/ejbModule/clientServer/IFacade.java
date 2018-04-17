@@ -30,11 +30,11 @@ public interface IFacade {
 	public void supAllTitres();
 	public void supAllCompteurs();
 	
-	public ArrayList<Commentaire> getAllCommParId();
+	public ArrayList<Commentaire> getAllCommParId() throws CommentaireException;
 	public Titres getAllTitreParId();
 	public Compteurs getAllCompteurParId();
 	
-	public Commentaire getCommParRef(int ref);
+	public Commentaire getCommParRef(int ref) throws CommentaireException;
 	public Titre getTitreParRef(int ref);
 	public Compteur getCompteurParRef(int ref);
 	

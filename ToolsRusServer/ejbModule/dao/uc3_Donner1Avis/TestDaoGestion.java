@@ -47,7 +47,7 @@ public class TestDaoGestion extends TestCase {
 	
 	
 	@Test
-	public void testAjouterCommentaire() {
+	public void testAjouterCommentaire() throws DaoException {
 		boolean retour = false;
 		System.out.println("test ajout");
 		System.out.println("comm1 : " + comm1);
@@ -58,7 +58,7 @@ public class TestDaoGestion extends TestCase {
 		assertTrue(retour);
 	}
 	@Test
-	public void testSupAllCommentaires() {
+	public void testSupAllCommentaires() throws DaoException {
 		interfaceFacade.supAllCommentaires();
 		boolean retour = false;
 		try {

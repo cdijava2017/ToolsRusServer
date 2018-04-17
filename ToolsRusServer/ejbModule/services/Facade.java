@@ -64,7 +64,7 @@ public class Facade implements IFacade {
 		uc3Facade.supAllCompteurs();
 	}
 	@Override
-	public ArrayList<Commentaire> getAllCommParId() {
+	public ArrayList<Commentaire> getAllCommParId() throws CommentaireException {
 		ArrayList<Commentaire> commentaires = uc3Facade.getAllCommParId();
 		return commentaires;
 	}
@@ -77,7 +77,7 @@ public class Facade implements IFacade {
 		return uc3Facade.getAllCompteurParId();
 	}
 	@Override
-	public Commentaire getCommParRef(int ref) {
+	public Commentaire getCommParRef(int ref) throws CommentaireException {
 		return uc3Facade.getCommParRef(ref);
 	}
 	@Override

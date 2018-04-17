@@ -18,7 +18,7 @@ import entity.uc3_Donner1Avis.titre.Titre;
 @LocalBean
 public class DaoGestion {
 
-	@PersistenceContext(unitName="DMhibernate")
+	@PersistenceContext(unitName=UtilBdD.PERSISTANCE_UNITNAME2)
 	private EntityManager em;
 
 
@@ -52,12 +52,12 @@ public class DaoGestion {
 				em.flush();
 			}
 			else { 
-				throw new DaoException("*** Attention, erreur à la persistence du commentaire ***", 1);
+				throw new DaoException(UtilBdD.ERREUR_1, 1);
 			}
 		}
 		catch (PersistenceException e) {	
 			System.out.println("*** Nacer : " + e.getMessage());
-			throw new DaoException("*** Attention, un commentaire existe déjà en base avec cet id ***", 2);
+			throw new DaoException(UtilBdD.ERREUR_2, 2);
 		} catch (ConstraintViolationException e) {
 			System.out.println("*** Doublon : " + e);
 		}
@@ -73,7 +73,7 @@ public class DaoGestion {
 	public void supAllCommentaires() {
 		System.out.println("DaoGestion méthode supAllCommentaires() commentaire");
 		try {
-			em.createQuery("delete from Commentaire").executeUpdate();
+			em.createQuery(UtilBdD.DEL_COMMENTAIRE).executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -99,7 +99,7 @@ public class DaoGestion {
 			commentaire = em.find(Commentaire.class, id);
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
-			throw new DaoException("*** Attention, aucun commentaire n'existe en base avec cet id ***", 3);
+			throw new DaoException(UtilBdD.ERREUR_3, 3);
 		}
 		return commentaire;
 	}
@@ -180,7 +180,7 @@ public class DaoGestion {
 	public void supAllCompteurs() {
 		System.out.println("DaoGestion méthode supAllCompteurs() ");
 		try {
-			em.createQuery("delete from Compteur").executeUpdate();
+			em.createQuery(UtilBdD.DEL_COMPTEUR).executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

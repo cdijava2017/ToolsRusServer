@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
+import entity.uc3_Donner1Avis.commentaire.CommentaireException;
 import entity.uc3_Donner1Avis.compteur.Compteur;
 import entity.uc3_Donner1Avis.compteur.Compteurs;
 import entity.uc3_Donner1Avis.titre.Titre;
@@ -23,18 +24,19 @@ import entity.uc3_Donner1Avis.titre.Titres;
 @Singleton
 public class DaoListe {
 
-	@PersistenceContext(unitName="DMhibernate")
+	@PersistenceContext(unitName=UtilBdD.PERSISTANCE_UNITNAME2)
 	EntityManager em; 
 	
 	/********************************************************************************
-	 * Cette partie concerne les Commentaires et aura toutes les méthodes relatives *
+	 * Cette partie concerne les Commentaires et aura toutes les méthodes relatives 
+	 * @throws DaoException *
 	 ********************************************************************************/
 	
-	public ArrayList<Commentaire> getAllCommParId() {
+	public ArrayList<Commentaire> getAllCommParId() throws CommentaireException {
 		System.out.println("DaoListe méthode getAllCommParId()");
 		ArrayList<Commentaire> liste = new ArrayList<Commentaire>();
-
-		for (Object commentaire : em.createQuery("select c from Commentaire c order by c.idComm asc").getResultList()) {   
+		if (em.createQuery(UtilBdD.GET_ALL_COMM).getResultList() == null)  throw new CommentaireException(DaoErrorMessage.ERR_LISTE_VIDE);
+		for (Object commentaire : em.createQuery(UtilBdD.GET_ALL_COMM).getResultList()) {   
 			if (commentaire instanceof Commentaire) {
 				liste.add((Commentaire) commentaire);
 			}
@@ -58,7 +60,7 @@ public class DaoListe {
 		System.out.println("DaoListe méthode getAllTitreParId()");
 		Titres liste = new Titres();
 
-		for (Object titre : em.createQuery("select t from Titre t order by t.idTitre asc").getResultList()) {   
+		for (Object titre : em.createQuery(UtilBdD.GET_ALL_TITRE).getResultList()) {   
 			if (titre instanceof Titre) {
 				liste.add((Titre) titre);
 			}
@@ -81,7 +83,7 @@ public class DaoListe {
 		System.out.println("DaoListe méthode getAllCompteurParId()");
 		Compteurs liste = new Compteurs();
 
-		for (Object compteur : em.createQuery("select c from Compteur c order by c.idCompteur asc").getResultList()) {   
+		for (Object compteur : em.createQuery(UtilBdD.GET_ALL_COMPTEUR).getResultList()) {   
 			if (compteur instanceof Compteur) {
 				liste.add((Compteur) compteur);
 			}
