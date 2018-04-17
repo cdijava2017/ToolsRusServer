@@ -203,6 +203,7 @@ public class DaoGestion {
 	}
 
 	public void incrementCompteur(int idCompteur) {
+		System.out.println(idCompteur);
 		Compteur compteur = recupCompteur(idCompteur);
 		compteur.compteurPlus1();
 		modifCompteur(compteur);
