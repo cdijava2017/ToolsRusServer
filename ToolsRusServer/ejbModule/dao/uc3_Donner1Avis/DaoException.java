@@ -9,6 +9,8 @@ public class DaoException extends Exception  {
 	// code d'erreur
 	private int code;
 
+	public DaoException() {	}
+	
 	public DaoException(int code) {
 		super();
 		this.code = code;

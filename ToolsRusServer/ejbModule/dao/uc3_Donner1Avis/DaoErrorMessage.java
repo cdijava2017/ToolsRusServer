@@ -2,13 +2,13 @@ package dao.uc3_Donner1Avis;
 
 public enum DaoErrorMessage {
 	
-	ERR_INSERT			(10,"**DM** Erreur ajouter"),		
-	ERR_UPDATE			(15,"**DM** Erreur modifCommentaire"), 			
-	ERR_DELETE			(20,"**DM** Erreur supprimerAll"), 
-	ERR_DELETE_BY_REF	(21,"**DM** Erreur supprimerParId"),
-	ERR_NULL			( 0,"**DM** L'objet est null"),   				
-	ERR_INEXISTANT		( 1,"** Attention, ceci n'existe pas encore **"), 
-	ERR_LISTE_VIDE		( 2,"** Attention, la liste est vide **"),
+	ERR_INSERT			(10,"** Erreur sur méthode ajouter **"),		
+	ERR_UPDATE			(15,"** Erreur sur méthode modifCommentaire **"), 			
+	ERR_DELETE			(20,"** Erreur sur méthode supprimerAll **"), 
+	ERR_DELETE_BY_REF	(21,"** Erreur sur méthode supprimerParId **"),
+	ERR_NULL			( 0,"** L'objet est null **"),   				
+	ERR_INEXISTANT		( 1,"** L'objet n'existe pas encore **"), 
+	ERR_LISTE_VIDE		( 2,"** La liste est vide **"),
 	;	
 	
 	private int 	code;

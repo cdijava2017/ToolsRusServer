@@ -205,6 +205,7 @@ public class DaoGestion {
 	public void incrementCompteur(int idCompteur) {
 		System.out.println(idCompteur);
 		Compteur compteur = recupCompteur(idCompteur);
+		System.out.println("*** DaoGestion, récupération compteur avant increment : " + compteur);
 		compteur.compteurPlus1();
 		modifCompteur(compteur);
 	}

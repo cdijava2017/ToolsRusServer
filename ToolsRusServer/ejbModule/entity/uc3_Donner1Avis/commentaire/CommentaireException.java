@@ -5,6 +5,10 @@ import dao.uc3_Donner1Avis.DaoException;
 
 public class CommentaireException extends DaoException {
 
+	private static final long serialVersionUID = 1L;
+
+	public CommentaireException() {	}
+	
 	public CommentaireException(String message) {
 		super(message);
 	}
@@ -12,7 +16,5 @@ public class CommentaireException extends DaoException {
 	public CommentaireException(DaoErrorMessage errListeVide) {
 		super(errListeVide);
 	}
-
-	private static final long serialVersionUID = 1L;
 
 }
