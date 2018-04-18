@@ -6,6 +6,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -34,6 +36,7 @@ public abstract class Mot implements Serializable {
 	
 	@Id
 	@Column(name="idmot", nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int 	idMot;
 	
 	@Column(name="libellemot", length=50, nullable=true)
