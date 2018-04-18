@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 //import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  * class Mot have an association with class Image
@@ -25,7 +26,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="Mot")
+@Table(name="Mot", uniqueConstraints = {@UniqueConstraint(columnNames="libellemot")})
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Mot implements Serializable {
 	
@@ -39,7 +40,7 @@ public abstract class Mot implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int 	idMot;
 	
-	@Column(name="libellemot", length=50, nullable=true)
+	@Column(name="libellemot", length=50, nullable=false)
 	private String 	libelleMot;
 	
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
