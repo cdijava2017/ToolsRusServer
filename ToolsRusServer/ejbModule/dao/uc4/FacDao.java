@@ -5,6 +5,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
 import entity.uc4.Mot;
+import entity.uc4.Mots;
 import exception.uc4.ExistantException;
 import exception.uc4.InexistantException;
 import exception.uc4.UserExistantException;
@@ -60,5 +61,14 @@ public class FacDao {
 		}
 		
 		return mot;
+	}
+	
+	public Mots listAllMot () {
+		
+		Mots listeMot = new Mots();
+		
+		listeMot = daoGestion.listAllMot();
+		
+		return listeMot;
 	}
 }

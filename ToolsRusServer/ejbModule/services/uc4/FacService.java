@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 
 import clientServer.uc4.IFacService;
 import entity.uc4.Mot;
+import entity.uc4.Mots;
 import exception.uc4.ExistantException;
 import exception.uc4.UserExistantException;
 import exception.uc4.UserInexistantException;
@@ -36,9 +37,14 @@ public class FacService implements IFacService {
 
 	@Override
 	public Mot getMot(int idMot) throws UserInexistantException {
-		
 		return serviceGestion.getMot(idMot);
 	}
 
+	@Override
+	public Mots listAllMot() {
+		return serviceGestion.listAllMot();
+	}
+
+	
 
 }

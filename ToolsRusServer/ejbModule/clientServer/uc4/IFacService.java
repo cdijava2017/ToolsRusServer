@@ -1,6 +1,7 @@
 package clientServer.uc4;
 
 import entity.uc4.Mot;
+import entity.uc4.Mots;
 import exception.uc4.ExistantException;
 import exception.uc4.UserExistantException;
 import exception.uc4.UserInexistantException;
@@ -14,5 +15,7 @@ public interface IFacService {
 	public void supprimer(Mot mot)  throws UserInexistantException;
 	
 	public Mot 	getMot(int idMot) 	throws UserInexistantException;
+	
+	public Mots listAllMot();
 
 }

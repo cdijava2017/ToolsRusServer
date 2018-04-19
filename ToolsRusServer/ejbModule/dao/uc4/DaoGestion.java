@@ -11,8 +11,10 @@ import javax.persistence.PersistenceException;
 
 import entity.uc4.Mot;
 import entity.uc4.MotHumeur;
+import entity.uc4.Mots;
 import exception.uc4.ExistantException;
 import exception.uc4.InexistantException;
+import utils.uc4.RequetesHQL;
 
 /**
  * methods to manage words
@@ -106,7 +108,16 @@ public class DaoGestion {
 			return mot;
 		}
 		
+	public Mots listAllMot() {
 		
+		Mots listeMot = new Mots();
+		
+		for (Object mot: em.createQuery(RequetesHQL.LISTALLMOT).getResultList())
+			if ( mot instanceof Mot) {
+				listeMot.add((Mot) mot);
+			}
+		return listeMot;
+	}
 		
 		/*******************************************************
 							GESTION DE L IMAGE
