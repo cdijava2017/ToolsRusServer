@@ -8,12 +8,13 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import clientServer.IFacade;
-import dao.uc3_Donner1Avis.DaoException;
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
 import entity.uc3_Donner1Avis.commentaire.CommentaireException;
 import entity.uc3_Donner1Avis.compteur.Compteur;
+import entity.uc3_Donner1Avis.compteur.CompteurException;
 import entity.uc3_Donner1Avis.compteur.Compteurs;
 import entity.uc3_Donner1Avis.titre.Titre;
+import entity.uc3_Donner1Avis.titre.TitreException;
 import entity.uc3_Donner1Avis.titre.Titres;
 import services.uc3_Donner1Avis.Uc3Facade;
 
@@ -28,7 +29,7 @@ import services.uc3_Donner1Avis.Uc3Facade;
 public class Facade implements IFacade {
 
 	@EJB Uc3Facade uc3Facade;
-	
+
 	public Facade() {}
 
 	/**
@@ -40,11 +41,11 @@ public class Facade implements IFacade {
 		return commentaire;
 	}
 	@Override
-	public Titre addTitre(Titre titre) throws DaoException {
+	public Titre addTitre(Titre titre) throws TitreException {
 		return uc3Facade.addTitre(titre);
 	}
 	@Override
-	public Compteur addCompteur(Compteur compteur) throws DaoException {
+	public Compteur addCompteur(Compteur compteur) throws CompteurException {
 		return uc3Facade.addCompteur(compteur);
 	}
 	@Override
@@ -88,7 +89,7 @@ public class Facade implements IFacade {
 	public Compteur getCompteurParRef(int ref) {
 		return uc3Facade.getCompteurParRef(ref);
 	}
-	
+
 	@Override
 	public void modifCommentaire(Commentaire commentaire) throws CommentaireException {
 		uc3Facade.modifCommentaire(commentaire);

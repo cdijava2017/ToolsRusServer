@@ -58,9 +58,7 @@ public class DaoGestion {
 		catch (PersistenceException e) {	
 			System.out.println("*** Nacer : " + e.getMessage());
 			throw new DaoException(UtilBdD.ERREUR_2, 2);
-		} catch (ConstraintViolationException e) {
-			System.out.println("*** Doublon : " + e);
-		}
+		} 
 		System.out.println("** DaoGestion - ajouter(Commentaire commentaire) : " + commentaire);
 		return commentaire.commToDto();
 	}
@@ -86,10 +84,14 @@ public class DaoGestion {
 
 	public void modifCommentaire(Commentaire commentaire) throws DaoException {
 		Commentaire commentaireBis = recupCommentaire(commentaire.getIdComm());
-		if (commentaire.getTexteComm().isEmpty()) commentaire.setTexteComm(commentaireBis.getTexteComm());
-		if (commentaire.getTitre().getTxtTitre().isEmpty()) commentaire.setTitre(commentaireBis.getTitre());
-		commentaire.setListeCompteurs(commentaireBis.getListeCompteurs());
-		if (commentaire != commentaireBis) em.merge(commentaire);
+		if (commentaire.getTexteComm().isEmpty()) 			
+			commentaire.setTexteComm(commentaireBis.getTexteComm());
+		if (commentaire.getTitre().getTxtTitre().isEmpty()) 
+			commentaire.setTitre(commentaireBis.getTitre());
+		if (commentaire.getListeCompteurs().isEmpty()) 		
+			commentaire.setListeCompteurs(commentaireBis.getListeCompteurs());
+		if (commentaire != commentaireBis) 
+			em.merge(commentaire);
 		em.flush();
 	}
 
@@ -98,16 +100,22 @@ public class DaoGestion {
 		try {
 			commentaire = em.find(Commentaire.class, id);
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
 			throw new DaoException(UtilBdD.ERREUR_3, 3);
 		}
 		return commentaire;
 	}
 
-	/**************************************************************************
-	 * Cette partie concerne les Titres et aura toutes les méthodes relatives *
-	 * @throws DaoException 										  *
-	 **************************************************************************/
+	/**********************************************************************************
+	 * <p>Cette partie concerne les Titres et aura toutes les méthodes relatives</p>  *
+	 * <p>La partie des titres n'est pas utilisée dans le client web car ils créés 	  *
+	 * à l'ajout d'un commentaire en base et sont positionné en cascade. Ensuite, 	  *
+	 * ils peuvent être modifiés mais ne sont jamais gérés individuellement. </p>	  *
+	 * <p>Tout est fonctionnel mais ces méthodes ne seront jamais appelées par le 	  *
+	 * client Web. Elles ne sont codées qu'à des fins de tests car il ne sera pas 	  *
+	 * possible de supprimer un titre ou le modifier spécifiquement depuis le client  *
+	 * Web sans passer par la modification du commentaire.</p>	  					  *
+	 * @throws DaoException 										  				  *
+	 **********************************************************************************/
 
 	public Titre ajouter(Titre titre) throws DaoException {
 		System.out.println("DaoGestion méthode ajouter() Titre");
@@ -121,7 +129,8 @@ public class DaoGestion {
 			}
 		}
 		catch (PersistenceException e) {	
-			System.out.println(e);
+			System.out.println("*** Nacer : " + e.getMessage());
+			throw new DaoException(UtilBdD.ERREUR_2_2);
 		}
 		return titre;
 	}
@@ -133,7 +142,7 @@ public class DaoGestion {
 	public void supAllTitres() {
 		System.out.println("DaoGestion méthode supAllTitres() ");
 		try {
-			em.createQuery("delete from Titre").executeUpdate();
+			em.createQuery(UtilBdD.DEL_TITRE).executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -152,10 +161,13 @@ public class DaoGestion {
 		return titre;
 	}
 
-	/*****************************************************************************
-	 * Cette partie concerne les Compteurs et aura toutes les méthodes relatives *
-	 * @throws DaoException 											 *
-	 *****************************************************************************/
+	/*************************************************************************************
+	 * <p>Cette partie concerne les Compteurs et aura toutes les méthodes relatives.</p> *
+	 * <p>La partie des compteurs n'est pas utilisée dans le client web à l'exception    *
+	 *  des méthodes incrementCompteur() et recupCompteur() car ils créés à l'ajout 	 *
+	 *  d'un commentaire en base et sont positionné en cascade. </p>	 				 *
+	 * @throws DaoException 											 		 	 	 *
+	 *************************************************************************************/
 
 	public Compteur ajouter(Compteur compteur) throws DaoException {
 		try {
@@ -168,7 +180,8 @@ public class DaoGestion {
 			}
 		}
 		catch (PersistenceException e) {	
-			System.out.println(e);
+			System.out.println("*** Nacer : " + e.getMessage());
+			throw new DaoException(UtilBdD.ERREUR_3_2);
 		}
 		return compteur;
 	}

@@ -1,18 +1,19 @@
-package entity.uc3_Donner1Avis.commentaire;
+package entity.uc3_Donner1Avis.compteur;
 
-public class CommentaireException extends Exception {
+
+public class CompteurException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
 	private int code;
 	
-	public CommentaireException() {	}
+	public CompteurException() {	}
 	
-	public CommentaireException(String message) {
+	public CompteurException(String message) {
 		super(message);
 	}
 
-	public CommentaireException(String message, int code) {
+	public CompteurException(String message, int code) {
 		super(message);
 		this.code = code;
 	}
@@ -24,5 +25,5 @@ public class CommentaireException extends Exception {
 	public void setCode(int code) {
 		this.code = code;
 	}
-
+	
 }

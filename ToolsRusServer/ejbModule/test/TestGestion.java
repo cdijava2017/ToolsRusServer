@@ -13,17 +13,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clientServer.IFacade;
-import dao.uc3_Donner1Avis.DaoException;
-import dao.uc3_Donner1Avis.DaoGestion;
-import dao.uc3_Donner1Avis.DaoListe;
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
 import entity.uc3_Donner1Avis.commentaire.CommentaireException;
 
 public class TestGestion {
 
 	private int nb = 1;
-	private DaoGestion daoG;
-	private DaoListe daoL;
+//	private DaoGestion daoG;
+//	private DaoListe daoL;
 	private static IFacade interfaceFacade;
 	private Commentaire comm1 = new Commentaire(nb, "comm" + nb);
 	
@@ -44,11 +41,11 @@ public class TestGestion {
 
 
 	@Test
-	public void testCreerComm() throws DaoException {
+	public void testCreerComm() throws CommentaireException {
 		boolean retour = false;
 		try {
 			interfaceFacade.addCommentaire(comm1);
-		} catch (DaoException e) {
+		} catch (CommentaireException e) {
 			e.printStackTrace();
 			System.out.println("CommentaireVideException levée");
 		}
@@ -57,7 +54,7 @@ public class TestGestion {
 	}
 
 	@Test
-	public void testSupAllCommentaires() throws DaoException {
+	public void testSupAllCommentaires() throws CommentaireException {
 		interfaceFacade.addCommentaire(comm1);
 		interfaceFacade.supAllCommentaires();
 		boolean retour = false;

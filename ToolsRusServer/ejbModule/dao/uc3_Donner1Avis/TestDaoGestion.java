@@ -17,8 +17,8 @@ import junit.framework.TestCase;
 public class TestDaoGestion extends TestCase {
 
 	private int nb = 1;
-	private DaoGestion daoG;
-	private DaoListe daoL;
+//	private DaoGestion daoG;
+//	private DaoListe daoL;
 	private static IFacade interfaceFacade;
 	Commentaire comm1 = new Commentaire(nb, "comm" + nb);
 	
@@ -35,7 +35,7 @@ public class TestDaoGestion extends TestCase {
 			interfaceFacade.addCommentaire(comm1);
 		} catch (CommentaireException e) {
 			e.printStackTrace();
-			System.out.println("CommentaireVideException levée");
+			System.out.println("CommentaireException levée");
 		}
 	}
 
@@ -47,18 +47,18 @@ public class TestDaoGestion extends TestCase {
 	
 	
 	@Test
-	public void testAjouterCommentaire() throws DaoException {
+	public void testAjouterCommentaire() throws CommentaireException {
 		boolean retour = false;
 		System.out.println("test ajout");
 		System.out.println("comm1 : " + comm1);
-		Commentaire comm2 = interfaceFacade.getCommParRef(1);
+//		Commentaire comm2 = interfaceFacade.getCommParRef(1);
 		System.out.println("test");
 
 		if (interfaceFacade.getCommParRef(comm1.getIdComm()).equals(comm1)) retour = true;
 		assertTrue(retour);
 	}
 	@Test
-	public void testSupAllCommentaires() throws DaoException {
+	public void testSupAllCommentaires() throws CommentaireException {
 		interfaceFacade.supAllCommentaires();
 		boolean retour = false;
 		try {

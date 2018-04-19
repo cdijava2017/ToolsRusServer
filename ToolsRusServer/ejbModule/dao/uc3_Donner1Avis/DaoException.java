@@ -5,8 +5,6 @@ public class DaoException extends Exception  {
 
 	private static final long serialVersionUID = 1L;
 	
-	// la classe mere possède le message
-	// code d'erreur
 	private int code;
 
 	public DaoException() {	}
@@ -22,21 +20,6 @@ public class DaoException extends Exception  {
 	
 	public DaoException(String message, int code) {
 		super(message);
-		this.code = code;
-	}
-	
-	public DaoException(DaoErrorMessage daoErrorMessage) {
-		super(daoErrorMessage.getMessage());
-		this.code = daoErrorMessage.getCode();
-	}
-
-	public DaoException(Throwable cause, int code) {
-		super(cause);
-		this.code = code;
-	}
-
-	public DaoException(String message, Throwable cause, int code) {
-		super(message, cause);
 		this.code = code;
 	}
 

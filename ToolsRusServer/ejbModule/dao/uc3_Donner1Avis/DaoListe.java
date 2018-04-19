@@ -35,7 +35,8 @@ public class DaoListe {
 	public ArrayList<Commentaire> getAllCommParId() throws CommentaireException {
 		System.out.println("DaoListe méthode getAllCommParId()");
 		ArrayList<Commentaire> liste = new ArrayList<Commentaire>();
-		if (em.createQuery(UtilBdD.GET_ALL_COMM).getResultList() == null)  throw new CommentaireException(DaoErrorMessage.ERR_LISTE_VIDE);
+		if (em.createQuery(UtilBdD.GET_ALL_COMM).getResultList() == null) 
+			throw new CommentaireException(DaoErrorMessage.ERR_LISTE_VIDE.getMessage(),DaoErrorMessage.ERR_LISTE_VIDE.getCode());
 		for (Object commentaire : em.createQuery(UtilBdD.GET_ALL_COMM).getResultList()) {   
 			if (commentaire instanceof Commentaire) {
 				liste.add((Commentaire) commentaire);
@@ -47,7 +48,8 @@ public class DaoListe {
 	public Commentaire getCommParRef(int ref) throws DaoException {
 		System.out.println("DaoListe méthode getCommParRef()");
 		Commentaire commentaire =  em.find(Commentaire.class, ref);
-		if (commentaire == null) throw new DaoException(DaoErrorMessage.ERR_INEXISTANT);
+		if (commentaire == null) 
+			throw new DaoException(DaoErrorMessage.ERR_COMM_INEXISTANT.getMessage(),DaoErrorMessage.ERR_COMM_INEXISTANT.getCode());
 		return commentaire;
 	}
 	
@@ -71,7 +73,8 @@ public class DaoListe {
 	public Titre getTitreParRef(int ref) throws DaoException {
 		System.out.println("DaoListe méthode getTitreParRef()");
 		Titre titre =  em.find(Titre.class, ref);
-		if (titre == null) throw new DaoException(DaoErrorMessage.ERR_INEXISTANT);
+		if (titre == null) 
+			throw new DaoException(DaoErrorMessage.ERR_TITRE_INEXISTANT.getMessage(),DaoErrorMessage.ERR_TITRE_INEXISTANT.getCode());
 		return titre;
 	}
 
@@ -94,7 +97,8 @@ public class DaoListe {
 	public Compteur getCompteurParRef(int ref) throws DaoException {
 		System.out.println("DaoListe méthode getCompteurParRef()");
 		Compteur compteur =  em.find(Compteur.class, ref);
-		if (compteur == null) throw new DaoException(DaoErrorMessage.ERR_INEXISTANT);
+		if (compteur == null) 
+			throw new DaoException(DaoErrorMessage.ERR_COMPTEUR_INEXISTANT.getMessage(),DaoErrorMessage.ERR_COMPTEUR_INEXISTANT.getCode());
 		return compteur;
 	}
 

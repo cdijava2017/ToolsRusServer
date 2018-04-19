@@ -1,18 +1,19 @@
-package entity.uc3_Donner1Avis.commentaire;
+package entity.uc3_Donner1Avis.titre;
 
-public class CommentaireException extends Exception {
+
+public class TitreException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
 	private int code;
 	
-	public CommentaireException() {	}
+	public TitreException() {	}
 	
-	public CommentaireException(String message) {
+	public TitreException(String message) {
 		super(message);
 	}
 
-	public CommentaireException(String message, int code) {
+	public TitreException(String message, int code) {
 		super(message);
 		this.code = code;
 	}
@@ -24,5 +25,4 @@ public class CommentaireException extends Exception {
 	public void setCode(int code) {
 		this.code = code;
 	}
-
 }

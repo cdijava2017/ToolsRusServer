@@ -35,6 +35,8 @@ public class Commentaire implements Serializable, ICommentable {
 
 	@Id
 	@Column(name="numCommentaire")
+	//  Le code commenté ci dessous servira si plus tard, on veut rajouter une séquence à la création d'un commentaire.
+	//	Attention cependant à l'id du titre car celui ci est calqué sur l'id du commentaire.
 	//	@GeneratedValue(strategy = GenerationType.AUTO)     // à commenter/décommenter si la table contient ou non une séquence active
 	//	@SequenceGenerator(name="seq_comm", sequenceName="seq_comm", initialValue=1)
 	private int idComm;
@@ -47,6 +49,10 @@ public class Commentaire implements Serializable, ICommentable {
 	@OneToOne (cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name = "idTitre", unique = true, nullable = true)
 	private Titre titre;
+	/**
+	 * La liste de compteurs est une association 1-plusieurs avec la classe Compteurs. 
+	 * Un commentaire a une liste de compteur (2 à chaque fois) et une liste de compteurs n'appartient qu'à un commentaire.
+	 */
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name = "idCommentaire", nullable = true)
 	private Collection<Compteur> listeCompteurs = null;
@@ -78,7 +84,7 @@ public class Commentaire implements Serializable, ICommentable {
 	}
 	/**
 	 *  Constructeur avec le titre et la liste de compteurs en plus. 
-	 *  @param idComm, @param texteComm, @param compteur et @param titre. 
+	 *  @param idComm, @param texteComm, @param compteurs et @param titre. 
 	 */
 	public Commentaire(int idComm, String texteComm, Titre titre, ArrayList<Compteur> compteurs) {
 		this.idComm = idComm;
@@ -126,39 +132,43 @@ public class Commentaire implements Serializable, ICommentable {
 				+ listeCompteurs + "]";
 	}
 
-	public boolean equals(Commentaire comm) {
+	public boolean equals(Commentaire comm) {			
 		boolean resultat;
 		if (comm.idComm == this.idComm || comm.texteComm == this.texteComm) resultat = true;
 		else resultat = false;
 		return resultat;
 	}
 	
-	public void incrementDislike() {
+	public void incrementDislike() {					// incrémente le compteur de Dislike dans la liste de compteurs du commentaire
 		for (Compteur cpt : listeCompteurs) {
 			if (cpt instanceof CptDislike) cpt.compteurPlus1();
 		}		
 	}
-	public void incrementLike() {
+	public void incrementLike() {						// incrémente le compteur de Like dans la liste de compteurs du commentaire
 		for (Compteur cpt : listeCompteurs) {
 			if (cpt instanceof CptLike) cpt.compteurPlus1();
 		}		
 	}
 	
-	public Compteur getCptDislike() {
+	public Compteur getCptDislike() {					// récupère le compteur de Dislike dans la liste de compteurs du commentaire
 		CptDislike cptDislike = null;
 		for (Compteur cpt : listeCompteurs) {
 			if (cpt instanceof CptDislike) cptDislike = (CptDislike) cpt;
 		}		
 		return cptDislike;
 	}
-	public Compteur getCptLike() {
+	public Compteur getCptLike() {						// récupère le compteur de Like dans la liste de compteurs du commentaire
 		CptLike cptLike = null;
 		for (Compteur cpt : listeCompteurs) {
 			if (cpt instanceof CptLike) cptLike = (CptLike) cpt;
 		}	
 		return cptLike;
 	}
-	
+	/**
+	 * La méthode commToDto() convertie un commentaire retourné par la base en un Objet de classe Commentaire. 
+	 * Ceci afin de pouvoir l'utiliser sans avoir de conflit de typage.
+	 * @return commToDo qui est un commentaire modifié
+	 */
 	public Commentaire commToDto() {
 		Commentaire commToDto = new Commentaire(this.getIdComm(), this.getTexteComm());
 		if (this.getTitre() != null) commToDto.setTitre(this.getTitre().titreToDto());

@@ -5,7 +5,6 @@ import java.util.Objects;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
-import javax.persistence.PersistenceException;
 
 import dao.uc3_Donner1Avis.DaoException;
 import dao.uc3_Donner1Avis.DaoGestion;
@@ -13,9 +12,9 @@ import dao.uc3_Donner1Avis.DaoListe;
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
 import entity.uc3_Donner1Avis.commentaire.CommentaireException;
 import entity.uc3_Donner1Avis.compteur.Compteur;
-import entity.uc3_Donner1Avis.compteur.CompteurVideException;
+import entity.uc3_Donner1Avis.compteur.CompteurException;
 import entity.uc3_Donner1Avis.titre.Titre;
-import entity.uc3_Donner1Avis.titre.TitreVideException;
+import entity.uc3_Donner1Avis.titre.TitreException;
 
 @Singleton
 @LocalBean
@@ -27,7 +26,7 @@ public class Gestion {
 
 	/********************************************************************************
 	 * Cette partie concerne les Commentaires et aura toutes les méthodes relatives *
-	 * @throws CommentaireException 											*
+	 * @throws CommentaireException 												*
 	 ********************************************************************************/
 
 	public Commentaire creerComm(Commentaire commentaire) throws CommentaireException {
@@ -36,7 +35,7 @@ public class Gestion {
 			commentaire = daoGestion.ajouter(commentaire);
 		}
 		catch(NullPointerException npe) {
-			System.out.println("Attention : NullPointerException pour le commentaire!");
+			throw new CommentaireException("Attention : NullPointerException pour le commentaire!");
 		} catch (DaoException e) {
 			if (e.getCode() == 1) throw new CommentaireException("*** Attention le commentaire est vide ***");
 			if (e.getCode() == 2) throw new CommentaireException("*** Attention, un commentaire existe déjà en base avec cet id ***");
@@ -64,18 +63,22 @@ public class Gestion {
 		}
 	}
 
-	/**************************************************************************
-	 * Cette partie concerne les Titres et aura toutes les méthodes relatives *
-	 * @throws TitreVideException 										  	  *
-	 **************************************************************************/
+	/*********************************************************************************
+	 * <p>Cette partie concerne les Titres et aura toutes les méthodes relatives</p> *
+	 * <p>Cette partie n'est pas utilisée par le client web. Voir les commentaires 	 *
+	 * dans DaoGestion, partie des titres pour plus d'explications.</p>			 *
+	 * @throws TitreException 												  		 *
+	 *********************************************************************************/
 
-	public Titre creerTitre(Titre titre) throws DaoException {
+	public Titre creerTitre(Titre titre) throws TitreException {
 		try {
 			Objects.requireNonNull(titre);
 			daoGestion.ajouter(titre);
 		}
 		catch(NullPointerException npe) {
 			System.out.println("Attention : NullPointerException pour le titre!");
+		} catch (DaoException e) {
+			if (e.getCode() == 2) throw new TitreException("*** Attention, un titre existe déjà en base avec cet id ***");
 		}
 		return titre;
 	}
@@ -92,18 +95,22 @@ public class Gestion {
 		}
 	}
 
-	/*****************************************************************************
-	 * Cette partie concerne les Compteurs et aura toutes les méthodes relatives *
-	 * @throws CompteurVideException 											 *
+	/*************************************************************************************
+	 * <p>Cette partie concerne les Compteurs et aura toutes les méthodes relatives.</p> *
+	 * <p>Cette partie n'est pas utilisée par le client web. Voir les commentaires 		 *
+	 * dans DaoGestion, partie des compteurs pour plus d'explications.</p>				 *
+	 * @throws CompteurException 												 		 *
 	 *****************************************************************************/
 
-	public Compteur creerCompteur(Compteur compteur) throws DaoException {
+	public Compteur creerCompteur(Compteur compteur) throws CompteurException {
 		try {
 			Objects.requireNonNull(compteur);
 			daoGestion.ajouter(compteur);
 		}
 		catch(NullPointerException npe) {
 			System.out.println("Attention : NullPointerException pour le compteur!");
+		}catch (DaoException e) {
+			if (e.getCode() == 2) throw new CompteurException("*** Attention, un compteur existe déjà en base avec cet id ***");
 		}
 		return compteur;
 	}
