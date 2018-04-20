@@ -54,9 +54,11 @@ public class DaoGestion {
 			else { 
 				throw new DaoException(UtilBdD.ERREUR_1, 1);
 			}
-		}
-		catch (PersistenceException e) {	
-			System.out.println("*** Nacer : " + e.getMessage());
+		} catch (ConstraintViolationException e) {	
+			System.out.println("*** Nacer commentaire : " + e.getMessage());
+			throw new DaoException(UtilBdD.ERREUR_2, 2);
+		} catch (PersistenceException e) {	
+			System.out.println("*** Nacer commentaire : " + e.getMessage());
 			throw new DaoException(UtilBdD.ERREUR_2, 2);
 		} 
 		System.out.println("** DaoGestion - ajouter(Commentaire commentaire) : " + commentaire);
@@ -129,7 +131,7 @@ public class DaoGestion {
 			}
 		}
 		catch (PersistenceException e) {	
-			System.out.println("*** Nacer : " + e.getMessage());
+			System.out.println("*** Nacer titre : " + e.getMessage());
 			throw new DaoException(UtilBdD.ERREUR_2_2);
 		}
 		return titre;
