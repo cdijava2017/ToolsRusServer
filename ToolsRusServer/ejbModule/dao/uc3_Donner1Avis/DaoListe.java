@@ -58,9 +58,9 @@ public class DaoListe {
 	 * Cette partie concerne les Titres et aura toutes les méthodes relatives *
 	 **************************************************************************/
 	
-	public Titres getAllTitreParId() {
+	public ArrayList<Titre> getAllTitreParId() {
 		System.out.println("DaoListe méthode getAllTitreParId()");
-		Titres liste = new Titres();
+		ArrayList<Titre> liste = new ArrayList<Titre>();
 
 		for (Object titre : em.createQuery(UtilBdD.GET_ALL_TITRE).getResultList()) {   
 			if (titre instanceof Titre) {

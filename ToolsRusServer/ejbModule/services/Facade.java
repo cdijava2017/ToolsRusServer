@@ -70,7 +70,7 @@ public class Facade implements IFacade {
 		return commentaires;
 	}
 	@Override
-	public Titres getAllTitreParId() {
+	public ArrayList<Titre> getAllTitreParId() {
 		return uc3Facade.getAllTitreParId();
 	}
 	@Override

@@ -86,7 +86,7 @@ public class Uc3Facade {
 		return commentaires;
 	}
 
-	public Titres getAllTitreParId() {
+	public ArrayList<Titre> getAllTitreParId() {
 		return liste.getAllTitreParId();
 	}
 

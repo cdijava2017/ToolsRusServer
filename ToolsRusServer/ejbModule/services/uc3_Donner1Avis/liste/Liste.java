@@ -54,8 +54,8 @@ public class Liste {
 	 * Cette partie concerne les Titres et aura toutes les méthodes relatives*
 	 *************************************************************************/
 	
-	public Titres getAllTitreParId() {
-		Titres titres = daoListe.getAllTitreParId();
+	public ArrayList<Titre> getAllTitreParId() {
+		ArrayList<Titre> titres = daoListe.getAllTitreParId();
 		for (Titre titre : titres) {
 			titre = titre.titreToDto();
 			titres.add(titre);
