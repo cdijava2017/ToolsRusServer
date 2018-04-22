@@ -1,10 +1,5 @@
-/test/
-/jndi.properties
-/jboss-ejb-client.properties
-/entity/
+/clientServer/
 /dao/
 /exception/
 /services/
-/clientServer/
-/META-INF/
-/utils/
+/test/
