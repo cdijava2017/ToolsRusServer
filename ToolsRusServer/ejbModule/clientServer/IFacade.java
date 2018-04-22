@@ -26,7 +26,7 @@ public interface IFacade {
 	public Titre addTitre(Titre titre) throws TitreException;
 	public Compteur addCompteur(Compteur compteur) throws CompteurException;
 
-	public void supAllCommentaires();
+	public void supAllCommentaires() throws CommentaireException;
 	public void supCommParId(int idComm) throws CommentaireException;
 	public void supAllTitres();
 	public void supAllCompteurs();

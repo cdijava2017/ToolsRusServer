@@ -15,8 +15,8 @@ import entity.uc3_Donner1Avis.titre.Titre;
 import entity.uc3_Donner1Avis.titre.Titres;
 /**
  * <p>	Classe gérant la partie Dao qui sert à lister les commentaires. Etant donné que tout est en cascade, nous n'aurons pas besoin 
- * 		des parties pour les Titres et les Compteurs mais dans un soucis d'évolution, elles ont quand même été codées.		</p>
- * @author Stag
+ * 		des parties pour les Titres et les Compteurs mais dans un soucis d'évolution et de tests, elles ont quand même été codées.		</p>
+ * @author Nacer ATOUT
  *
  */
 
@@ -28,15 +28,15 @@ public class DaoListe {
 	EntityManager em; 
 	
 	/********************************************************************************
-	 * Cette partie concerne les Commentaires et aura toutes les méthodes relatives 
-	 * @throws DaoException *
+	 * Cette partie concerne les Commentaires et aura toutes les méthodes relatives *
+	 * @throws CommentaireException 												*
 	 ********************************************************************************/
 	
 	public ArrayList<Commentaire> getAllCommParId() throws CommentaireException {
 		System.out.println("DaoListe méthode getAllCommParId()");
 		ArrayList<Commentaire> liste = new ArrayList<Commentaire>();
 		if (em.createQuery(UtilBdD.GET_ALL_COMM).getResultList() == null) 
-			throw new CommentaireException(DaoErrorMessage.ERR_LISTE_VIDE.getMessage(),DaoErrorMessage.ERR_LISTE_VIDE.getCode());
+			throw new CommentaireException("DaoListe() getAllCommParId() : " + DaoErrorMessage.ERR_LISTE_VIDE.getMessage(),DaoErrorMessage.ERR_LISTE_VIDE.getCode());
 		for (Object commentaire : em.createQuery(UtilBdD.GET_ALL_COMM).getResultList()) {   
 			if (commentaire instanceof Commentaire) {
 				liste.add((Commentaire) commentaire);
@@ -49,7 +49,7 @@ public class DaoListe {
 		System.out.println("DaoListe méthode getCommParRef()");
 		Commentaire commentaire =  em.find(Commentaire.class, ref);
 		if (commentaire == null) 
-			throw new DaoException(DaoErrorMessage.ERR_COMM_INEXISTANT.getMessage(),DaoErrorMessage.ERR_COMM_INEXISTANT.getCode());
+			throw new DaoException("DaoListe() getCommParRef() : " + DaoErrorMessage.ERR_COMM_INEXISTANT.getMessage(),DaoErrorMessage.ERR_COMM_INEXISTANT.getCode());
 		return commentaire;
 	}
 	
@@ -74,7 +74,7 @@ public class DaoListe {
 		System.out.println("DaoListe méthode getTitreParRef()");
 		Titre titre =  em.find(Titre.class, ref);
 		if (titre == null) 
-			throw new DaoException(DaoErrorMessage.ERR_TITRE_INEXISTANT.getMessage(),DaoErrorMessage.ERR_TITRE_INEXISTANT.getCode());
+			throw new DaoException("DaoListe() getTitreParRef() : " + DaoErrorMessage.ERR_TITRE_INEXISTANT.getMessage(),DaoErrorMessage.ERR_TITRE_INEXISTANT.getCode());
 		return titre;
 	}
 
@@ -98,7 +98,7 @@ public class DaoListe {
 		System.out.println("DaoListe méthode getCompteurParRef()");
 		Compteur compteur =  em.find(Compteur.class, ref);
 		if (compteur == null) 
-			throw new DaoException(DaoErrorMessage.ERR_COMPTEUR_INEXISTANT.getMessage(),DaoErrorMessage.ERR_COMPTEUR_INEXISTANT.getCode());
+			throw new DaoException("DaoListe() getCompteurParRef() : " + DaoErrorMessage.ERR_COMPTEUR_INEXISTANT.getMessage(),DaoErrorMessage.ERR_COMPTEUR_INEXISTANT.getCode());
 		return compteur;
 	}
 

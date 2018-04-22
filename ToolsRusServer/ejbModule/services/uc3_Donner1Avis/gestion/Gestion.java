@@ -43,8 +43,12 @@ public class Gestion {
 		return commentaire;
 	}
 
-	public void supAllCommentaires() {
-		daoGestion.supAllCommentaires();
+	public void supAllCommentaires() throws CommentaireException {
+		try {
+			daoGestion.supAllCommentaires();
+		} catch (DaoException e) {
+			throw new CommentaireException("*** Attention, la liste est vide ***");
+		}
 	}
 
 	public void supCommParId(int idComm) throws CommentaireException {

@@ -49,7 +49,7 @@ public class Facade implements IFacade {
 		return uc3Facade.addCompteur(compteur);
 	}
 	@Override
-	public void supAllCommentaires() {
+	public void supAllCommentaires() throws CommentaireException {
 		uc3Facade.supAllCommentaires();
 	}
 	@Override

@@ -53,9 +53,10 @@ public class Uc3Facade {
 	/**
 	 * <p> Méthodes pour supprimer en Base de Données. On supprime tout dans la table correspondante.</p>
 	 * @author Nacer ATOUT
+	 * @throws CommentaireException 
 	 */
 
-	public void supAllCommentaires() {
+	public void supAllCommentaires() throws CommentaireException {
 		gestion.supAllCommentaires();
 	}
 

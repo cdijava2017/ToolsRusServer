@@ -55,10 +55,10 @@ public class DaoGestion {
 				throw new DaoException(UtilBdD.ERREUR_1, 1);
 			}
 		} catch (ConstraintViolationException e) {	
-			System.out.println("*** Nacer commentaire : " + e.getMessage());
+			System.out.println("*** DaoGestion ajouter() ConstraintViolationException : " + e.getMessage());
 			throw new DaoException(UtilBdD.ERREUR_2, 2);
 		} catch (PersistenceException e) {	
-			System.out.println("*** Nacer commentaire : " + e.getMessage());
+			System.out.println("*** DaoGestion ajouter() PersistenceException : " + e.getMessage());
 			throw new DaoException(UtilBdD.ERREUR_2, 2);
 		} 
 		System.out.println("** DaoGestion - ajouter(Commentaire commentaire) : " + commentaire);
@@ -70,7 +70,7 @@ public class DaoGestion {
 	 *  <p>Elle n'est codée qu'à des fins de tests car il ne sera pas possible de supprimer tous les commentaires depuis le client Web.</p>
 	 *  <p>En effet, je pars du principe qu'on ne peut supprimer qu'un commentaire à la fois.</p>
 	 */
-	public void supAllCommentaires() {
+	public void supAllCommentaires() throws DaoException {
 		System.out.println("DaoGestion méthode supAllCommentaires() commentaire");
 		try {
 			em.createQuery(UtilBdD.DEL_COMMENTAIRE).executeUpdate();
@@ -102,7 +102,7 @@ public class DaoGestion {
 		try {
 			commentaire = em.find(Commentaire.class, id);
 		} catch (IllegalArgumentException e) {
-			throw new DaoException(UtilBdD.ERREUR_3, 3);
+			throw new DaoException("DaoGestion recupCommentaire() : " + UtilBdD.ERREUR_3, 3);
 		}
 		return commentaire;
 	}
