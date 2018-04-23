@@ -9,6 +9,7 @@ import javax.ejb.Singleton;
 import dao.uc3_Donner1Avis.DaoException;
 import dao.uc3_Donner1Avis.DaoGestion;
 import dao.uc3_Donner1Avis.DaoListe;
+import dao.uc3_Donner1Avis.UtilBdD;
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
 import entity.uc3_Donner1Avis.commentaire.CommentaireException;
 import entity.uc3_Donner1Avis.compteur.Compteur;
@@ -35,10 +36,11 @@ public class Gestion {
 			commentaire = daoGestion.ajouter(commentaire);
 		}
 		catch(NullPointerException npe) {
-			throw new CommentaireException("Attention : NullPointerException pour le commentaire!");
+			throw new CommentaireException(UtilBdD.COMM_NULL);
 		} catch (DaoException e) {
-			if (e.getCode() == 1) throw new CommentaireException("*** Attention le commentaire est vide ***");
-			if (e.getCode() == 2) throw new CommentaireException("*** Attention, un commentaire existe déjà en base avec cet id ***");
+			if (e.getCode() == 0) throw new CommentaireException(e.getMessage());
+			if (e.getCode() == 1) throw new CommentaireException(e.getMessage());
+			if (e.getCode() == 2) throw new CommentaireException(e.getMessage());
 		}
 		return commentaire;
 	}
@@ -70,7 +72,7 @@ public class Gestion {
 	/*********************************************************************************
 	 * <p>Cette partie concerne les Titres et aura toutes les méthodes relatives</p> *
 	 * <p>Cette partie n'est pas utilisée par le client web. Voir les commentaires 	 *
-	 * dans DaoGestion, partie des titres pour plus d'explications.</p>			 *
+	 * dans DaoGestion, partie des titres pour plus d'explications.</p>			 	 *
 	 * @throws TitreException 												  		 *
 	 *********************************************************************************/
 
@@ -80,7 +82,7 @@ public class Gestion {
 			daoGestion.ajouter(titre);
 		}
 		catch(NullPointerException npe) {
-			System.out.println("Attention : NullPointerException pour le titre!");
+			System.out.println("*** Attention : NullPointerException pour le titre! ***");
 		} catch (DaoException e) {
 			if (e.getCode() == 2) throw new TitreException("*** Attention, un titre existe déjà en base avec cet id ***");
 		}
@@ -95,7 +97,7 @@ public class Gestion {
 		try {
 			daoGestion.modifTitre(titre);
 		} catch (Exception e) {
-			System.out.println("Attention, Exception levée à la modification du titre : " + e.getMessage());
+			System.out.println("*** Attention, Exception levée à la modification du titre : " + e.getMessage());
 		}
 	}
 
@@ -104,7 +106,7 @@ public class Gestion {
 	 * <p>Cette partie n'est pas utilisée par le client web. Voir les commentaires 		 *
 	 * dans DaoGestion, partie des compteurs pour plus d'explications.</p>				 *
 	 * @throws CompteurException 												 		 *
-	 *****************************************************************************/
+	 *************************************************************************************/
 
 	public Compteur creerCompteur(Compteur compteur) throws CompteurException {
 		try {
@@ -112,7 +114,7 @@ public class Gestion {
 			daoGestion.ajouter(compteur);
 		}
 		catch(NullPointerException npe) {
-			System.out.println("Attention : NullPointerException pour le compteur!");
+			System.out.println("*** Attention : NullPointerException pour le compteur! ***");
 		}catch (DaoException e) {
 			if (e.getCode() == 2) throw new CompteurException("*** Attention, un compteur existe déjà en base avec cet id ***");
 		}
@@ -128,7 +130,7 @@ public class Gestion {
 		try {
 			daoGestion.modifCompteur(compteur);
 		} catch (Exception e) {
-			System.out.println("Attention, Exception levée à la modification du compteur : " + e.getMessage());
+			System.out.println("*** Attention, Exception levée à la modification du compteur : " + e.getMessage());
 		}
 	}
 

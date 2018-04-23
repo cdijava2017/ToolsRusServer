@@ -1,5 +1,6 @@
 package test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import javax.naming.Context;
@@ -12,6 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clientServer.IFacade;
+import dao.uc3_Donner1Avis.UtilBdD;
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
 import entity.uc3_Donner1Avis.commentaire.CommentaireException;
 import entity.uc3_Donner1Avis.titre.Titre;
@@ -52,6 +54,9 @@ public class TestAjoutComm {
 	@Before // avant chaque test, nous supprimons les commentaire en base
 	public void debut() throws Exception { 
 		System.out.println("@Before : " + commentaire1);
+		interfaceFacade.supAllCompteurs();
+		interfaceFacade.supAllCommentaires();
+		interfaceFacade.supAllTitres();
 	}
 
 	/**
@@ -60,9 +65,7 @@ public class TestAjoutComm {
 	@After // après chaque test, nous supprimons le contenu des tables commentaire, titre et compteur
 	public void fin() throws Exception { 
 		System.out.println("@After : " + commentaire1);
-		interfaceFacade.supAllCompteurs();
-		interfaceFacade.supAllCommentaires();
-		interfaceFacade.supAllTitres();
+
 	}
 
 	/**
@@ -73,7 +76,6 @@ public class TestAjoutComm {
 	@Test
 	public final void testAjouterCommCasNominal() throws CommentaireException {
 		System.out.println("testAjouterCommCasNominal()");
-		interfaceFacade.supAllCommentaires();
 		setCommentaire1(new Commentaire(nb, "commentaire " + nb));
 		setTitre1(new Titre(commentaire1.getIdComm(), "titre " + nb));
 		commentaire1.setTitre(titre1);
@@ -96,23 +98,98 @@ public class TestAjoutComm {
 	 */
 	@Test
 	public final void testAjouterCommNull() throws CommentaireException {
-		System.out.println("testAjouterCommNull()");
-		interfaceFacade.supAllCommentaires();
+		String attendu = UtilBdD.COMM_NULL;
+		String obtenu = null;
 		setCommentaire1(null);
-		System.out.println("testCreerComm() : " + commentaire1);
-		boolean retour = false;
+		System.out.println("testAjouterCommNull() : " + commentaire1);
 		try {
 			System.out.println("persistence commentaire");
 			interfaceFacade.addCommentaire(commentaire1);
 			System.out.println("commentaire persisté");
 		} catch (CommentaireException e) {
-			System.out.println("exception testCreerComm() : " + e.getMessage());
-			retour = true;
+			System.out.println("exception testAjouterCommNull() : " + e.getMessage());
+			obtenu = e.getMessage();
 		} 
-		assertTrue(retour);
+		assertEquals(attendu, obtenu);
 		
 	}
 
+	/**
+	 * Test method for {@link dao.uc3_Donner1Avis.DaoGestion#ajouter(entity.uc3_Donner1Avis.commentaire.Commentaire)}.
+	 * @throws CommentaireException 
+	 */
+	@Test
+	public final void testAjouterCommIdNull() throws CommentaireException {
+		String attendu = UtilBdD.IDCOMM_INVALIDE;
+		String obtenu = null;
+		setCommentaire1(new Commentaire(0, "commentaire " + nb));
+		System.out.println("testAjouterCommIdNull() : " + commentaire1);
+		try {
+			System.out.println("persistence commentaire");
+			interfaceFacade.addCommentaire(commentaire1);
+			System.out.println("commentaire persisté");
+		} catch (CommentaireException e) {
+			System.out.println("exception testAjouterCommIdNull() : " + e.getMessage());
+			obtenu = e.getMessage();
+		} 
+		assertEquals(attendu, obtenu);
+	}
+
+	/**
+	 * Test method for {@link dao.uc3_Donner1Avis.DaoGestion#ajouter(entity.uc3_Donner1Avis.commentaire.Commentaire)}.
+	 * @throws CommentaireException 
+	 */
+	@Test
+	public final void testAjouterCommTxtNull() throws CommentaireException {
+		String attendu = UtilBdD.TXTCOMM_INVALIDE;
+		String obtenu = null;
+		setCommentaire1(new Commentaire(1, null));
+		System.out.println("testAjouterCommTxtNull() : " + commentaire1);
+		try {
+			System.out.println("persistence commentaire");
+			interfaceFacade.addCommentaire(commentaire1);
+			System.out.println("commentaire persisté");
+		} catch (CommentaireException e) {
+			System.out.println("exception testAjouterCommTxtNull() : " + e.getMessage());
+			obtenu = e.getMessage();
+		} 
+		assertEquals(attendu, obtenu);
+	}
+
+	/**
+	 * Test method for {@link dao.uc3_Donner1Avis.DaoGestion#ajouter(entity.uc3_Donner1Avis.commentaire.Commentaire)}.
+	 * @throws CommentaireException 
+	 */
+	@Test
+	public final void testAjouterCommDoublon() throws CommentaireException {
+//		String attendu = UtilBdD.TXTCOMM_INVALIDE;
+//		String obtenu = null;
+		setCommentaire1(new Commentaire(nb, "commentaire " + nb));
+		setTitre1(new Titre(commentaire1.getIdComm(), "titre " + nb));
+		commentaire1.setTitre(titre1);
+		System.out.println("testAjouterCommDoublon() : " + commentaire1);
+		boolean retour = false;
+		// Première persistence pour ajouter le commentaire en base
+		try {
+			System.out.println("persistence commentaire");
+			interfaceFacade.addCommentaire(commentaire1);
+			System.out.println("commentaire persisté");
+		} catch (CommentaireException e) {
+			System.out.println("exception testAjouterCommDoublon() : " + e.getMessage());
+//			obtenu = e.getMessage();
+		} 
+		// Deuxième persistence pour créer un doublon
+		try {
+			System.out.println("persistence commentaire");
+			interfaceFacade.addCommentaire(commentaire1);
+			System.out.println("commentaire persisté");
+		} catch (CommentaireException e) {
+			System.out.println("exception testAjouterCommDoublon() : " + e.getMessage());
+//			obtenu = e.getMessage();
+		} 
+//		assertEquals(attendu, obtenu);
+	}
+	
 	public Commentaire getCommentaire1() {
 		return commentaire1;
 	}

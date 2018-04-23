@@ -50,9 +50,12 @@ public class DaoGestion {
 				}
 				em.persist(commentaire);
 				em.flush();
-			}
-			else { 
-				throw new DaoException(UtilBdD.ERREUR_1, 1);
+			} else if(commentaire.getIdComm() == 0) { 
+				throw new DaoException(UtilBdD.IDCOMM_INVALIDE, 0);
+			} else if(commentaire.getTexteComm() == null) { 
+				throw new DaoException(UtilBdD.TXTCOMM_INVALIDE, 1);
+			} else { 
+				throw new DaoException(UtilBdD.ERREUR_1, 55);
 			}
 		} catch (ConstraintViolationException e) {	
 			System.out.println("*** DaoGestion ajouter() ConstraintViolationException : " + e.getMessage());

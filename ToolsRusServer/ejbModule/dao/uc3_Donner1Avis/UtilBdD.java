@@ -20,5 +20,8 @@ public class UtilBdD
 	public static final String ERREUR_3 				= "*** Attention, aucun commentaire n'existe en base avec cet id ***";
 	public static final String ERREUR_3_2				= "*** Attention, aucun titre n'existe en base avec cet id ***";
 	public static final String ERREUR_3_3				= "*** Attention, aucun compteur n'existe en base avec cet id ***";
-
+	public static final String IDCOMM_INVALIDE			= "*** Attention, l'id du commentaire saisi est invalide ***";
+	public static final String TXTCOMM_INVALIDE			= "*** Attention le commentaire est vide ***";
+	public static final String COMM_NULL				= "*** Attention : NullPointerException pour le commentaire! ***";
+	
 }
