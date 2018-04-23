@@ -13,7 +13,6 @@ import entity.uc3_Donner1Avis.commentaire.CommentaireException;
 import entity.uc3_Donner1Avis.compteur.Compteur;
 import entity.uc3_Donner1Avis.compteur.Compteurs;
 import entity.uc3_Donner1Avis.titre.Titre;
-import entity.uc3_Donner1Avis.titre.Titres;
 
 
 
@@ -98,24 +97,4 @@ public class Liste {
 	}
 
 
-
-//	/***************************************************************************
-//	 * Cette partie concerne les Auteurs et aura toutes les méthodes relatives
-//	 ***************************************************************************/
-//	
-//	public Auteurs getAllAuteurParId() {
-//		
-//		Auteurs auteurs = daoListe.getAllAuteurParId();
-//		return auteurs;
-//	}
-//	
-//	public Auteur getAuteurParRef(int ref) {
-//		Auteur auteur = null;
-//		try {
-//			auteur = daoListe.getAuteurParRef(ref);
-//		} catch (DaoException e) {
-//			System.out.println("!!!!! DM Erreur : " + e.getCode() + ":" + e.getMessage());
-//		}
-//		return auteur;
-//	}
 }

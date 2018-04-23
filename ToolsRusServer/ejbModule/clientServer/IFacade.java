@@ -9,7 +9,6 @@ import entity.uc3_Donner1Avis.compteur.CompteurException;
 import entity.uc3_Donner1Avis.compteur.Compteurs;
 import entity.uc3_Donner1Avis.titre.Titre;
 import entity.uc3_Donner1Avis.titre.TitreException;
-import entity.uc3_Donner1Avis.titre.Titres;
 
 public interface IFacade {
 

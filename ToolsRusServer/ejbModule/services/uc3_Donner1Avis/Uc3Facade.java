@@ -6,7 +6,6 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
-import dao.uc3_Donner1Avis.DaoException;
 import entity.uc3_Donner1Avis.commentaire.Commentaire;
 import entity.uc3_Donner1Avis.commentaire.CommentaireException;
 import entity.uc3_Donner1Avis.compteur.Compteur;
@@ -14,7 +13,6 @@ import entity.uc3_Donner1Avis.compteur.CompteurException;
 import entity.uc3_Donner1Avis.compteur.Compteurs;
 import entity.uc3_Donner1Avis.titre.Titre;
 import entity.uc3_Donner1Avis.titre.TitreException;
-import entity.uc3_Donner1Avis.titre.Titres;
 import services.uc3_Donner1Avis.gestion.Gestion;
 import services.uc3_Donner1Avis.liste.Liste;
 
@@ -32,7 +30,7 @@ public class Uc3Facade {
 	 * <p> On reçoit en paramètre un objet à persister et on retourne le même objet traité (en DTO) et utilisable dans des listes. </p>
 	 * @param commentaire @param titre @param compteur @param ref
 	 * @return commentaire @return titre @return compteur
-	 * @throws CommentaireException @throws TitreVideException @throws CompteurVideException
+	 * @throws CommentaireException @throws TitreException @throws CompteurException
 	 * @author Nacer ATOUT
 	 */
 
@@ -77,8 +75,8 @@ public class Uc3Facade {
 	 * <p> Méthodes pour lister les données stockées en Base de Données</p>
 	 * <p> On récupère tout ce qui se trouve dans une table et on le met dans une ArrayList pour pouvoir le traiter au besoin.</p>
 	 * @return liste.getAllCommParId() @return liste.getAllTitreParId() @return liste.getAllCompteurParId()
+	 * @throws CommentaireException 
 	 * @author Nacer ATOUT
-	 * @throws DaoException 
 	 */
 
 	public ArrayList<Commentaire> getAllCommParId() throws CommentaireException {
@@ -100,8 +98,8 @@ public class Uc3Facade {
 	 *<p> Elles recoivent en paramètre un chiffre qui correspond à l'ID de l'objet qu'on veut récupérer en base et afficher.</p>
 	 * @param ref
 	 * @return liste.getCommParRef() @return liste.getTitreParRef() @return liste.getCompteurParRef()
+	 * @throws CommentaireException 
 	 * @author Nacer ATOUT
-	 * @throws DaoException 
 	 */
 
 	public Commentaire getCommParRef(int ref) throws CommentaireException {
@@ -122,6 +120,7 @@ public class Uc3Facade {
 	 * <p> Ces méthodes remplacent en mémoire les objets stockés par hibernate 
 	 * par celui qu'on leur transmet en paramètre avant de les persister.</p>
 	 * @param commentaire @param titre @param compteur
+	 * @throws CommentaireException 
 	 * @author Nacer ATOUT
 	 */
 

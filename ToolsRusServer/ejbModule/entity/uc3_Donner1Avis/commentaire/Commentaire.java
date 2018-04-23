@@ -21,7 +21,12 @@ import entity.uc3_Donner1Avis.titre.Titre;
 import utils.ICommentable;
 
 /**
- * TODO Commenter cette classe au maximum
+ * La classe Commentaire est l'entity principale de ma partie. Une table est créée quand le serveur est lancé.
+ * Les annotations @ servent à initier des comportements prédéfinis dans Jboss et Wildfly.
+ * L'Id sera saisi par l'utilisateur dans le cadre de l'ECF mais le code pour mettre en place une séquence est mis en commentaire.
+ * Les associations sont expliquées plus bas, juste avant celle qu'elles décrivent.
+ * La méthode equals() a été personnalisée pour correspondre aux besoins de comparaison des commentaires entre eux.
+ * 
  * @author Nacer
  *
  */
@@ -139,25 +144,25 @@ public class Commentaire implements Serializable, ICommentable {
 		return resultat;
 	}
 	
-	public void incrementDislike() {					// incrémente le compteur de Dislike dans la liste de compteurs du commentaire
+	public void incrementDislike() {					// incrémente de +1 le compteur de Dislike dans la listes des compteurs du commentaire
 		for (Compteur cpt : listeCompteurs) {
 			if (cpt instanceof CptDislike) cpt.compteurPlus1();
 		}		
 	}
-	public void incrementLike() {						// incrémente le compteur de Like dans la liste de compteurs du commentaire
+	public void incrementLike() {						// incrémente de +1 le compteur de Like dans la liste des compteurs du commentaire
 		for (Compteur cpt : listeCompteurs) {
 			if (cpt instanceof CptLike) cpt.compteurPlus1();
 		}		
 	}
 	
-	public Compteur getCptDislike() {					// récupère le compteur de Dislike dans la liste de compteurs du commentaire
+	public Compteur getCptDislike() {					// récupère le compteur de Dislike dans la liste des compteurs du commentaire
 		CptDislike cptDislike = null;
 		for (Compteur cpt : listeCompteurs) {
 			if (cpt instanceof CptDislike) cptDislike = (CptDislike) cpt;
 		}		
 		return cptDislike;
 	}
-	public Compteur getCptLike() {						// récupère le compteur de Like dans la liste de compteurs du commentaire
+	public Compteur getCptLike() {						// récupère le compteur de Like dans la liste des compteurs du commentaire
 		CptLike cptLike = null;
 		for (Compteur cpt : listeCompteurs) {
 			if (cpt instanceof CptLike) cptLike = (CptLike) cpt;

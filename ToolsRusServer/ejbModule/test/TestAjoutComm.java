@@ -1,7 +1,6 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import javax.naming.Context;
@@ -29,7 +28,6 @@ public class TestAjoutComm {
 	private static IFacade interfaceFacade;
 	private Commentaire commentaire1;
 	private Commentaire commentaireTest;
-//	private ArrayList<Commentaire> listeCommentaires = null;
 	private Titre titre1;
 	
 	/**
@@ -74,6 +72,7 @@ public class TestAjoutComm {
 
 	}
 
+	
 	/**
 	 * Cas nominal! On créé un commentaire avec un idComm = 1, txtComm = "commentaire 1" et on lui associe un titre idTitre = 1, txtTitre = titre 1.
 	 * Ensuite, on persiste et on va chercher en base le commentaire pour vérifier qu'il existe bien
@@ -102,6 +101,7 @@ public class TestAjoutComm {
 		assertTrue(retour);
 	}
 
+	
 	/**
 	 * On créé un commentaire null et on ne lui associe pas de titre. Ensuite, on persiste en base le commentaire. 
 	 * La persistence doit nous renvoyer une CommentaireException avec un message. Après avoir récupéré le message dans la variable @param obtenu,
@@ -126,6 +126,7 @@ public class TestAjoutComm {
 		assertEquals(attendu, obtenu);
 	}
 
+	
 	/**
 	 * On créé un commentaire avec un id null (une variable de type int ne peut être vide, l'équivalent est le chiffre 0) 
 	 * et on ne lui associe pas de titre. Ensuite, on persiste en base le commentaire. 
@@ -150,6 +151,7 @@ public class TestAjoutComm {
 		assertEquals(attendu, obtenu);
 	}
 
+	
 	/**
 	 * On créé un commentaire avec un idComm = 1 et un txtComm à null mais on ne lui associe pas de titre. Ensuite, on persiste en base le commentaire. 
 	 * La persistence doit nous renvoyer une CommentaireException avec un message stocké dans la variable @param TXTCOMM_INVALIDE .
@@ -173,6 +175,7 @@ public class TestAjoutComm {
 		assertEquals(attendu, obtenu);
 	}
 
+	
 	/**
 	 * On créé un commentaire avec un idComm = 1, txtComm = "commentaire 1" et on lui associe un titre idTitre = 1, txtTitre = titre 1.
 	 * La persistence doit nous renvoyer une CommentaireException avec un message stocké dans la variable @param ERREUR_2 .
@@ -207,6 +210,7 @@ public class TestAjoutComm {
 		assertEquals(attendu, obtenu);
 	}
 	
+	
 	/**
 	 * On créé un commentaire avec un idComm = 1, txtComm = "commentaire 1" et on lui associe un titre idTitre = 1, txtTitre = titre 1.
 	 * La persistence doit nous renvoyer une CommentaireException avec un message stocké dans la variable @param ERREUR_2 .
@@ -240,6 +244,7 @@ public class TestAjoutComm {
 		} 
 		assertEquals(attendu, obtenu);
 	}
+	
 	
 	public Commentaire getCommentaire1() {
 		return commentaire1;
