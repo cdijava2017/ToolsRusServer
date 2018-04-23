@@ -112,10 +112,12 @@ public class DaoGestion {
 		
 		Mots listeMot = new Mots();
 		
-		for (Object mot: em.createQuery(RequetesHQL.LISTALLMOT).getResultList())
+		for (Object mot: em.createQuery(RequetesHQL.LISTALLMOT).getResultList()) {
 			if ( mot instanceof Mot) {
 				listeMot.add((Mot) mot);
 			}
+		}
+		System.out.println("listAllMot_daogestion"+ listeMot);
 		return listeMot;
 	}
 		

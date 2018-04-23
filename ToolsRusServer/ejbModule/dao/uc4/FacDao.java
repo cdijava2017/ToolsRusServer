@@ -68,7 +68,7 @@ public class FacDao {
 		Mots listeMot = new Mots();
 		
 		listeMot = daoGestion.listAllMot();
-		
+		System.out.println("listAllMot_facDao" + listeMot);
 		return listeMot;
 	}
 }

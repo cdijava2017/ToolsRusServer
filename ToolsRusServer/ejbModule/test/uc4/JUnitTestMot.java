@@ -13,6 +13,7 @@ import org.junit.Test;
 import clientServer.uc4.IFacService;
 import entity.uc4.Mot;
 import entity.uc4.MotHumeur;
+import entity.uc4.Mots;
 import exception.uc4.UserExistantException;
 import exception.uc4.UserInexistantException;
 import utils.uc4.Parametre;
@@ -94,6 +95,15 @@ public class JUnitTestMot {
 		assertEquals(null, serviceFacade.getMot(1));		
 	}
 	
-	
+	@Test
+	public void ju1ListeMot() {
+		
+		Mots listeMot = new Mots();
+		
+		 listeMot= serviceFacade.listAllMot();
+		 System.out.println("ju1ListeMot_JUnitTestMot" + listeMot);
+		 
+		 
+	}
 	
 }
