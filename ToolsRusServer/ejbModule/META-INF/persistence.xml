@@ -14,8 +14,8 @@
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="false" />
 			<property name="hibernate.use_sql_comments" value="true" />
-				<property name="hibernate.default_schema"   value="system" />  	 
-<!-- 		<property name="hibernate.default_schema"   value="stag14" />			-->
+<!--		<property name="hibernate.default_schema"   value="system" />  	 -->
+ 		<property name="hibernate.default_schema"   value="stag14" />			
 
 		</properties>
 	</persistence-unit>
