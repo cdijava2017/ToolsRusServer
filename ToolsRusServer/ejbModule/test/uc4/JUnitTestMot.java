@@ -50,7 +50,7 @@ public class JUnitTestMot {
 	}
 	
 	
-	//test ju1AddMot
+	//test ju1AddMot: test to add a word in the database
 	@Test
 	public void ju1AddMot() throws UserExistantException, UserInexistantException {
 		
