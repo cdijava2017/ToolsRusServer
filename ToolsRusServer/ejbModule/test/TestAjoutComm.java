@@ -19,6 +19,7 @@ import entity.uc3_Donner1Avis.commentaire.CommentaireException;
 import entity.uc3_Donner1Avis.titre.Titre;
 
 /**
+ * 
  * @author moi
  *
  */
@@ -43,11 +44,14 @@ public class TestAjoutComm {
 	}
 
 	/**
+	 * Cette méthode sera lancée une fois que tous les tests effectués. On vide une dernière fois les tables.
 	 * @throws java.lang.Exception
 	 */
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		
+		interfaceFacade.supAllCompteurs();
+		interfaceFacade.supAllCommentaires();
+		interfaceFacade.supAllTitres();
 	}
 
 	/**
