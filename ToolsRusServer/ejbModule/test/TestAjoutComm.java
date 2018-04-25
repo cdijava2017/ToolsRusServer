@@ -19,8 +19,9 @@ import entity.uc3_Donner1Avis.commentaire.CommentaireException;
 import entity.uc3_Donner1Avis.titre.Titre;
 
 /**
- * 
- * @author moi
+ * Cette classe de test sert à effectuer des tests unitaire sur la Classe DaoGestion.java et pour la méthode ajouter(Commentaire commentaire).
+ * Chaque test est effectué pour tester un cas précis pouvant survenir plus haut dans le programme et redescendant vers la Dao.
+ * @author Nacer ATOUT
  *
  */
 public class TestAjoutComm {

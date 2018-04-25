@@ -1,11 +1,8 @@
 clientServer
-dao
 dao.uc3_Donner1Avis
-entity
 entity.uc3_Donner1Avis.commentaire
 entity.uc3_Donner1Avis.compteur
 entity.uc3_Donner1Avis.titre
-exception
 services
 services.uc3_Donner1Avis
 services.uc3_Donner1Avis.gestion

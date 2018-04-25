@@ -64,13 +64,15 @@ public class Commentaire implements Serializable, ICommentable {
 
 
 	/**
-	 * Constructeur vide par défaut
+	 * Constructeur vide par défaut qui ne contient que la liste de compteurs
 	 */
 	public Commentaire() {
 		this.listeCompteurs = new ArrayList<Compteur>();
 	}
 	/**
-	 *  Constructeur standard avec @param idComm et @param texteComm. 
+	 *  Constructeur standard
+	 *  @param idComm
+	 *  @param texteComm
 	 */
 	public Commentaire(int idComm, String texteComm) {
 		this.idComm = idComm;
@@ -79,7 +81,9 @@ public class Commentaire implements Serializable, ICommentable {
 	}
 	/**
 	 *  Constructeur avec le titre en plus. 
-	 *  @param idComm, @param texteComm et @param titre. 
+	 *  @param idComm
+	 *  @param texteComm
+	 *  @param titre
 	 */
 	public Commentaire(int idComm, String texteComm, Titre titre) {
 		this.idComm = idComm;
@@ -89,7 +93,10 @@ public class Commentaire implements Serializable, ICommentable {
 	}
 	/**
 	 *  Constructeur avec le titre et la liste de compteurs en plus. 
-	 *  @param idComm, @param texteComm, @param compteurs et @param titre. 
+	 *  @param idComm
+	 *  @param texteComm
+	 *  @param titre
+	 *  @param listeCompteurs
 	 */
 	public Commentaire(int idComm, String texteComm, Titre titre, ArrayList<Compteur> compteurs) {
 		this.idComm = idComm;
@@ -99,7 +106,10 @@ public class Commentaire implements Serializable, ICommentable {
 		else this.listeCompteurs = new ArrayList<Compteur>();
 	}
 
-
+	/**
+	 * Méthodes Get() et Set() pour @param idComm
+	 * @return idComm
+	 */
 	public int getIdComm() {
 		return idComm;
 	}
@@ -107,6 +117,10 @@ public class Commentaire implements Serializable, ICommentable {
 		this.idComm = idComm;
 	}
 
+	/**
+	 * Méthodes Get() et Set() pour @param texteComm
+	 * @return texteComm
+	 */
 	public String getTexteComm() {
 		return texteComm;
 	}
@@ -114,6 +128,10 @@ public class Commentaire implements Serializable, ICommentable {
 		this.texteComm = texteComm;
 	}
 
+	/**
+	 * Méthodes Get() et Set() pour @param titre
+	 * @return titre
+	 */
 	public Titre getTitre() {
 		return titre;
 	}
@@ -121,6 +139,10 @@ public class Commentaire implements Serializable, ICommentable {
 		this.titre = titre;
 	}
 
+	/**
+	 * Méthodes Get(), Set() et add() pour @param listeCompteurs
+	 * @return listeCompteurs
+	 */
 	public Collection<Compteur> getListeCompteurs() {
 		return listeCompteurs;
 	}
@@ -131,19 +153,31 @@ public class Commentaire implements Serializable, ICommentable {
 		this.listeCompteurs.add(compteur);
 	}
 
+	/**
+	 * Méthode toString() redéfinie pour afficher les paramètres du commentaire d'une certaine façon.
+	 * Elle Override la méthode de la super classe Object.
+	 * @return les paramètres définis dans la méthode avec une mise en forme précise
+	 */
 	@Override
 	public String toString() {
 		return "Commentaire [idComm=" + idComm + ", texteComm=" + texteComm + ", titre=" + titre + ", compteurs="
 				+ listeCompteurs + "]";
 	}
 
+	/**
+	 * Méthode equals() redéfinie pour comparer deux commentaires
+	 * @return resultat
+	 */
 	public boolean equals(Commentaire comm) {			
 		boolean resultat;
 		if (comm.idComm == this.idComm || comm.texteComm == this.texteComm) resultat = true;
 		else resultat = false;
 		return resultat;
 	}
-	
+
+	/**
+	 * Méthodes pour incrémenter les compteurs du commentaire
+	 */
 	public void incrementDislike() {					// incrémente de +1 le compteur de Dislike dans la listes des compteurs du commentaire
 		for (Compteur cpt : listeCompteurs) {
 			if (cpt instanceof CptDislike) cpt.compteurPlus1();
@@ -154,7 +188,11 @@ public class Commentaire implements Serializable, ICommentable {
 			if (cpt instanceof CptLike) cpt.compteurPlus1();
 		}		
 	}
-	
+
+	/**
+	 * Méthodes Get() et Set() pour récupérer les compteurs Like et Dislike
+	 * @return un compteur précis de listeCompteurs
+	 */
 	public Compteur getCptDislike() {					// récupère le compteur de Dislike dans la liste des compteurs du commentaire
 		CptDislike cptDislike = null;
 		for (Compteur cpt : listeCompteurs) {
@@ -169,6 +207,7 @@ public class Commentaire implements Serializable, ICommentable {
 		}	
 		return cptLike;
 	}
+	
 	/**
 	 * La méthode commToDto() convertie un commentaire retourné par la base en un Objet de classe Commentaire. 
 	 * Ceci afin de pouvoir l'utiliser sans avoir de conflit de typage.
@@ -187,5 +226,5 @@ public class Commentaire implements Serializable, ICommentable {
 		}
 		return commToDto;
 	}
-	
+
 }
